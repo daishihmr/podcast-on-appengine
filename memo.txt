@@ -1,0 +1,4 @@
+<script type="text/javascript" charset="utf-8" src="http://www.podcastjuice.jp/js/feedBanner.js?id=29552&count=on&rank=on&collar=black"></script>
+
+
+http://podfeed.podcastjuice.jp/app/rss_convert.cgi?url=http%3A%2F%2Fwww%2Ehmr%2Dradio%2Enet%2F

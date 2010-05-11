@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GM">
+<title>mail form</title>
+<script type="text/javascript" src="/js/jquery-and-others.js"></script>
+<script type="text/javascript">
+<!--
+$(function(){
+
+    // Ajax設定
+    $.ajaxSetup({
+        error: function(xhr, st) {
+            alert("エラー" + st);
+            var s = "";
+            $.each(xhr, function(k, v) {
+            	s += (k + ":" + v + "\n");
+            });
+            alert(s);
+        }
+    });
+
+    // 検証ロジック
+    var validator = function() {
+        var isInvalid = ( $( "input[name='name']" ).val() == "" 
+            || $( "textarea[name='content']" ).val() == ""
+            || $( "input[name='name']" ).val() == "お名前"
+            || $( "textarea[name='content']" ).val() == "本文");
+        $( "input[type='submit']" ).attr( "disabled", isInvalid );
+        if ( isInvalid ) {
+            $( "form" ).submit(function() { return false; });
+        } else {
+            $( "form" ).submit(send);
+        }
+    };
+    
+    // イベントハンドラ設定
+    $( "input[name='name']" ).focus(function() {
+        if($(this).val() == "お名前") {
+            $(this).val("");
+        }
+    });
+    $( "input[name='name']" ).blur(function() {
+        if($(this).val() == "") {
+            $(this).val("お名前");
+        }
+    });
+    $( "input[name='mailAddress']" ).focus(function() {
+        if($(this).val() == "メールアドレス") {
+            $(this).val("");
+        }
+    });
+    $( "input[name='mailAddress']" ).blur(function() {
+        if($(this).val() == "") {
+            $(this).val("メールアドレス");
+        }
+    });
+    $( "textarea[name='content']" ).focus(function() {
+        if($(this).val() == "本文") {
+            $(this).val("");
+        }
+    });
+    $( "textarea[name='content']" ).blur(function() {
+        if($(this).val() == "") {
+            $(this).val("本文");
+        }
+    });
+    
+    $( "input[name='name']" ).keyup(validator);
+    $( "textarea[name='content']" ).keyup(validator);
+    $( "input[type='reset']" ).click(function() {
+        $( "input[type='submit']" ).attr( "disabled", true );
+    });
+    $( "input, textarea" ).focus(function() {
+        $(this).css( "border", "solid 1px #f50");
+    });
+    $( "input, textarea" ).blur(function() {
+        $(this).css( "border", "solid 1px #fff");
+    });
+    
+    // 最初はsendボタンを無効
+    $( "input[type='submit']" ).attr( "disabled", true );
+    $( "form" ).submit(function() { return false; });
+});
+
+/**
+ * sendボタンクリック時のアクション
+ */
+var sending = false;
+var send = function() {
+    if ( sending ) {
+        return;
+    }
+    sending = true;
+
+    $( "form" ).fadeOut(function(){
+        var data = $( "form" ).serializeArray();
+        
+        $.ajax({
+        	url: "/api/sendmail",
+        	data: data,
+        	dataType: "json",
+        	type: "POST",
+        	success: function(json) {
+	            if ( json.success ) {
+	                alert( "送信しました。" );
+	                $( "input[type='reset']" ).click();
+	            } else {
+	                if ( json.messages == null || json.messages.length == 0 ) {
+	                    alert( "エラー" );
+	                } else {
+	                    alert( json.messages.join("\n") );
+	                }
+	            }
+	            $( "form" ).fadeIn();
+	            sending = false;
+	        }
+        });
+    });
+};
+// -->
+</script>
+<style type="text/css">
+body {
+    font-family: monospace;
+    font-size: x-small;
+    color: #ccc;
+    margin: 10px 20px;
+    padding: 0;
+    background-color: transparent;
+}
+
+input {
+    border: solid 1px #fff;
+}
+
+input.button {
+    background-color: #fff;
+}
+
+textarea {
+    border: solid 1px #fff;
+    height: 200px;
+    padding: 2px;
+}
+
+.wide {
+	color: #ccc;
+	font-family: monospace;
+	background-color: black;
+    width: 250px;
+}
+
+div.field {
+    margin-bottom: 5px;
+}
+</style>
+</head>
+<body>
+おメールお待ちしております！
+<form>
+
+<div class="field"><input type="text" name="name" class="wide" value="お名前" /></div>
+
+<div class="field"><input type="text" name="mailAddress" class="wide" value="メールアドレス" /></div>
+
+<div class="field"><textarea name="content" class="wide" style="width: 240px">本文</textarea></div>
+
+<div class="field"><input type="submit" value="send" class="button" /> <input type="reset" value="reset" class="button" /></div>
+
+</form>
+</body>
+</html>

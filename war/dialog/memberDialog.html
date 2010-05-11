@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GM">
+</head>
+<body>
+<div id="mem">
+
+<div id="mem-dialog">
+<form id="memberForm" name="memberForm" onsubmit="return false">
+<p></p>
+<table>
+    <tbody>
+	    <tr>
+	        <td>名前 : </td>
+	        <td>
+	            <span id="mem-name-span"></span>
+	            <input type="hidden" id="mem-name" name="name" size="30" class="text ui-widget-content ui-corner-all" style="font-family:monospace" />
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>Twitter ID : </td>
+	        <td>
+	            <input type="text" id="mem-twitterId" name="twitterId" size="30" class="text ui-widget-content ui-corner-all" style="font-family:monospace" />
+	        </td>
+	    </tr>
+	    <tr>
+	       <td>アイコン : </td>
+	       <td>
+	           <img id="mem-icon-img" style="height:300px" /><br />
+	           <button id="mem-icon-button">upload/select</button>
+	           <input type="hidden" id="mem-icon" name="icon" />
+	       </td>
+	    </tr>
+	    <tr>
+            <td>プロフィール : </td>
+	        <td>
+	            <textarea id="mem-profile" name="profile" rows="20" cols="50" class="ui-widget-content ui-corner-all" style="font-family:monospace"></textarea>
+	        </td>
+	    </tr>
+    </tbody>
+</table>
+<input type="hidden" id="mem-key" name="key" value="" />
+</form>
+</div>
+
+</div>
+</body>
+</html>

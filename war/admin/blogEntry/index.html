@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="free css templates, xhtml, css, templates" />
+<meta name="description" content="A two-column, dark-themed design suitable for personal websites and blogs use. Designed by Enjay for The Web Hub." />
+<meta name="robots" content="all" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GM">
+<link rel="stylesheet" type="text/css" href="/css/dark-hive/jquery-ui-1.8.custom.css" />    
+<script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-1.8.custom.min.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<title>blog entry</title>
+<style type="text/css">
+body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 50px;}
+</style>
+<script type="text/javascript">
+$(function() {
+	$("#blogEntryForm").submit(function(){
+		return false;
+	});
+	
+	$("#recordingDate").datepicker({
+		dateFormat: "yy/mm/dd"
+	});
+	
+	$("#coverImageKey").click(function(){
+		open("/admin/image/", "image", "width=400, height=300, menubar=no, toolbar=no, scrollbars=yes");
+	});
+	
+	post("/admin/blogEntry/newSeq", null, function(data) {
+		$("#seq").val(data);
+	});
+	
+	post("/admin/personality/list", null, function(list) {
+		$("#personalities").html("");
+		$.each(list, function(k, v) {
+			var p = $("<span></span>");
+			p.append($("<input type='checkbox' name='personalityArray' value='" + v.keyString + "' />"));
+			p.append($("<span>" + v.name + "</span>"));
+			p.css({ marginRight: "5px" });
+			$("#personalities").append(p);
+		});
+	});
+});
+
+function receiveImageKey(imageKey) {
+	$("#coverImageKey").val(imageKey);
+	$("#image").html("<img src='/image/show/" + imageKey + "' />");
+}
+</script>
+</head>
+<body>
+
+<form id="blogEntryForm" name="blogEntryForm">
+<table>
+	<tr>
+		<td>seq</td>
+		<td><input type="text" id="seq" name="seq" readonly="readonly" /></td>
+	</tr>
+	<tr>
+		<td>title</td>
+		<td><input type="text" id="title" name="title" /></td>
+	</tr>
+	<tr>
+		<td>recordingDate</td>
+		<td><input type="text" id="recordingDate" name="recordingDate" /></td>
+	</tr>
+	<tr>
+		<td>coverImageKey</td>
+		<td>
+			<div><input type="text" id="coverImageKey" name="coverImageKey" readonly="readonly" /></div>
+			<div id="image"></div>
+		</td>
+	</tr>
+	<tr>
+		<td>personalities</td>
+		<td><div id="personalities"></div></td>
+	</tr>
+	<tr>
+		<td>audioFile</td>
+		<td></td>
+	</tr>
+</table>
+</form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GM">
+</head>
+<body>
+<div id="ent">
+
+<div id="ent-dialog">
+<form id="entryForm" name="entryForm" onsubmit="return false">
+<p></p>
+<table>
+    <colgroup>
+        <col width="130" />
+        <col width="630" />
+    </colgroup>
+    <tbody>
+	    <tr>
+	        <td>ページタイトル : </td>
+	        <td>
+	            <input type="text" id="ent-title" name="title" size="60" class="text ui-widget-content ui-corner-all" style="font-family:monospace" />
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>音声ファイルURL : </td>
+	        <td>
+	            <input type="text" id="ent-audioFileURL" name="audioFileURL" size="54" class="text ui-widget-content ui-corner-all" style="font-family:monospace" />
+	            <button id="ent-upload" style="font-size:6pt">upload</button>
+	            <button id="ent-select" style="font-size:6pt">file list</button>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>収録日 : </td>
+	        <td><input type="text" id="ent-recordingDate" name="recordingDate" size="15" class="text ui-widget-content ui-corner-all" style="font-family:monospace" /></td>
+	    </tr>
+	    <tr>
+	        <td>
+	            内容 :
+            </td>
+	        <td>
+	            <div>
+	                <button id="ent-member" style="font-size:xx-small">メンバー</button>
+                    <button id="ent-corner" style="font-size:xx-small">コーナー</button>
+	                <button id="ent-example" style="font-size:xx-small">初期化</button>
+	            </div>
+	            <textarea id="ent-content" name="content" rows="20" cols="77" class="ui-widget-content ui-corner-all" style="font-family:monospace"></textarea>
+	        </td>
+	    </tr>
+        <tr>
+            <td>タグ : </td>
+            <td><input type="text" id="ent-tags" name="tags" size="70" class="text ui-widget-content ui-corner-all" style="font-family:monospace" /></td>
+        </tr>
+    </tbody>
+</table>
+<input type="hidden" id="ent-key" name="key" value="" />
+</form>
+</div>
+
+<div id="ent-wait">
+    <p style="text-align:center">
+        <span id="ent-wait-message">プレビューを作成しています。</span><br />
+        <img src="/images/ajax-loader.gif" />
+    </p>
+</div>
+
+</div>
+</body>
+</html>

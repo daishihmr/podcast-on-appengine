@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+	<application>hmr-y-radio</application>
+	<version>3-1</version>
+
+	<precompilation-enabled>true</precompilation-enabled>
+
+	<system-properties>
+        <property name="slim3.hotReloading" value="true"/>
+		<property name="java.util.logging.config.file" value="WEB-INF/classes/logging.properties" />
+	</system-properties>
+	<sessions-enabled>true</sessions-enabled>
+
+	<static-files>
+		<include path="/*.html" />
+        <include path="/*.swf" />
+		<include path="/parts/**" />
+        <include path="/dialog/*.html" />
+		<include path="/images/**" />
+		<include path="/css/**" />
+		<include path="/js/**" />
+        <include path="/yattsu-ke.png" />
+        <include path="/yattsu-ke.jpg" />
+		<include path="/favicon.ico" />
+        <exclude path="/index.html" />
+	</static-files>
+</appengine-web-app>

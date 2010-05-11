@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HMRのやっつけラジオ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GM"/>
+<meta name="keywords" content="ネットラジオ,佐世保,Podcast,九州ネットラジオ組合,関東ネットラジオリンク,電脳,オタク,映画,風俗,音楽,コンビニ,ゲーム" />
+<meta name="discription" content="佐世保出身の30代男性集団が送る、笑いと情熱のポッドキャスト。車、電脳、オタク、映画、風俗、音楽、ゲームなどをネタに、幅広い話題を提供。やっつけ仕事でなるべく週１回ぐらいで更新していくネットラジオです。" />
+<meta name="robots" content="index,nofollow,archive" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/css/dark-hive/jquery-ui-1.8.custom.css" />
+<link rel="canonical" href="http://www.hmr-radio.net/" />
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.hmr-radio.net/rss" />
+</head>
+<body>
+<!-- begin wrap -->
+<div id="wrap">
+    <!-- begin header -->
+    <div id="header">
+        <h1><a href="/"><img src="/images/header_logo-trans.png" /></a></h1>
+        <h1 style="display:none">HMRのやっつけラジオ</h1>
+        <h2>佐世保出身の30代男性集団が送る、笑いと情熱のポッドキャスト</h2>
+        <ul>
+            <li><a id="menu-top" href="/">トップ</a></li>
+            <li><a id="menu-bbs">掲示板</a></li>
+            <li><a id="menu-member">メンバー</a></li>
+            <li><a id="menu-corner">コーナー</a></li>
+            <li><a id="menu-tag">タグ</a></li>
+            <li><a id="menu-mail">メール</a></li>
+            <li><a id="menu-about">HMRのやっつけラジオについて</a></li>
+        </ul>
+    </div>
+    <!-- end header -->
+    <!-- begin page -->
+    <div id="page">
+        <!-- begin content -->
+        <div id="content">
+            <div id="posts">
+	            <div id="create-entry-area" class="post admin-only">
+	                <h2 class="title">Create New Entry<button id="create-entry" class="small-button admin-only" style="font-size:xx-small"></button></h2>
+	            </div>
+            </div>
+	        <div style="text-align:left;font-size:xx-small">
+	            <a id="next-link">さらに過去</a>
+	        </div>
+        </div>
+        <!-- end content -->
+        <!-- begin sidebar -->
+        <div id="sidebar">
+            <ul>
+                <li>
+                    <h2>Information</h2>
+                    <div style="padding: 20px">
+                       <div>現在、<span id="information">すべてのエピソードを表示しています</span></div>
+                       <div id="information-detail"></div>
+                       <div><a id="show-all-link" style="display:none" href="/">すべてのエピソードを表示する</a></div>
+                    </div>
+                </li>
+                <li>
+                    <h2>Podcast Feed</h2>
+                    <div style="padding: 20px">
+                        <div style="text-align:center">
+                            <a href="http://podfeed.podcastjuice.jp/app/rss_convert.cgi?url=http%3A%2F%2Fwww%2Ehmr%2Dradio%2Enet%2F"><img src="/images/podcast-rss.gif" /></a>
+                        </div>
+                        このバナーを<strong><a href="http://www.apple.com/jp/itunes/download/">iTunes(無料)</a></strong>上へドラッグ＆ドロップすることで番組を登録することができます。<br />
+                        登録するとiTunesが自動的にやっつけラジオの最新放送をチェックします。<br />
+                    </div>
+                </li>
+                <li>
+                    <h2>Mail</h2>
+                    <p>
+                        <iframe frameborder="0" allowtransparency="true" src="/parts/mailform.html" width="280px" height="330px"></iframe>
+                    </p>
+                </li>
+                <li>
+                    <h2>Link<button id="add-link" class="small-button add admin-only" style="font-size:xx-small"></button></h2>
+                    <ul id="linkUl"></ul>
+                </li>
+                <li>
+                    <h2>Twitter</h2>
+                    <p>
+                        <script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
+                        <script type="text/javascript">new TWTR.Widget({version:2,type:'list',rpp:30,interval:6000,title:'HMR Tweet',subject:'HMRのつぶやき',width:'auto',height:300,theme:{shell:{background:'#40408c',color:'#ffffff'},tweets:{background:'#000000',color:'#ece3ff',links:'#9587fa'}},features:{scrollbar:true,loop:false,live:true,hashtags:true,timestamp:true,avatars:true,behavior:'all'}}).render().setList('daishi_hmr', 'hmr').start();</script>
+                    </p>
+                </li>
+                <li>
+                    <h2>for HMR only</h2>
+                    <ul>
+                        <li><a id="login" href="/admin/">ログイン</a></li>
+                    </ul>
+                    <div class="admin-only">
+                        <div>
+                        <script type="text/javascript" charset="utf-8" src="http://www.podcastjuice.jp/js/feedBanner.js?id=29552&count=on&rank=on&collar=black"></script>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- end sidebar -->
+    </div>
+    <!-- end page -->
+    <!-- begin footer -->
+    <div id="footer">
+        <!-- All we ask of you is to keep this credits intact. We hope you don't mind :) -->
+        <p class="legal">
+            <a href="http://www.thewebhub.com/2008/11/lightspeed/">LightSpeed Free CSS Template</a> by <a href="http://thewebhub.com/">TheWebHub.com</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/ph/">Creative Commons Attribution-Share Alike 3.0 Philippines License</a>.<br />
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/ph/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by-sa/3.0/ph/88x31.png" /></a>
+        </p>
+        <p>
+            <a href="http://podcastrank.jp/"  title="Podcast Ranking" target="_blank"><img src="http://podcastrank.jp/an2.php?id=718&bid=4" border=0 alt="Podcast Ranking"></a>
+        </p>
+    </div>
+    <!-- end footer -->
+</div>
+<!-- end wrap -->
+<div style="text-align: center; font-size: 0.75em;">Design downloaded from <a href="http://www.freewebtemplates.com/">free website templates</a>.</div>
+
+<!-- ui -->
+<div id="ui">
+    <div id="linkDialog"></div>
+    <div id="entryDialog"></div>
+    <div id="memberDialog"></div>
+    <div id="cornerDialog"></div>
+    <div id="memberList"></div>
+    <div id="cornerList"></div>
+    <div id="tagList"></div>
+    <div id="plzWait">
+        <p style="text-align:center">
+            <span id="wait-message">しばらくおまちください。</span><br />
+            <img src="/images/ajax-loader.gif" />
+        </p>
+    </div>
+</div>
+
+<!-- script -->
+<script type="text/javascript">
+var net = {};
+net.hmrradio = {};
+net.hmrradio.podcastsite = {};
+</script>
+<script type="text/javascript" src="/js/jquery-and-others.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!--[if lt IE 7]>
+<script src="/js/IE7.js"></script>
+<![endif]-->
+<script type="text/javascript">
+/** 表示中の一番古い記事の公開日 */
+net.hmrradio.podcastsite.createDateOldest = new Date(2100, 1, 1).getTime();
+/** 表示中のクエリ */
+net.hmrradio.podcastsite.currentQuery = {};
+
+$(function() {
+
+    downloadLinks();
+    downloadEntries();
+
+    $("#header li a").button();
+    $("#header ul").buttonset();
+
+    // リンクパス付加
+    $("#menu-bbs").tinyTips('dark', "未実装");
+    $("#menu-member").click(memberList);
+    $("#menu-corner").click(cornerList);
+    $("#menu-tag").click(tagList);
+    $("#menu-mail").attr("href", "mailto:hmrradio@gmail.com");
+    $("#menu-about").tinyTips('dark', "未実装");
+
+    // リンクにハンドラ付加
+    // メンバー
+    $("a[href*='/member/']").live("click", function() {
+        var member = $(this).attr("href").substring($(this).attr("href").indexOf("/member/") + "/member/".length);
+        filterMember(member);
+        return false;
+    });
+    
+    // コーナー
+    $("a[href*='/corner/']").live("click", function() {
+        var corner = $(this).attr("href").substring($(this).attr("href").indexOf("/corner/") + "/corner/".length);
+        filterCorner(corner);
+        return false;
+    });
+
+    // タグ
+    $("a[href*='/tags/']").live("click", function() {
+        var tag = $(this).attr("href").substring($(this).attr("href").indexOf("/tags/") + "/tags/".length);
+        filterTag(tag);
+        return false;
+    });
+    
+    $("#next-link").button({
+        icons: { primary: "ui-icon-carat-1-s" }
+    }).click(function() {
+        net.hmrradio.podcastsite.currentQuery.createDateLt = net.hmrradio.podcastsite.createDateOldest;
+        $.get("/blogEntry", net.hmrradio.podcastsite.currentQuery, function(data){
+            if (data.success) {
+                $.each(data.body, function(k, v) {
+                    appendEntry(v);
+                });
+            }
+        });
+    });
+
+    // Adminログイン中であればadmin.jsをダウンロード
+    checkLoginAdmin(function () {
+        var adminJs = document.createElement("script");
+        adminJs.src = "/js/admin.js";
+        document.getElementsByTagName("body")[0].appendChild(adminJs);
+
+    });
+
+    $("#plzWait").dialog({
+        title: "Loading...",
+        autoOpen: false,
+        width: 300,
+        height: 120,
+        resizable: false,
+        draggable: false,
+        show: "bounce"
+    });
+});
+
+/**
+ * Link集をダウンロード
+ */
+function downloadLinks() {
+    $.get("/link", {dummy: "dummy"}, function(data) {
+        if (data.success) {
+            var list = data.body;
+            $.each(list, function(k, v) {
+                var text = v.text ? v.text.value : "";
+                appendLink(v.title, v.url, text);
+            });
+        }
+    }, "json");
+}
+
+/**
+ * 記事をダウンロード
+ */
+function downloadEntries() {
+    $.get("/blogEntry", {dummy: "dummy"}, function(data) {
+        if (data.success) {
+            var list = data.body;
+            $.each(list, function(k, v) {
+                appendEntry(v);
+            });
+        }
+    }, "json");
+}
+
+function appendLink(title, url, text) {
+    var targetLi = $("#linkUl a[href='" + url + "']").parent("li");
+    var showEffect = false;
+    if (targetLi.size() == 0) {
+        showEffect = true;
+        targetLi = $("<li></li>").hide();
+        $("#linkUl").append(targetLi);
+    } else {
+        targetLi.html("");
+    }
+
+    var a = $("<a href='" + url + "'>" + title + "</a>");
+    targetLi.append(a);
+    if (text) {
+        a.attr("title", text);
+        a.tinyTips('dark', text.split("\n").join("<br />"));
+    }
+
+    var button = $("<button style='font-size:xx-small' class='edit-link small-button admin-only'></button>");
+    checkLoginAdmin(function() {
+        button.button({
+            icons: { primary: "ui-icon-pencil" },
+            text: false
+        }).attr("title", "編集");
+        targetLi.append(button);
+    });
+    
+    if (showEffect) {
+        targetLi.show("blind", {}, 500);
+    }
+}
+
+function deleteLink(url) {
+    var targetLi = $("#linkUl a[href='" + url + "']").parent("li");
+    targetLi.hide("blind", {}, 500).remove();
+}
+
+function appendEntry(data) {
+    var post = createPost(data);
+    $("#posts").append(post);
+}
+
+function createPost(data) {
+    var post = $("<div />").addClass("post");
+    var title = $("<h2 />").addClass("title");
+    var button = $("<button />").addClass("edit-entry").addClass("small-button").addClass("admin-only").css("font-size", "xx-small");
+    var byline = $("<p />").addClass("byline");
+    var entry = $("<div />").addClass("entry");
+    var meta = $("<div />").addClass("meta");
+    var tags = $("<p class='tags'><b>Tags:</b>&nbsp;</p>");
+    var links = $("<p class='links'><a href='https://twitter.com/home?status=%23hmrradio%20' class='comments'>Comment on Twitter</a>" +
+            "&nbsp;&nbsp;&bull;&nbsp;&nbsp;" +
+            "<a class='permalink'>Permalink</a></p>");
+    var player = createPlayer(data.audioFileURL);
+
+    title.html("<strong>" + data.title + "</strong>");
+    checkLoginAdmin(function() {
+        button.button({
+            icons: { primary: "ui-icon-pencil" },
+            text: false
+        }).attr("title", "編集");
+        button.attr("key", data.keyString);
+        title.append(button);
+    });
+
+    if (data.content && data.content.value) {
+        entry.html(data.content.value);
+    }
+
+    if (data.recordingDate) {
+        entry.prepend($("<p>収録日：" + toDate(data.recordingDate) + "</p>"));
+    }
+    if (player) {
+        entry.prepend(player);
+    }
+    
+    if (data.createDate) {
+        byline.append($("<i>公開日：" + toDate(data.createDate) + "</i>"));
+    }
+    if (data.pubDate) {
+        byline.append($("<i>更新日：" + toDate(data.pubDate) + "</i>"));
+    }
+    entry.prepend(byline);
+
+    if (data.tags) {
+        $.each(data.tags, function(k, v) {
+            if (k != 0) {
+                tags.append(", ");
+            }
+            tags.append($("<a href='/tags/" + v + "'>" + v + "</a>"));
+        });
+    }
+
+    links.find(".permalink").attr("href", "http://www.hmr-radio.net/?p=" + data.keyString);
+
+    post.append(title);
+    post.append(entry);
+    meta.append(tags).append(links);
+    post.append(meta);
+
+    post.find("a").each(function() {
+        $(this).css({
+            position: "relative",
+            zIndex: 100
+        });
+        var text = $(this).text();
+        $(this).text(text.split("/corner/").join("").split("/member/").join(""));
+    });
+
+    // 最古記事の公開日
+    if (data.createDate < net.hmrradio.podcastsite.createDateOldest) {
+        net.hmrradio.podcastsite.createDateOldest = data.createDate;
+    }
+
+    return post;
+}
+
+function filterMember(member) {
+	net.hmrradio.podcastsite.currentQuery = { memberEq: member };
+	$("#information").html("<strong>" + member + "</strong> が参加したエピソードを表示しています");
+	$("#show-all-link").show();
+	$("#information-detail").html("");
+	
+	$.get("/personality", { name: member }, function(data) {
+	    if (data.success) {
+	        $("#information-detail").html(createMember(data.body));
+	    } else {
+	        $("#information-detail").html(createMember(member));
+	    }
+	    checkLoginAdmin(function() {
+	        var b = $("<button>編集</button>").button({
+	                icons: { primary: "ui-icon-pencil" }
+	            }).click(function(){
+	                editMember(data.body, member);
+	            });
+	        $("#information-detail").append(b);
+	    });
+	}, "json");
+
+	$.get("/blogEntry", net.hmrradio.podcastsite.currentQuery, function(data) {
+	    if (data.success) {
+	        $(".post").not("#create-entry-area").remove();
+	        $.each(data.body, function(k, v) {
+	            appendEntry(v);
+	        });
+	    }
+	}, "json");
+}
+
+function createMember(data) {
+    var name;
+    if (typeof data == "string") {
+        name = data;
+    } else {
+        name = data.name;
+    }
+    var result = $("<div id='member-" + name + "' class='sidebar-information' />");
+    if (typeof data == "string") {
+        result.append($("<h4>" + name +"</h4>"));
+        result.append($("<img src='/images/nodata.png' style='width:100px' />"));
+        result.append($("<p>NO DATA</p>"));
+    } else {
+        result.append($("<h4>" + name +"</h4>"));
+        result.append($("<img src='/image/show/" + data.icon + "' style='width:100px' />"));
+        if (data.twitterId) {
+            result.append($("<div>twitter id: <a href='http://twitter.com/" + data.twitterId + "' target='_blank'>" + data.twitterId + "</a></div>"));
+        }
+        result.append(data.profileHtml);
+    }
+    return result;
+}
+
+function memberList() {
+    $("#plzWait").dialog("open");
+    $("#memberList").load("/memberList #memberList", {}, function() {
+        $("#plzWait").dialog("close");
+        $("#memberList a").click(function() {
+            filterMember($(this).text());
+            $("#memberList").dialog("close");
+        });
+        $("#memberList").dialog({
+            title: "メンバー",
+            autoOpen: false,
+            width: 650,
+            height: 550
+        }).dialog("open");
+    });
+}
+
+function filterCorner(corner) {
+    net.hmrradio.podcastsite.currentQuery = { cornerEq: corner };
+    $("#information").html("<strong>" + corner + "</strong> が収録されたエピソードを表示しています");
+    $("#show-all-link").show();
+    $("#information-detail").html("");
+
+    $.get("/corner", { title: corner }, function(data) {
+        if (data.success) {
+            $("#information-detail").html(createCorner(data.body));
+        } else {
+            $("#information-detail").html(createCorner(corner));
+        }
+        checkLoginAdmin(function() {
+            var b = $("<button>編集</button>").button({
+                    icons: { primary: "ui-icon-pencil" }
+                }).click(function(){
+                    editCorner(data.body, corner);
+                });
+            $("#information-detail").append(b);
+        });
+    }, "json");
+    
+    $.get("/blogEntry", net.hmrradio.podcastsite.currentQuery, function(data) {
+        if (data.success) {
+            $(".post").not("#create-entry-area").remove();
+            $.each(data.body, function(k, v) {
+                appendEntry(v);
+            });
+        }
+    });
+}
+
+function createCorner(data) {
+    var title;
+    if (typeof data == "string") {
+        title = data;
+    } else {
+        title = data.title;
+    }
+    var result = $("<div id='corner-" + data.title + "' class='sidebar-information' />");
+    if (typeof data == "string") {
+        result.append($("<h4>" + title +"</h4>"));
+        result.append($("<p>NO DATA</p>"));
+    } else {
+        result.append($("<h4>" + title + "</h4>"));
+        result.append(data.descriptionHtml);
+    }
+    return result;
+}
+
+function cornerList() {
+    $("#plzWait").dialog("open");
+    $("#cornerList").load("/cornerList #cornerList", {}, function() {
+        $("#plzWait").dialog("close");
+        $("#cornerList a").click(function() {
+            filterCorner($(this).text());
+            $("#cornerList").dialog("close");
+        });
+        $("#cornerList").dialog({
+            title: "コーナー",
+            autoOpen: false,
+            width: 650,
+            height: 550
+        }).dialog("open");
+    });
+}
+
+function filterTag(tag) {
+    net.hmrradio.podcastsite.currentQuery = { tagEq: tag };
+    $("#information").html("<strong>" + tag + "</strong> がタグ付けされたエピソードを表示しています");
+    $("#show-all-link").show();
+    $("#information-detail").html("");
+
+    $.get("/blogEntry", net.hmrradio.podcastsite.currentQuery, function(data) {
+        if (data.success) {
+            $(".post").not("#create-entry-area").remove();
+            $.each(data.body, function(k, v) {
+                appendEntry(v);
+            });
+        }
+    });
+}
+
+function tagList() {
+    $("#plzWait").dialog("open");
+    $("#tagList").load("/tagList #tagList", {}, function() {
+        $("#plzWait").dialog("close");
+        $("#tagList a").click(function() {
+            filterTag($(this).text());
+            $("#tagList").dialog("close");
+        });
+        $("#tagList").dialog({
+            title: "タグクラウド",
+            autoOpen: false,
+            width: 500,
+            height: 400
+        }).dialog("open");
+    });
+}
+</script>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-968682-13");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+<datastore-indexes autoGenerate="true">
+
+    <datastore-index kind="ImageFileFragment" ancestor="false"
+        source="manual">
+        <property name="imageDataRef" direction="asc" />
+        <property name="index" direction="asc" />
+    </datastore-index>
+
+</datastore-indexes>

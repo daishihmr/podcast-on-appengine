@@ -36,7 +36,7 @@ public class RssService {
                     .getValue()
                     .replaceAll("\\n", ""));
                 item.description.setType("text/plain");
-                item.pubDate = blog.getPubDate();
+                item.pubDate = blog.getCreateDate();
                 if (item.pubDate != null) {
                     if (result.pubDate == null
                         || result.pubDate.compareTo(item.pubDate) < 0) {
@@ -54,7 +54,8 @@ public class RssService {
                     item.duration =
                         new Duration(audio.getDurationMillisecond());
                 }
-                item.guid = item.enclosure.getUrl();
+                item.guid =
+                    "http://www.hmr-radio.net/?p=" + blog.getKeyString();
 
                 item.keywords =
                     blog.getTags().toArray(new String[blog.getTags().size()]);

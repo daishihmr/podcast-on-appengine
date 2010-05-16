@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 import net.hmrradio.podcastsite.bean.BlogEntryQueryBean;
-import net.hmrradio.podcastsite.define.AttrName;
 import net.hmrradio.podcastsite.exception.EntityAlreadyDeletedException;
 import net.hmrradio.podcastsite.meta.BlogEntryMeta;
 import net.hmrradio.podcastsite.model.BlogEntry;
@@ -13,7 +12,6 @@ import net.hmrradio.podcastsite.util.WikiUtil;
 
 import org.slim3.datastore.Datastore;
 import org.slim3.datastore.ModelQuery;
-import org.slim3.memcache.Memcache;
 import org.slim3.util.BeanUtil;
 import org.slim3.util.StringUtil;
 
@@ -26,6 +24,9 @@ import com.google.appengine.repackaged.com.google.common.collect.Sets;
 public class BlogEntryService {
 
     private BlogEntryMeta b = BlogEntryMeta.get();
+
+    // private MemcacheService memcacheService =
+    // MemcacheServiceFactory.getMemcacheService();
 
     public List<BlogEntry> list() {
         return Datastore.query(BlogEntry.class).sort(
@@ -96,14 +97,14 @@ public class BlogEntryService {
     }
 
     public void create(BlogEntry newEntry) {
-        Memcache.delete(AttrName.RSS_CACHE);
+        // memcacheService.delete(AttrName.RSS_CACHE);
         newEntry.setCreateDate(new Date());
         newEntry.setPubDate(new Date());
         Datastore.put(newEntry);
     }
 
     public void update(BlogEntry entry) {
-        Memcache.delete(AttrName.RSS_CACHE);
+        // memcacheService.delete(AttrName.RSS_CACHE);
         BlogEntry base = Datastore.get(BlogEntry.class, entry.getKey());
         entry.setCreateDate(base.getCreateDate());
         entry.setPubDate(new Date());
@@ -111,18 +112,18 @@ public class BlogEntryService {
         Datastore.put(entry);
     }
 
-    @SuppressWarnings("unchecked")
+    // @SuppressWarnings("unchecked")
     public List<BlogEntry> listAll() {
-        if (Memcache.get(AttrName.RSS_CACHE) != null) {
-            return (List<BlogEntry>) Memcache.get(AttrName.RSS_CACHE);
-        }
+        // if (memcacheService.get(AttrName.RSS_CACHE) != null) {
+        // return (List<BlogEntry>) memcacheService.get(AttrName.RSS_CACHE);
+        // }
 
         List<BlogEntry> result =
             Datastore.query(BlogEntry.class).sort(
                 b.createDate.getName(),
                 SortDirection.DESCENDING).asList();
 
-        Memcache.put(AttrName.RSS_CACHE, result);
+        // memcacheService.put(AttrName.RSS_CACHE, result);
 
         return result;
     }
@@ -142,7 +143,7 @@ public class BlogEntryService {
     }
 
     public void delete(Key key) {
-        Memcache.delete(AttrName.RSS_CACHE);
+        // memcacheService.delete(AttrName.RSS_CACHE);
         Datastore.delete(key);
     }
 

@@ -9,11 +9,12 @@ import com.sun.syndication.feed.module.itunes.EntryInformation;
 import com.sun.syndication.feed.module.itunes.EntryInformationImpl;
 import com.sun.syndication.feed.module.itunes.FeedInformation;
 import com.sun.syndication.feed.module.itunes.FeedInformationImpl;
+import com.sun.syndication.feed.synd.SyndEnclosure;
+import com.sun.syndication.feed.synd.SyndEnclosureImpl;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndEntryImpl;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.feed.synd.SyndFeedImpl;
-import com.sun.syndication.feed.synd.SyndImageImpl;
 import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedOutput;
 
@@ -71,6 +72,14 @@ public class PodcastUtil {
         entry.setDescription(item.description);
         entry.setAuthor(item.author);
         if (item.enclosure != null) {
+            // TODO あとでちゃんとする
+            SyndEnclosure cover = new SyndEnclosureImpl();
+            {
+                cover.setUrl("http://www.hmr-radio.net/yattsu-ke.jpg");
+                cover.setType("image/jpeg");
+                cover.setLength(19987L);
+            }
+            entry.getEnclosures().add(cover);
             entry.getEnclosures().add(item.enclosure);
         }
         entry.setPublishedDate(item.pubDate);
@@ -85,15 +94,15 @@ public class PodcastUtil {
         feed.setCopyright(channel.copyright);
         feed.setPublishedDate(channel.pubDate);
         // feed.setCategories(channel.categories);
-        feed.setImage(new SyndImageImpl());
-        {
-            if (channel.image != null) {
-                feed.getImage().setUrl(channel.image.url);
-                feed.getImage().setTitle(channel.image.title);
-                feed.getImage().setLink(channel.image.link);
-                feed.getImage().setDescription(channel.image.description);
-            }
-        }
+        // feed.setImage(new SyndImageImpl());
+        // {
+        // if (channel.image != null) {
+        // feed.getImage().setUrl(channel.image.url);
+        // feed.getImage().setTitle(channel.image.title);
+        // feed.getImage().setLink(channel.image.link);
+        // feed.getImage().setDescription(channel.image.description);
+        // }
+        // }
     }
 
     private static void setItunesEntry(PodcastItem item,

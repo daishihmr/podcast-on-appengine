@@ -25,9 +25,6 @@ public class BlogEntryService {
 
     private BlogEntryMeta b = BlogEntryMeta.get();
 
-    // private MemcacheService memcacheService =
-    // MemcacheServiceFactory.getMemcacheService();
-
     public List<BlogEntry> list() {
         return Datastore.query(BlogEntry.class).sort(
             b.createDate.getName(),
@@ -97,14 +94,12 @@ public class BlogEntryService {
     }
 
     public void create(BlogEntry newEntry) {
-        // memcacheService.delete(AttrName.RSS_CACHE);
         newEntry.setCreateDate(new Date());
         newEntry.setPubDate(new Date());
         Datastore.put(newEntry);
     }
 
     public void update(BlogEntry entry) {
-        // memcacheService.delete(AttrName.RSS_CACHE);
         BlogEntry base = Datastore.get(BlogEntry.class, entry.getKey());
         entry.setCreateDate(base.getCreateDate());
         entry.setPubDate(new Date());
@@ -112,18 +107,11 @@ public class BlogEntryService {
         Datastore.put(entry);
     }
 
-    // @SuppressWarnings("unchecked")
     public List<BlogEntry> listAll() {
-        // if (memcacheService.get(AttrName.RSS_CACHE) != null) {
-        // return (List<BlogEntry>) memcacheService.get(AttrName.RSS_CACHE);
-        // }
-
         List<BlogEntry> result =
             Datastore.query(BlogEntry.class).sort(
                 b.createDate.getName(),
                 SortDirection.DESCENDING).asList();
-
-        // memcacheService.put(AttrName.RSS_CACHE, result);
 
         return result;
     }
@@ -143,7 +131,6 @@ public class BlogEntryService {
     }
 
     public void delete(Key key) {
-        // memcacheService.delete(AttrName.RSS_CACHE);
         Datastore.delete(key);
     }
 

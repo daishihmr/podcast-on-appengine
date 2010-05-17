@@ -9,6 +9,7 @@ import net.hmrradio.podcastsite.model.Corner;
 
 import org.slim3.datastore.Datastore;
 
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 
 public class CornerService {
@@ -17,16 +18,23 @@ public class CornerService {
     private static String _title = meta.title.getName();
 
     public Corner findByTitle(String title) {
-        return Datastore.query(Corner.class).filter(
-            _title,
-            FilterOperator.EQUAL,
-            title).asSingle();
+        Key key = Datastore.createKey(Corner.class, title);
+        Corner corner = Datastore.getOrNull(Corner.class, key);
+        if (corner != null) {
+            return corner;
+        } else {
+            return Datastore.query(Corner.class).filter(
+                _title,
+                FilterOperator.EQUAL,
+                title).asSingle();
+        }
     }
 
     public void create(Corner corner) {
         if (findByTitle(corner.getTitle()) != null) {
             throw new EntityAlreadyExistsException();
         }
+        corner.setKey(Datastore.createKey(Corner.class, corner.getTitle()));
         Datastore.put(corner);
     }
 
@@ -57,6 +65,7 @@ public class CornerService {
         if (corner == null) {
             return;
         }
+        corner.setKey(Datastore.createKey(Corner.class, corner.getTitle()));
         Datastore.put(corner);
     }
 

@@ -14,6 +14,8 @@ import net.hmrradio.podcastsite.model.AudioFile;
 import org.slim3.datastore.Datastore;
 import org.slim3.datastore.ModelQuery;
 
+import com.google.appengine.api.datastore.Key;
+
 public class AudioFileService {
 
     private static final AudioFileMeta meta = AudioFileMeta.get();
@@ -24,15 +26,13 @@ public class AudioFileService {
         if (findByUrl(audio.getUrl()) != null) {
             throw new EntityAlreadyExistsException();
         }
+        audio.setKey(Datastore.createKey(AudioFile.class, audio.getUrl()));
         audio.setEntryDate(new Date());
         Datastore.put(audio);
     }
 
     public void update(AudioFile audio) {
         AudioFile data = findByUrl(audio.getUrl());
-        if (data == null) {
-            throw new EntityAlreadyDeletedException();
-        }
 
         data.setDuration(audio.getDuration());
         data.setType(audio.getType());
@@ -50,10 +50,19 @@ public class AudioFileService {
     }
 
     public AudioFile findByUrl(String url) {
-        return Datastore
-            .query(AudioFile.class)
-            .filter(_url, EQUAL, url)
-            .asSingle();
+        if (url == null) {
+            return null;
+        }
+        Key key = Datastore.createKey(AudioFile.class, url);
+        AudioFile audio = Datastore.getOrNull(AudioFile.class, key);
+        if (audio != null) {
+            return audio;
+        } else {
+            return Datastore
+                .query(AudioFile.class)
+                .filter(_url, EQUAL, url)
+                .asSingle();
+        }
     }
 
     public List<AudioFile> list() {

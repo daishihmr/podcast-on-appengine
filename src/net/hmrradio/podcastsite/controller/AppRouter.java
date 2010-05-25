@@ -6,7 +6,6 @@ public class AppRouter extends RouterImpl {
 
     public AppRouter() {
         addRouting("/image/show/{key}", "/image/show?key={key}");
-        addRouting("/member/{name}", "/member?={name}");
     }
 
 }

@@ -4,7 +4,7 @@ jQuery.fn.extend( {
 
     /**
      * フォームにsubmitイベントハンドラをセットする.
-     * 
+     *
      * @param url
      *            ポスト先URL
      * @param callback
@@ -25,11 +25,11 @@ $(function() {
             ajaxError(xhr, status, e);
         }
     });
-    
+
     var alertDialog = $("<div id='alertDialog'></div>");
     alertDialog.append($("<p id='alertMessage'></p>"));
     $(document).append(alertDialog);
-    
+
     alertDialog.dialog({
         title: "エラー",
         modal: true,
@@ -42,7 +42,7 @@ $(function() {
 
 /**
  * フォームのデータをポストする.
- * 
+ *
  * @param url
  *            ポスト先URL
  * @param formName
@@ -64,7 +64,7 @@ var post = function(url, formName, callback) {
 
 /**
  * JSONレスポンスを処理する関数を作る
- * 
+ *
  * @param f
  *            成功時の関数
  * @return 関数
@@ -83,10 +83,9 @@ var getCallbackFunction = function(f) {
 
 /**
  * Ajaxエラー時のイベントハンドラ
- * 
+ *
  * @param xhr
  * @param status
- * @return
  */
 var ajaxError = function(xhr, status) {
     if (xhr.status == "500") {
@@ -101,9 +100,8 @@ var ajaxError = function(xhr, status) {
 
 /**
  * エラー時のイベントハンドラ
- * 
+ *
  * @param data
- * @return
  */
 var error = function(data) {
     $("#alertMessage").text(data.messages.join("\n"));
@@ -115,7 +113,7 @@ net.hmrradio.podcastsite.common.fArray = [];
 net.hmrradio.podcastsite.common.eArray = [];
 /**
  * ユーザがAdminとしてログイン済みかをチェックする
- * 
+ *
  * @param f
  *            Adminログイン時に実行する処理
  * @param error
@@ -248,11 +246,11 @@ d : Day          ex. "dd" -> "09" "30", "d" -> "9" "30"
 H : Hour (0-23)  ex. "HH" -> "00" "23", "H" -> "0" "23"
 m : Minute       ex. "mm" -> "01" "59", "m" -> "1" "59"
 s : Second       ex. "ss" -> "00" "59", "H" -> "0" "59"
-S : Millisecond  ex. "SSS" -> "000" "012" "999", 
+S : Millisecond  ex. "SSS" -> "000" "012" "999",
                      "SS" -> "00" "12" "999", "S" -> "0" "12" "999"
 
 Text can be quoted using single quotes (') to avoid interpretation.
-"''" represents a single quote. 
+"''" represents a single quote.
 
 
 Useing..
@@ -282,7 +280,7 @@ DateFormat.prototype = {
       } else {
         var index = this._patterns.length - 1;
         if (this._patterns[index].charAt(0) == "'") {
-          if (this._patterns[index].length == 1 
+          if (this._patterns[index].length == 1
              || this._patterns[index].charAt(this._patterns[index].length - 1) != "'") {
             this._patterns[index] += ch;
           } else {
@@ -439,7 +437,7 @@ DateFormat.prototype = {
     "d": function(text, pattern, result) {
       // Day in month
       var day;
-      if (pattern.length == 1 && text.length > 1 
+      if (pattern.length == 1 && text.length > 1
           && text.substring(0, 2).match(/1[0-9]|2[0-9]|3[0-1]/) != null) {
         day  = text.substring(0, 2);
         text = text.substring(2);

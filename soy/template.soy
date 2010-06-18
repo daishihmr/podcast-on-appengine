@@ -1,0 +1,51 @@
+{namespace net.hmrradio.daishi.templates}
+
+/**
+ * エピソードを一つ表示
+ * @param title タイトル
+ * @param contentString 内容
+ * @param createAt 投稿日
+ * @param lastModifyAt 更新日
+ * @param keyString エンティティキー
+ */
+{template .showEpisode}
+<h3>{$title}</h3>
+<p>
+  <div>{$keyString} - {$contentString |noAutoescape}</div>
+  <div>create: {$createAt}, last modify: {$lastModifyAt}</div>
+</p>
+{/template}
+
+/**
+ * エピソードを複数表示
+ * @param episodes エピソードのリスト
+ */
+{template .showEpisodes}
+  {foreach $e in $episodes}
+  <div>
+    {call .showEpisode data="$e" /}
+  </div>
+  {/foreach}
+{/template}
+
+/**
+ * エピソードの編集ダイアログ
+ * @param title タイトル
+ * @param content 内容
+ * @param keyString エンティティキー
+ */
+{template .dialogEpisode}
+<form>
+<input type="hidden" name="key" value="{$keyString}" />
+<table border="1">
+	<tr>
+		<th>title</th>
+		<td><input type="text" name="title" value="{$title}" /></td>
+	</tr>
+	<tr>
+		<th>content</th>
+		<td><textarea name="content">{$content}</textarea></td>
+	</tr>
+</table>
+</form>
+{/template}

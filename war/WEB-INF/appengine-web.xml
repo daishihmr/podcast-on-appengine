@@ -12,16 +12,19 @@
 	<sessions-enabled>false</sessions-enabled>
 
 	<static-files>
-		<include path="/*.html" />
         <include path="/*.swf" />
-		<include path="/parts/**" />
-        <include path="/dialog/*.html" />
 		<include path="/images/**" />
 		<include path="/css/**" />
 		<include path="/js/**" />
         <include path="/yattsu-ke.png" />
         <include path="/yattsu-ke.jpg" />
 		<include path="/favicon.ico" />
-        <exclude path="/index.html" />
 	</static-files>
+
+	<resource-files>
+		<include path="**.html" />
+		<include path="**.mayaa" />
+		<include path="mjs/*" />
+	</resource-files>
+
 </appengine-web-app>

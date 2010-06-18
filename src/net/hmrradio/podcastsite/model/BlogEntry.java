@@ -5,9 +5,11 @@ import java.util.Date;
 import java.util.Set;
 
 import net.arnx.jsonic.JSONHint;
+import net.hmrradio.podcastsite.util.WikiUtil;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
+import org.slim3.util.StringUtil;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Text;
@@ -84,8 +86,41 @@ public class BlogEntry extends AbstractModel implements Serializable {
         return true;
     }
 
+    public String getAudioFileURL() {
+        return audioFileURL;
+    }
+
+    public String getAudioFileName() {
+        if (StringUtil.isEmpty(audioFileURL)) {
+            return "";
+        }
+        return audioFileURL.substring(audioFileURL.lastIndexOf("/") + 1);
+    }
+
+    @JSONHint(ignore = true)
     public Text getContent() {
         return content;
+    }
+
+    public String getContentHtml() {
+        return WikiUtil.toHtml(content.getValue());
+    }
+
+    public String getContentWiki() {
+        return content.getValue();
+    }
+
+    public Set<String> getCorners() {
+        return corners;
+    }
+
+    public String getCoverImageKey() {
+        return coverImageKey;
+    }
+
+    @JSONHint(format = "yyyy/MM/dd")
+    public Date getCreateDate() {
+        return createDate;
     }
 
     @JSONHint(ignore = true)
@@ -98,12 +133,22 @@ public class BlogEntry extends AbstractModel implements Serializable {
         return keyToString(key);
     }
 
+    public Set<String> getMembers() {
+        return members;
+    }
+
+    @JSONHint(format = "yyyy/MM/dd")
     public Date getPubDate() {
         return pubDate;
     }
 
+    @JSONHint(format = "yyyy/MM/dd")
     public Date getRecordingDate() {
         return recordingDate;
+    }
+
+    public Set<String> getTags() {
+        return tags;
     }
 
     public String getTitle() {
@@ -123,12 +168,32 @@ public class BlogEntry extends AbstractModel implements Serializable {
         return result;
     }
 
+    public void setAudioFileURL(String audioFile) {
+        this.audioFileURL = audioFile;
+    }
+
     public void setContent(Text content) {
         this.content = content;
     }
 
+    public void setCorners(Set<String> corners) {
+        this.corners = corners;
+    }
+
+    public void setCoverImageKey(String coverImageKey) {
+        this.coverImageKey = coverImageKey;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
     public void setKey(Key key) {
         this.key = key;
+    }
+
+    public void setMembers(Set<String> members) {
+        this.members = members;
     }
 
     public void setPubDate(Date pubDate) {
@@ -139,88 +204,16 @@ public class BlogEntry extends AbstractModel implements Serializable {
         this.recordingDate = recordingDate;
     }
 
+    public void setTags(Set<String> keyword) {
+        this.tags = keyword;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
 
     public void setVersion(Long version) {
         this.version = version;
-    }
-
-    public String getCoverImageKey() {
-        return coverImageKey;
-    }
-
-    public void setCoverImageKey(String coverImageKey) {
-        this.coverImageKey = coverImageKey;
-    }
-
-    public Set<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(Set<String> keyword) {
-        this.tags = keyword;
-    }
-
-    /**
-     * @return the audioFile
-     */
-    public String getAudioFileURL() {
-        return audioFileURL;
-    }
-
-    /**
-     * @param audioFile
-     *            the audioFile to set
-     */
-    public void setAudioFileURL(String audioFile) {
-        this.audioFileURL = audioFile;
-    }
-
-    /**
-     * @return the createDate
-     */
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    /**
-     * @param createDate
-     *            the createDate to set
-     */
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    /**
-     * @return the members
-     */
-    public Set<String> getMembers() {
-        return members;
-    }
-
-    /**
-     * @param members
-     *            the members to set
-     */
-    public void setMembers(Set<String> members) {
-        this.members = members;
-    }
-
-    /**
-     * @return the corners
-     */
-    public Set<String> getCorners() {
-        return corners;
-    }
-
-    /**
-     * @param corners
-     *            the corners to set
-     */
-    public void setCorners(Set<String> corners) {
-        this.corners = corners;
     }
 
 }

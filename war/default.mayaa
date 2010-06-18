@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org">
+
+	<m:beforeRender><![CDATA[
+		var contextPath = request.getContextPath();
+		var println = function(value) {
+			if (value != null) {
+				java.lang.System.out.println(value);
+			} else {
+				java.lang.System.out.println(new String(value));
+			}
+		};
+
+		load("./mjs/debug.js");
+
+        var navigator = {};
+        navigator.userAgent = 'WebKit';
+        load("./mjs/soyutils.js");
+        load("./mjs/template.js");
+        load("./mjs/mayaa-soy.js");
+        
+	]]></m:beforeRender>
+
+</m:mayaa>

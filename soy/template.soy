@@ -1,51 +1,65 @@
-{namespace net.hmrradio.daishi.templates}
+{namespace net.hmrradio.podcastsite.templates}
 
 /**
- * ƒGƒsƒ\[ƒh‚ğˆê‚Â•\¦
- * @param title ƒ^ƒCƒgƒ‹
- * @param contentString “à—e
- * @param createAt “Še“ú
- * @param lastModifyAt XV“ú
- * @param keyString ƒGƒ“ƒeƒBƒeƒBƒL[
+ * @param keyString
+ * @param title
+ * @param recordingDate
+ * @param audioFileURL
+ * @param audioFileName
+ * @param contentHtml
+ * @param pubDate
+ * @param tags
+ * @param createDate
  */
-{template .showEpisode}
-<h3>{$title}</h3>
-<p>
-  <div>{$keyString} - {$contentString |noAutoescape}</div>
-  <div>create: {$createAt}, last modify: {$lastModifyAt}</div>
-</p>
+{template .showPost}
+<div class="post">
+    <h2 class="title"><strong>{$title}</strong>
+        <button class="edit-entry small-button admin-only" style="font-size:xx-small"></button>
+    </h2>
+    <div class="entry">
+        <p class="byline">
+            <i>å…¬é–‹æ—¥ï¼š{$createDate}</i>&nbsp;&nbsp;&nbsp;&nbsp;<i>æ›´æ–°æ—¥ï¼š{$pubDate}</i>
+        </p>
+        <p>
+            <object type="application/x-shockwave-flash" data="./player_mp3_maxi.swf" width="20" height="20">
+                <param name="movie" value="/player_mp3_maxi.swf">
+                <param name="bgcolor" value="#000000">
+                <param name="FlashVars" value="mp3={$audioFileURL}&amp;width=20&amp;showstop=0&amp;showslider=0&amp;buttonwidth=20">
+            </object><a href="{$audioFileURL}" style="position: relative; z-index: 100;">{$audioFileName}</a>
+        </p>
+        <p>åéŒ²æ—¥ï¼š{$recordingDate}</p>
+        {$contentHtml |noAutoescape}
+    </div>
+    <div class="meta">
+        <p class="tags"><b>Tags:</b>&nbsp;
+            {foreach $tag in $tags}
+                {if not isFirst($tag)},&nbsp;{/if}
+                <a href="/tags/{$tag}" style="position: relative; z-index: 100;">{$tag}</a>
+            {/foreach}
+        </p>
+        <p class="links">
+            <a href="https://twitter.com/home?status=%23hmrradio%20" class="comments"
+                style="position: relative; z-index: 100;">
+                Comment on Twitter
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="permalink"
+                href="http://www.hmr-radio.net/?p={$keyString}"
+                style="position: relative; z-index: 100;">
+                Permalink
+            </a>
+        </p>
+    </div>
+</div>
 {/template}
 
 /**
- * ƒGƒsƒ\[ƒh‚ğ•¡”•\¦
- * @param episodes ƒGƒsƒ\[ƒh‚ÌƒŠƒXƒg
+ * @param episodes
  */
-{template .showEpisodes}
-  {foreach $e in $episodes}
-  <div>
-    {call .showEpisode data="$e" /}
-  </div>
-  {/foreach}
-{/template}
-
-/**
- * ƒGƒsƒ\[ƒh‚Ì•ÒWƒ_ƒCƒAƒƒO
- * @param title ƒ^ƒCƒgƒ‹
- * @param content “à—e
- * @param keyString ƒGƒ“ƒeƒBƒeƒBƒL[
- */
-{template .dialogEpisode}
-<form>
-<input type="hidden" name="key" value="{$keyString}" />
-<table border="1">
-	<tr>
-		<th>title</th>
-		<td><input type="text" name="title" value="{$title}" /></td>
-	</tr>
-	<tr>
-		<th>content</th>
-		<td><textarea name="content">{$content}</textarea></td>
-	</tr>
-</table>
-</form>
+{template .showPosts}
+    {foreach $e in $episodes}
+    <p>
+        {call .showPost data="$e" /}
+    </p>
+    {/foreach}
 {/template}

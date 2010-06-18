@@ -39,7 +39,7 @@ Author URI: http://aboutenjay.com/
 body {
     margin: 0;
     padding: 0;
-    background: #000 url(/images/bg.png);
+    background: #000 url(../images/bg.png);
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-size: 13px;
     color: #999;
@@ -101,7 +101,7 @@ a img {
 /* WRAP - Encloses everything to add the header background. */
 
 #wrap {
-    background: url(/images/header_bg.png) no-repeat 50% 0;
+    background: url(../images/header_bg.png) no-repeat 50% 0;
 }
 
 /* HEADER - Contains the logo, slogan and menu. */
@@ -174,9 +174,9 @@ a img {
     height: 35px;
     margin: 0;
     padding: 6px 0 0 20px;
-    background: url(/images/post_title_bg.png) repeat-x !important;
+    background: url(../images/post_title_bg.png) repeat-x !important;
     background: none;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/post_title_bg.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/post_title_bg.png", sizingMethod="scale");
     font-size: 153.9%;
     font-weight: normal;
     color: #fff;
@@ -189,9 +189,9 @@ a img {
 
 .post .entry {
     padding: 20px 20px 1px 20px;
-    background: url(/images/post_entry_bg.png) !important;
+    background: url(../images/post_entry_bg.png) !important;
     background: none;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/post_entry_bg.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/post_entry_bg.png", sizingMethod="scale");
 }
 
 .post .byline {
@@ -205,9 +205,9 @@ a img {
 }
 
 .post .meta {
-    background: url(/images/post_meta_bg.png) !important;
+    background: url(../images/post_meta_bg.png) !important;
     background: none;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/post_meta_bg.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/post_meta_bg.png", sizingMethod="scale");
     border-top: 1px solid #000;
 }
 
@@ -230,7 +230,7 @@ a img {
 
 .post .meta .tags {
     padding-left: 30px;
-    background: url(/images/tag_green.png) no-repeat 10px 50%;
+    background: url(../images/tag_green.png) no-repeat 10px 50%;
 }
 
 .post .meta .tags a {
@@ -244,15 +244,15 @@ a img {
 }
 
 .post .meta .comments {
-    background: url(/images/comments.png) no-repeat 0 50%;
+    background: url(../images/comments.png) no-repeat 0 50%;
 }
 
 .post .meta .permalink {
-    background: url(/images/world_link.png) no-repeat 0 50%;
+    background: url(../images/world_link.png) no-repeat 0 50%;
 }
 
 .post .meta .more {
-    background: url(/images/bullet_go.png) no-repeat 0 50%;
+    background: url(../images/bullet_go.png) no-repeat 0 50%;
 }
 
 /* SIDEBAR - For extra links and ad spaces. */
@@ -286,7 +286,7 @@ a img {
 
 #sidebar li li a:hover {
     padding-left: 20px;
-    background: url(/images/bullet_go.png) no-repeat 0 50%;
+    background: url(../images/bullet_go.png) no-repeat 0 50%;
     color: #fff;
 }
 
@@ -294,9 +294,9 @@ a img {
     height: 35px;
     margin: 0;
     padding: 6px 0 0 20px;
-    background: url(/images/post_title_bg.png) repeat-x !important;
+    background: url(../images/post_title_bg.png) repeat-x !important;
     background: none;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/post_title_bg.png", sizingMethod="scale");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/post_title_bg.png", sizingMethod="scale");
     font-size: 153.9%;
     font-weight: normal;
     color: #fff;

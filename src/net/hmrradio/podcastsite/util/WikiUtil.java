@@ -17,10 +17,10 @@ public class WikiUtil {
         if (wiki == null) {
             return new Text("");
         }
-        return new Text(parse(wiki.getValue()));
+        return new Text(toHtml(wiki.getValue()));
     }
 
-    public static String parse(String wiki) {
+    public static String toHtml(String wiki) {
         if (wiki == null) {
             return "";
         }

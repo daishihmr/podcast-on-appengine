@@ -2,8 +2,18 @@
 <m:mayaa
 	xmlns:m="http://mayaa.seasar.org">
 	
+	<m:beforeRender><![CDATA[
+        var Tofu = net.hmrradio.podcastsite.templates;
+	]]></m:beforeRender>
+	
 	<m:echo m:id="test">
 		<m:write value="Mayaa" />
 	</m:echo>
 	
+	<m:echo m:id="posts">
+		<m:write
+			value="${ Tofu.showPosts(decodeJson(result)) }"
+			escapeXml="false"
+			escapeEol="false" />
+	</m:echo>
 </m:mayaa>

@@ -7,7 +7,6 @@ import net.arnx.jsonic.JSON;
 import net.hmrradio.podcastsite.bean.BlogEntryQueryBean;
 import net.hmrradio.podcastsite.define.AttrName;
 import net.hmrradio.podcastsite.model.BlogEntry;
-import net.hmrradio.podcastsite.model.Link;
 import net.hmrradio.podcastsite.service.BlogEntryService;
 import net.hmrradio.podcastsite.service.LinkService;
 
@@ -52,9 +51,8 @@ public class IndexController extends Controller {
         }
 
         // リンク集
-        List<Link> links = linkService.list();
         Map<String, Object> linksJson = Maps.newHashMap();
-        linksJson.put("links", links);
+        linksJson.put("links", linkService.list());
         requestScope("linksJson", linksJson);
 
         return forward("index.html");

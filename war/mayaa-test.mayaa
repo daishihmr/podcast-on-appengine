@@ -1,39 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <m:mayaa
-	xmlns:m="http://mayaa.seasar.org">
+    xmlns:m="http://mayaa.seasar.org">
+
+    <m:beforeRender><![CDATA[
 	
-	<m:beforeRender><![CDATA[
-	
-	for(var m in mayaa){
-		println(m)
-	}
+	println(linksJson)
 	
 	]]></m:beforeRender>
 
-	<m:echo
-		m:id="test">
-		<m:write
-			value="Mayaa" />
-	</m:echo>
+    <m:echo
+        m:id="test">
+        <m:write
+            value="Mayaa" />
+    </m:echo>
 
-	<m:echo
-		m:id="posts">
-		<!-- 
-		<m:write
-			value="${ Tofu.showBlogEntries(blogEntriesJson) }"
-			escapeXml="false"
-			escapeEol="false" />
-		 -->
-	</m:echo>
+    <m:echo
+        m:id="posts">
+        <m:write
+            value="${ Tofu.showBlogEntries(decodeJson(blogEntriesJson)) }"
+            escapeXml="false"
+            escapeEol="false" />
+    </m:echo>
 
-	<m:echo
-		m:id="links">
-		<!-- 
-		<m:write
-			value="${ Tofu.showBlogEntries(linksJson) }"
-			escapeXml="false"
-			escapeEol="false" />
-		 -->
-	</m:echo>
+    <m:echo
+        m:id="links">
+        <m:write
+            value="${ Tofu.showLinks(decodeJson(linksJson)) }"
+            escapeXml="false"
+            escapeEol="false" />
+    </m:echo>
 
 </m:mayaa>

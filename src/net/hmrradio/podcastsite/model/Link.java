@@ -33,54 +33,6 @@ public class Link extends AbstractModel implements Serializable {
     @Attribute
     private Text text;
 
-    /**
-     * Returns the key.
-     * 
-     * @return the key
-     */
-    @JSONHint(ignore = true)
-    public Key getKey() {
-        return key;
-    }
-
-    /**
-     * Sets the key.
-     * 
-     * @param key
-     *            the key
-     */
-    public void setKey(Key key) {
-        this.key = key;
-    }
-
-    /**
-     * Returns the version.
-     * 
-     * @return the version
-     */
-    @JSONHint(ignore = true)
-    public Long getVersion() {
-        return version;
-    }
-
-    /**
-     * Sets the version.
-     * 
-     * @param version
-     *            the version
-     */
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((key == null) ? 0 : key.hashCode());
-        return result;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -103,54 +55,68 @@ public class Link extends AbstractModel implements Serializable {
         return true;
     }
 
-    /**
-     * @return the url
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * @param url
-     *            the url to set
-     */
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    /**
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * @param title
-     *            the title to set
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
-     * @return the text
-     */
-    public Text getText() {
-        return text;
-    }
-
-    /**
-     * @param text
-     *            the text to set
-     */
-    public void setText(Text text) {
-        this.text = text;
+    @JSONHint(ignore = true)
+    public Key getKey() {
+        return key;
     }
 
     @Override
     public String getKeyString() {
         return keyToString(key);
+    }
+
+    @JSONHint(ignore = true)
+    public Text getText() {
+        return text;
+    }
+
+    public String getTextString() {
+        if (text == null) {
+            return "";
+        } else {
+            return text.getValue();
+        }
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    @JSONHint(ignore = true)
+    public Long getVersion() {
+        return version;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((key == null) ? 0 : key.hashCode());
+        return result;
+    }
+
+    public void setKey(Key key) {
+        this.key = key;
+    }
+
+    public void setText(Text text) {
+        this.text = text;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
 }

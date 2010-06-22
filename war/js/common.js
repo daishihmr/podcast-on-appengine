@@ -1,4 +1,10 @@
-net.hmrradio.podcastsite.common = {};
+if (typeof net == 'undefined') { var net = {}; }
+if (typeof net.hmrradio == 'undefined') { net.hmrradio = {}; }
+if (typeof net.hmrradio.podcastsite == 'undefined') { net.hmrradio.podcastsite = {}; }
+if (typeof net.hmrradio.podcastsite.common == 'undefined') { net.hmrradio.podcastsite.common = {}; }
+net.hmrradio.podcastsite.common.isAdmin = "unknown";
+net.hmrradio.podcastsite.common.fArray = [];
+net.hmrradio.podcastsite.common.eArray = [];
 
 jQuery.fn.extend( {
 
@@ -108,9 +114,6 @@ var error = function(data) {
     $("#alertDialog").dialog("open");
 };
 
-net.hmrradio.podcastsite.common.isAdmin = "unknown";
-net.hmrradio.podcastsite.common.fArray = [];
-net.hmrradio.podcastsite.common.eArray = [];
 /**
  * ユーザがAdminとしてログイン済みかをチェックする
  *

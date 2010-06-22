@@ -2,29 +2,35 @@
 <html xmlns:m="http://mayaa.seasar.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 
 <link rel="stylesheet" type="text/css" href="./css/style.css" media="screen" />
+-->
 <link rel="stylesheet" type="text/css" href="./css/dark-hive/jquery-ui-1.8.custom.css" />
 <script type="text/javascript" src="./js/jquery-and-others.js"></script>
 <script type="text/javascript" src="./js/common.js"></script>
 <script type="text/javascript" src="./js/soyutils.js"></script>
 <script type="text/javascript" src="./js/template.js"></script>
 <script type="text/javascript">
-var Tofu = net.hmrradio.podcastsite.templates;
-var episode = {"audioFileURL":"http://test/test.mp3","audioFileName":"test.mp3","contentHtml":"<p>参加メンバー：\n<a href=\"/member/名前\">/member/名前</a>\n<a href=\"/member/名前\">/member/名前</a>\n<a href=\"/member/名前\">/member/名前</a>\n<a href=\"/member/名前\">/member/名前</a>\n<a href=\"/member/名前\">/member/名前</a></p><p>【<a href=\"/corner/コーナー名\">/corner/コーナー名</a>】内容<br/>\n【<a href=\"/corner/コーナー名\">/corner/コーナー名</a>】内容<br/>\n【<a href=\"/corner/コーナー名\">/corner/コーナー名</a>】内容<br/>\n【<a href=\"/corner/コーナー名\">/corner/コーナー名</a>】内容<br/>\n【<a href=\"/corner/コーナー名\">/corner/コーナー名</a>】内容<br/></p><p>メッセージ\nメッセージメッセージメッセージ</p>","contentWiki":"参加メンバー：\n[/member/名前]\n[/member/名前]\n[/member/名前]\n[/member/名前]\n[/member/名前]\n\n【[/corner/コーナー名]】内容[[BR]]\n【[/corner/コーナー名]】内容[[BR]]\n【[/corner/コーナー名]】内容[[BR]]\n【[/corner/コーナー名]】内容[[BR]]\n【[/corner/コーナー名]】内容[[BR]]\n\nメッセージ\nメッセージメッセージメッセージ","corners":["コーナー名"],"coverImageKey":null,"createDate":"2010/06/18","keyString":"agtobXIteS1yYWRpb3IPCxIJQmxvZ0VudHJ5GAEM","members":["名前"],"pubDate":"2010/06/18","recordingDate":"2010/06/18","tags":["タグ3","タグ2","タグ1"],"title":"タイトル"};
+var Tofu = podcastsite;
+var episode = {"audioFileURL":"http://test/test.mp3","audioFileName":"test.mp3","contentHtml":"<p>参加メンバー：\n<a href=\"/member/名前\">/member/名前</a>\n<a href=\"/member/名前\">/member/名前</a>\n<a href=\"/member/名前\">/member/名前</a>\n<a href=\"/member/名前\">/member/名前</a>\n<a href=\"/member/名前\">/member/名前</a></p><p>【<a href=\"/corner/コーナー名\">/corner/コーナー名</a>】内容<br/>\n【<a href=\"/corner/コーナー名\">/corner/コーナー名</a>】内容<br/>\n【<a href=\"/corner/コーナー名\">/corner/コーナー名</a>】内容<br/>\n【<a href=\"/corner/コーナー名\">/corner/コーナー名</a>】内容<br/>\n【<a href=\"/corner/コーナー名\">/corner/コーナー名</a>】内容<br/></p><p>メッセージ\nメッセージメッセージメッセージ</p>","contentWiki":"参加メンバー：\n[/member/名前]\n[/member/名前]\n[/member/名前]\n[/member/名前]\n[/member/名前]\n\n【[/corner/コーナー名]】内容[[BR]]\n【[/corner/コーナー名]】内容[[BR]]\n【[/corner/コーナー名]】内容[[BR]]\n【[/corner/コーナー名]】内容[[BR]]\n【[/corner/コーナー名]】内容[[BR]]\n\nメッセージ\nメッセージメッセージメッセージ","corners":["コーナー名"],"coverImageKey":null,"createDate":"2010/06/18","keyString":"BrowserSideKey","members":["名前"],"pubDate":"2010/06/18","recordingDate":"2010/06/18","tags":["タグ3","タグ2","タグ1"],"title":"ブラウザ"};
 
 $(function() {
-	var html = $(Tofu.showPost(episode));
-	$("#result").html(html);
+	var html = $(Tofu.showBlogEntry(episode));
+//	$("#content").append(html);
 });
+
+function editPost(key) {
+	alert("key = " + key);
+}
 </script>
 </head>
 <body>
 
 <h1>Hello <span m:id="test">World!</span></h1>
 
-<div id="result"></div>
+<div id="content" m:id="posts"></div>
 
-<div m:id="posts"></div>
+<div id="links" m:id="links"></div>
 
 </body>
 </html>

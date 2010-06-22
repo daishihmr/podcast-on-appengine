@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa
+	xmlns:m="http://mayaa.seasar.org">
+
+	<m:write
+		m:id="blogEntries"
+		value="${ Tofu.showBlogEntries(result) }"
+		escapeXml="false"
+		escapeEol="false" />
+	/>
+
+</m:mayaa>

@@ -1,34 +1,60 @@
-{namespace net.hmrradio.podcastsite.templates}
+{namespace podcastsite}
+
 
 /**
- * @param keyString
- * @param title
- * @param recordingDate
- * @param audioFileURL
- * @param audioFileName
- * @param contentHtml
- * @param pubDate
- * @param tags
- * @param createDate
+ * showBlogEntry
+ * １件のBlogEntryを表示する。
+ *
+ * @param keyString 文字列化されたデータストアキー
+ * @param title 記事タイトル
+ * @param recordingDate 収録日
+ * @param audioFileURL 音声ファイルURL
+ * @param audioFileName 音声ファイル名
+ * @param contentHtml 本文（HTML）
+ * @param pubDate 更新日
+ * @param tags タグ（Array）
+ * @param createDate 公開日
  */
-{template .showPost}
-<div class="post">
-    <h2 class="title"><strong>{$title}</strong>
-        <button class="edit-entry small-button admin-only" style="font-size:xx-small"></button>
+{template .showBlogEntry}
+<div id="{$keyString}" class="post">
+    <h2 class="title">
+        <strong>{$title}</strong>
+        &nbsp;&nbsp;
+        <button class="edit-entry" style="display:none" onclick="editPost('{$keyString}')"></button>
     </h2>
     <div class="entry">
         <p class="byline">
-            <i>公開日：{$createDate}</i>&nbsp;&nbsp;&nbsp;&nbsp;<i>更新日：{$pubDate}</i>
+            <i>公開日：{$createDate}</i>&nbsp;<i>更新日：{$pubDate}</i>
         </p>
         <p>
-            <object type="application/x-shockwave-flash" data="./player_mp3_maxi.swf" width="20" height="20">
+            <object type="application/x-shockwave-flash" data="/player_mp3_maxi.swf" width="20" height="20">
                 <param name="movie" value="/player_mp3_maxi.swf">
                 <param name="bgcolor" value="#000000">
                 <param name="FlashVars" value="mp3={$audioFileURL}&amp;width=20&amp;showstop=0&amp;showslider=0&amp;buttonwidth=20">
-            </object><a href="{$audioFileURL}" style="position: relative; z-index: 100;">{$audioFileName}</a>
+            </object>
+            <a href="{$audioFileURL}" style="position: relative; z-index: 100;">{$audioFileName}</a>
         </p>
         <p>収録日：{$recordingDate}</p>
+
         {$contentHtml |noAutoescape}
+
+/*
+{\n}{\n}
+<!-- AdSense -->
+<script type="text/javascript">
+google_ad_client = "pub-3487863134090836";
+google_ad_slot = "7912561868";
+google_ad_width = 468;
+google_ad_height = 60;
+</script>
+{\n}{\n}
+<!-- AdSense -->
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+{\n}{\n}
+<!-- AdSense -->
+*/
+
     </div>
     <div class="meta">
         <p class="tags"><b>Tags:</b>&nbsp;
@@ -40,9 +66,9 @@
         <p class="links">
             <a href="https://twitter.com/home?status=%23hmrradio%20" class="comments"
                 style="position: relative; z-index: 100;">
-                Comment on Twitter
+                Twitterでつぶやく
             </a>
-            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&bull;&nbsp;&nbsp;
             <a class="permalink"
                 href="http://www.hmr-radio.net/?p={$keyString}"
                 style="position: relative; z-index: 100;">
@@ -51,15 +77,64 @@
         </p>
     </div>
 </div>
+
+<script type="text/javascript">{\n}
+$("#{$keyString}").find("a").each(function() {lb}
+    $(this).css({lb}
+        position: "relative",
+        zIndex: 100
+    {rb});
+    var text = $(this).text();
+    $(this).text(text.split("/corner/").join("").split("/member/").join(""));
+{rb});
+
+checkLoginAdmin(function() {lb}
+    $("#{$keyString}").find(".edit-entry").button({lb}
+        icons: {lb} primary: "ui-icon-pencil" {rb},
+        text: false
+    {rb}).show();
+{rb});
+</script>
+{\n}{\n}
+
+{/template}
+
+
+/**
+ * showBlogEntries
+ * 複数件のBlogEntryを表示する。
+ *
+ * @param blogEntries BlogEntryの配列
+ */
+{template .showBlogEntries}
+    {foreach $blogEntry in $blogEntries}
+        {call .showBlogEntry data="$blogEntry" /}
+    {/foreach}
+{/template}
+
+
+/**
+ * showLink
+ * １件のLinkを表示する。
+ *
+ * @param title タイトル
+ * @param url URL
+ * @param textString 説明
+ */
+{template .showLink}
+<li>
+    <a href="{$url}" title="{$textString}">{$title}</a>
+</li>
 {/template}
 
 /**
- * @param episodes
+ * showLinks
+ * 複数件のLinkを表示する。
+ * 
+ * @param links Linkの配列
  */
-{template .showPosts}
-    {foreach $e in $episodes}
-    <p>
-        {call .showPost data="$e" /}
-    </p>
+{template .showLinks}
+    {foreach $link in $links}
+        {call .showLink data="$link" /}
     {/foreach}
 {/template}

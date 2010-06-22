@@ -3,17 +3,37 @@
 	xmlns:m="http://mayaa.seasar.org">
 	
 	<m:beforeRender><![CDATA[
-        var Tofu = net.hmrradio.podcastsite.templates;
+	
+	for(var m in mayaa){
+		println(m)
+	}
+	
 	]]></m:beforeRender>
-	
-	<m:echo m:id="test">
-		<m:write value="Mayaa" />
-	</m:echo>
-	
-	<m:echo m:id="posts">
+
+	<m:echo
+		m:id="test">
 		<m:write
-			value="${ Tofu.showPosts(decodeJson(result)) }"
+			value="Mayaa" />
+	</m:echo>
+
+	<m:echo
+		m:id="posts">
+		<!-- 
+		<m:write
+			value="${ Tofu.showBlogEntries(blogEntriesJson) }"
 			escapeXml="false"
 			escapeEol="false" />
+		 -->
 	</m:echo>
+
+	<m:echo
+		m:id="links">
+		<!-- 
+		<m:write
+			value="${ Tofu.showBlogEntries(linksJson) }"
+			escapeXml="false"
+			escapeEol="false" />
+		 -->
+	</m:echo>
+
 </m:mayaa>

@@ -18,7 +18,6 @@
         load("./mjs/soyutils.js");
         load("./mjs/template.js");
         load("./mjs/mayaa-soy.js");
-        
 	]]></m:beforeRender>
 
 </m:mayaa>

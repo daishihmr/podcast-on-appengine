@@ -18,7 +18,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/net.java.textilej_2.2.864.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/slim3-1.0.2.jar" sourcepath="libsrc/slim3-1.0.2-sources.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/soy-20100426.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/mayaa-1.1.27.jar"/>
 	<classpathentry kind="src" path=".apt_generated">
 		<attributes>
 			<attribute name="optional" value="true"/>

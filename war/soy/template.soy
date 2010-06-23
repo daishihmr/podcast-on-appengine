@@ -88,6 +88,10 @@ $("#{$keyString}").find("a").each(function() {lb}
     $(this).text(text.split("/corner/").join("").split("/member/").join(""));
 {rb});
 
+$("#{$keyString}").find("a[href*='/member/']").click(clickMember);
+$("#{$keyString}").find("a[href*='/corner/']").click(clickCorner);
+$("#{$keyString}").find("a[href*='/tags/']").click(clickTags);
+
 checkLoginAdmin(function() {lb}
     $("#{$keyString}").find(".edit").button({lb}
         icons: {lb} primary: "ui-icon-pencil" {rb},

@@ -1,14 +1,13 @@
 package net.hmrradio.podcastsite.controller;
 
-import java.util.List;
 import java.util.Map;
 
-import net.arnx.jsonic.JSON;
 import net.hmrradio.podcastsite.bean.BlogEntryQueryBean;
 import net.hmrradio.podcastsite.define.AttrName;
 import net.hmrradio.podcastsite.model.BlogEntry;
 import net.hmrradio.podcastsite.service.BlogEntryService;
 import net.hmrradio.podcastsite.service.LinkService;
+import net.hmrradio.podcastsite.util.SoyUtil;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
@@ -26,6 +25,7 @@ public class IndexController extends Controller {
 
     @Override
     public Navigation run() throws Exception {
+
         if (requestScope("p") != null) {
             try {
                 service.get(asKey("p"));
@@ -43,19 +43,21 @@ public class IndexController extends Controller {
             // クエリ無し
             BlogEntryQueryBean queryBean = new BlogEntryQueryBean();
             service.createQuery(queryBean);
+
             ModelQuery<BlogEntry> query = service.createQuery(queryBean);
-            List<BlogEntry> list = service.list(query);
-            Map<String, Object> result = Maps.newHashMap();
-            result.put("blogEntries", list);
-            requestScope("result", JSON.encode(result));
+            Map<String, Object> blogEntries = Maps.newHashMap();
+            blogEntries.put("blogEntries", service.list(query));
+            requestScope("blogEntries", SoyUtil.render(
+                "showBlogEntries",
+                blogEntries));
         }
 
         // リンク集
-        Map<String, Object> linksJson = Maps.newHashMap();
-        linksJson.put("links", linkService.list());
-        requestScope("linksJson", linksJson);
+        Map<String, Object> links = Maps.newHashMap();
+        links.put("links", linkService.list());
+        requestScope("links", SoyUtil.render("showLinks", links));
 
-        return forward("index.html");
+        return forward("index.jsp");
     }
 
     private Navigation notFound() {

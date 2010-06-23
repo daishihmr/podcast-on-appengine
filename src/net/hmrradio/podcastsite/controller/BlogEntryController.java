@@ -1,7 +1,6 @@
 package net.hmrradio.podcastsite.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 import net.hmrradio.podcastsite.bean.BlogEntryQueryBean;
 import net.hmrradio.podcastsite.define.AttrName;
@@ -11,6 +10,8 @@ import net.hmrradio.podcastsite.service.BlogEntryService;
 import org.slim3.controller.Navigation;
 import org.slim3.datastore.ModelQuery;
 import org.slim3.util.BeanUtil;
+
+import com.google.appengine.repackaged.com.google.common.collect.Maps;
 
 public class BlogEntryController extends BaseController {
 
@@ -29,15 +30,9 @@ public class BlogEntryController extends BaseController {
         }
         ModelQuery<BlogEntry> q = service.createQuery(queryBean);
 
-        List<BlogEntry> list = service.list(q);
-        List<BlogEntry> result = new ArrayList<BlogEntry>();
-        for (BlogEntry blogEntry : list) {
-            try {
-                result.add(service.parseContent(blogEntry));
-            } catch (Exception e) {
-            }
-        }
+        Map<String, Object> blogEntries = Maps.newHashMap();
+        blogEntries.put("blogEntries", service.list(q));
 
-        return forwardJson(result);
+        return forwardJson(blogEntries);
     }
 }

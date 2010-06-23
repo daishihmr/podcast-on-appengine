@@ -6,6 +6,8 @@ net.hmrradio.podcastsite.common.isAdmin = "unknown";
 net.hmrradio.podcastsite.common.fArray = [];
 net.hmrradio.podcastsite.common.eArray = [];
 
+var Tofu = net.hmrradio.podcastsite.templates;
+
 jQuery.fn.extend( {
 
     /**

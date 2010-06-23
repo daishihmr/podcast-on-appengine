@@ -19,12 +19,7 @@
         <include path="/yattsu-ke.png" />
         <include path="/yattsu-ke.jpg" />
 		<include path="/favicon.ico" />
-	</static-files>
-
-	<resource-files>
 		<include path="**.html" />
-		<include path="**.mayaa" />
-		<include path="mjs/*" />
-	</resource-files>
+	</static-files>
 
 </appengine-web-app>

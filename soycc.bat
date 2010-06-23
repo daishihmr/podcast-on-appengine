@@ -1,1 +1,1 @@
-java -jar soycc.jar soy\template.soy soyc.bat
+java -jar soycc.jar war\soy\template.soy soyc.bat

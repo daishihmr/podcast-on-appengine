@@ -20,7 +20,7 @@
     <h2 class="title">
         <strong>{$title}</strong>
         &nbsp;&nbsp;
-        <button class="edit-entry" style="display:none" onclick="editPost('{$keyString}')"></button>
+        <button class="edit" style="display:none" onclick="editPost('{$keyString}')"></button>
     </h2>
     <div class="entry">
         <p class="byline">
@@ -89,14 +89,12 @@ $("#{$keyString}").find("a").each(function() {lb}
 {rb});
 
 checkLoginAdmin(function() {lb}
-    $("#{$keyString}").find(".edit-entry").button({lb}
+    $("#{$keyString}").find(".edit").button({lb}
         icons: {lb} primary: "ui-icon-pencil" {rb},
         text: false
     {rb}).show();
 {rb});
 </script>
-{\n}{\n}
-
 {/template}
 
 
@@ -117,14 +115,26 @@ checkLoginAdmin(function() {lb}
  * showLink
  * １件のLinkを表示する。
  *
+ * @param keyString データストアのキー
  * @param title タイトル
  * @param url URL
  * @param textString 説明
  */
 {template .showLink}
-<li>
+<li id="{$keyString}">
     <a href="{$url}" title="{$textString}">{$title}</a>
+    &nbsp;&nbsp;
+    <button class="edit" style="display:none" onclick="editLink('{$keyString}')"></button>
 </li>
+
+<script type="text/javascript">
+checkLoginAdmin(function() {lb}
+    $("#{$keyString}").find(".edit").button({lb}
+        icons: {lb} primary: "ui-icon-pencil" {rb},
+        text: false
+    {rb}).show();
+{rb});
+</script>
 {/template}
 
 /**

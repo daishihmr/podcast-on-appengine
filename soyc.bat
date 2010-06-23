@@ -1,3 +1,5 @@
+rem [SOYC START]
+
 cd %~dp0
 
 java -jar closure-templates-for-javascript-latest\SoyToJsSrcCompiler.jar ^
@@ -7,4 +9,4 @@ java -jar closure-templates-for-javascript-latest\SoyToJsSrcCompiler.jar ^
 --outputPathFormat war\mjs\{INPUT_FILE_NAME_NO_EXT}.js ^
 soy\template.soy
 
-pause
+rem [SOYC COMPLETE]

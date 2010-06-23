@@ -12,7 +12,7 @@ public class LoginCheckController extends BaseController {
     @Override
     protected boolean validate() {
         // return isAdmin();
-        return true;
+        return false;
     }
 
 }

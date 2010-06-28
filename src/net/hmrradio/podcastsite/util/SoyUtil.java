@@ -45,7 +45,7 @@ public class SoyUtil {
             data = null;
         }
 
-        return tofu.render(template, data, null);
+        return tofu.render(namespace + "." + template, data, null);
     }
 
     @SuppressWarnings("unchecked")

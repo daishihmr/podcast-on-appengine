@@ -41,7 +41,15 @@ public class BlogEntryService {
             .asList();
     }
 
+    public List<BlogEntry> list(BlogEntryQueryBean queryBean) {
+        return list(createQuery(queryBean));
+    }
+
     public ModelQuery<BlogEntry> createQuery(BlogEntryQueryBean queryBean) {
+        if (queryBean == null) {
+            return null;
+        }
+
         ModelQuery<BlogEntry> result = Datastore.query(BlogEntry.class);
 
         if (queryBean.getKeyEq() != null) {

@@ -84,20 +84,20 @@ $(function() {
         <div id="content">
 
             <div id="posts">
-            	<!-- begin 新規作成-->
-	            <div id="create-entry-area" class="post admin-only">
-	                <h2 class="title">Create New Entry&nbsp;<button id="create-entry" class="admin-only" style="font-size:xx-small"></button></h2>
-	            </div>
+                <!-- begin 新規作成-->
+                <div id="create-entry-area" class="post admin-only">
+                    <h2 class="title">Create New Entry&nbsp;<button id="create-entry" class="admin-only" style="font-size:xx-small"></button></h2>
+                </div>
                 <!-- end 新規作成 -->
                 <!-- begin 記事 -->
-            	<%= request.getAttribute("blogEntries") %>
+                <%= request.getAttribute("blogEntries") %>
                 <!-- end 記事 -->
             </div>
 
             <!-- begin 「さらに過去」ボタン -->
-	        <div style="text-align:left">
-	            <a id="next-link" onclick="clickNextLink()">さらに過去</a>
-	        </div>
+            <div style="text-align:left">
+                <a id="next-link" onclick="clickNextLink()">さらに過去</a>
+            </div>
             <!-- end 「さらに過去」ボタン -->
         </div>
         <!-- end content -->
@@ -124,20 +124,22 @@ $(function() {
                 </li>
                 <li>
                     <h2>Mail</h2>
-                    <p>
+                    <div style="padding: 20px">
                         <iframe frameborder="0" allowtransparency="true" src="/parts/mailform.html" width="280px" height="330px"></iframe>
-                    </p>
+                    </div>
                 </li>
                 <li>
                     <h2>Link&nbsp;<button id="add-link" class="add admin-only" style="font-size:xx-small"></button></h2>
-                    <ul id="linkUl">
-                    	<%= request.getAttribute("links") %>
-                    </ul>
+                    <div style="padding: 20px">
+                        <ul id="linkUl">
+                            <%= request.getAttribute("links") %>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h2>Twitter</h2>
-                    <div>
-                    	<!--
+                    <div style="padding: 20px">
+                        <!--
                         <script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
                         <script type="text/javascript">
                         new TWTR.Widget({
@@ -171,14 +173,16 @@ $(function() {
                             }
                         }).render().setList('daishi_hmr', 'hmr').start();
                         </script>
-                    	-->
+                        -->
                     </div>
                 </li>
                 <li>
                     <h2>for HMR only</h2>
-                    <ul>
-                        <li><a id="login" href="/admin/">ログイン</a></li>
-                    </ul>
+                    <div style="padding: 20px">
+                        <ul>
+                            <li><a id="login" href="/admin/">ログイン</a></li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
         </div>

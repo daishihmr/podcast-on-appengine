@@ -39,20 +39,16 @@
         {$contentHtml |noAutoescape}
 
 /*
-{\n}{\n}
-<!-- AdSense -->
-<script type="text/javascript">
-google_ad_client = "pub-3487863134090836";
-google_ad_slot = "7912561868";
-google_ad_width = 468;
-google_ad_height = 60;
-</script>
-{\n}{\n}
-<!-- AdSense -->
-<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-{\n}{\n}
-<!-- AdSense -->
+    <!-- AdSense -->
+    <script type="text/javascript">
+    google_ad_client = "pub-3487863134090836";
+    google_ad_slot = "7912561868";
+    google_ad_width = 468;
+    google_ad_height = 60;
+    </script>
+    <!-- AdSense -->
+    <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+    <!-- AdSense -->
 */
 
     </div>
@@ -77,7 +73,12 @@ google_ad_height = 60;
         </p>
     </div>
 </div>
+{/template}
 
+/**
+ * @param keyString
+ */
+{template .afterShowEpisode}
 <script type="text/javascript">{\n}
 $("#{$keyString}").find("a").each(function() {lb}
     $(this).css({lb}
@@ -106,10 +107,10 @@ checkLoginAdmin(function() {lb}
  * showBlogEntries
  * 複数件のBlogEntryを表示する。
  *
- * @param blogEntries BlogEntryの配列
+ * @param list BlogEntryの配列
  */
 {template .showBlogEntries}
-    {foreach $blogEntry in $blogEntries}
+    {foreach $blogEntry in $list}
         {call .showBlogEntry data="$blogEntry" /}
     {/foreach}
 {/template}
@@ -145,10 +146,10 @@ checkLoginAdmin(function() {lb}
  * showLinks
  * 複数件のLinkを表示する。
  *
- * @param links Linkの配列
+ * @param list Linkの配列
  */
 {template .showLinks}
-    {foreach $link in $links}
+    {foreach $link in $list}
         {call .showLink data="$link" /}
     {/foreach}
 {/template}

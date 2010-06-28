@@ -4,6 +4,7 @@ import java.util.Map;
 
 import net.hmrradio.podcastsite.bean.BlogEntryQueryBean;
 import net.hmrradio.podcastsite.define.AttrName;
+import net.hmrradio.podcastsite.define.Values;
 import net.hmrradio.podcastsite.model.BlogEntry;
 import net.hmrradio.podcastsite.service.BlogEntryService;
 import net.hmrradio.podcastsite.service.LinkService;
@@ -45,17 +46,16 @@ public class IndexController extends Controller {
             service.createQuery(queryBean);
 
             ModelQuery<BlogEntry> query = service.createQuery(queryBean);
-            Map<String, Object> blogEntries = Maps.newHashMap();
-            blogEntries.put("blogEntries", service.list(query));
             requestScope("blogEntries", SoyUtil.render(
+                Values.SOY_NS,
                 "showBlogEntries",
-                blogEntries));
+                service.list(query)));
         }
 
         // リンク集
         Map<String, Object> links = Maps.newHashMap();
         links.put("links", linkService.list());
-        requestScope("links", SoyUtil.render("showLinks", links));
+        requestScope("links", SoyUtil.render(Values.SOY_NS, "showLinks", links));
 
         return forward("index.jsp");
     }

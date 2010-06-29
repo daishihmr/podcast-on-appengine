@@ -16,37 +16,72 @@ net.hmrradio.podcastsite.templates.showBlogEntry = function(opt_data, opt_sb) {
     var tagData25 = tagList25[tagIndex25];
     output.append((! (tagIndex25 == 0)) ? ',&nbsp;' : '', '<a href="/tags/', soy.$$escapeHtml(tagData25), '" style="position: relative; z-index: 100;">', soy.$$escapeHtml(tagData25), '</a>');
   }
-  output.append('</p><p class="links"><a href="https://twitter.com/home?status=%23hmrradio%20" class="comments" style="position: relative; z-index: 100;">Twitterでつぶやく</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a class="permalink" href="http://www.hmr-radio.net/?p=', soy.$$escapeHtml(opt_data.keyString), '" style="position: relative; z-index: 100;">Permalink</a></p></div></div><script type="text/javascript">\n$("#', soy.$$escapeHtml(opt_data.keyString), '").find("a").each(function() {$(this).css({position: "relative", zIndex: 100}); var text = $(this).text(); $(this).text(text.split("/corner/").join("").split("/member/").join(""));}); checkLoginAdmin(function() {$("#', soy.$$escapeHtml(opt_data.keyString), '").find(".edit").button({icons: { primary: "ui-icon-pencil" }, text: false}).show();});</script>');
+  output.append('</p><p class="links"><a href="https://twitter.com/home?status=%23hmrradio%20" class="comments" style="position: relative; z-index: 100;">Twitterでつぶやく</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a class="permalink" href="http://www.hmr-radio.net/?p=', soy.$$escapeHtml(opt_data.keyString), '" style="position: relative; z-index: 100;">Permalink</a></p></div></div>');
+  if (!opt_sb) return output.toString();
+};
+
+
+net.hmrradio.podcastsite.templates.afterShowBlogEntry = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('$("#', soy.$$escapeHtml(opt_data.keyString), '").find("a").each(function() {$(this).css({position: "relative", zIndex: 100}); var text = $(this).text(); $(this).text(text.split("/corner/").join("").split("/member/").join(""));}); $("#', soy.$$escapeHtml(opt_data.keyString), '").find("a[href*=\'/member/\']").click(clickMember); $("#', soy.$$escapeHtml(opt_data.keyString), '").find("a[href*=\'/corner/\']").click(clickCorner); $("#', soy.$$escapeHtml(opt_data.keyString), '").find("a[href*=\'/tags/\']").click(clickTags); checkLoginAdmin(function() {$("#', soy.$$escapeHtml(opt_data.keyString), '").find(".edit").button({icons: { primary: "ui-icon-pencil" }, text: false}).show();});');
   if (!opt_sb) return output.toString();
 };
 
 
 net.hmrradio.podcastsite.templates.showBlogEntries = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
-  var blogEntryList43 = opt_data.blogEntries;
-  var blogEntryListLen43 = blogEntryList43.length;
-  for (var blogEntryIndex43 = 0; blogEntryIndex43 < blogEntryListLen43; blogEntryIndex43++) {
-    var blogEntryData43 = blogEntryList43[blogEntryIndex43];
-    net.hmrradio.podcastsite.templates.showBlogEntry(blogEntryData43, output);
+  var blogEntryList51 = opt_data.list;
+  var blogEntryListLen51 = blogEntryList51.length;
+  for (var blogEntryIndex51 = 0; blogEntryIndex51 < blogEntryListLen51; blogEntryIndex51++) {
+    var blogEntryData51 = blogEntryList51[blogEntryIndex51];
+    net.hmrradio.podcastsite.templates.showBlogEntry(blogEntryData51, output);
   }
+  if (!opt_sb) return output.toString();
+};
+
+
+net.hmrradio.podcastsite.templates.afterShowBlogEntries = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('$(".post").find("a").each(function() {$(this).css({position: "relative", zIndex: 100}); var text = $(this).text(); $(this).text(text.split("/corner/").join("").split("/member/").join(""));}); $(".post").find("a[href*=\'/member/\']").click(clickMember); $(".post").find("a[href*=\'/corner/\']").click(clickCorner); $(".post").find("a[href*=\'/tags/\']").click(clickTags); checkLoginAdmin(function() {$(".post").find(".edit").button({icons: { primary: "ui-icon-pencil" }, text: false}).show();});');
   if (!opt_sb) return output.toString();
 };
 
 
 net.hmrradio.podcastsite.templates.showLink = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
-  output.append('<li id="', soy.$$escapeHtml(opt_data.keyString), '"><a href="', soy.$$escapeHtml(opt_data.url), '" title="', soy.$$escapeHtml(opt_data.textString), '">', soy.$$escapeHtml(opt_data.title), '</a>&nbsp;&nbsp;<button class="edit" style="display:none" onclick="editLink(\'', soy.$$escapeHtml(opt_data.keyString), '\')"></button></li><script type="text/javascript">checkLoginAdmin(function() {$("#', soy.$$escapeHtml(opt_data.keyString), '").find(".edit").button({icons: { primary: "ui-icon-pencil" }, text: false}).show();});</script>');
+  output.append('<li id="', soy.$$escapeHtml(opt_data.keyString), '" class="link-item"><a href="', soy.$$escapeHtml(opt_data.url), '" title="', soy.$$escapeHtml(opt_data.textString), '">', soy.$$escapeHtml(opt_data.title), '</a>&nbsp;&nbsp;<button class="edit" style="display:none" onclick="editLink(\'', soy.$$escapeHtml(opt_data.keyString), '\')"></button></li>');
+  if (!opt_sb) return output.toString();
+};
+
+
+net.hmrradio.podcastsite.templates.afterShowLink = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('checkLoginAdmin(function() {$("#', soy.$$escapeHtml(opt_data.keyString), '").find(".edit").button({icons: { primary: "ui-icon-pencil" }, text: false}).show();});');
   if (!opt_sb) return output.toString();
 };
 
 
 net.hmrradio.podcastsite.templates.showLinks = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
-  var linkList61 = opt_data.links;
-  var linkListLen61 = linkList61.length;
-  for (var linkIndex61 = 0; linkIndex61 < linkListLen61; linkIndex61++) {
-    var linkData61 = linkList61[linkIndex61];
-    net.hmrradio.podcastsite.templates.showLink(linkData61, output);
+  var linkList73 = opt_data.list;
+  var linkListLen73 = linkList73.length;
+  for (var linkIndex73 = 0; linkIndex73 < linkListLen73; linkIndex73++) {
+    var linkData73 = linkList73[linkIndex73];
+    net.hmrradio.podcastsite.templates.showLink(linkData73, output);
   }
+  if (!opt_sb) return output.toString();
+};
+
+
+net.hmrradio.podcastsite.templates.afterShowLinks = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('checkLoginAdmin(function() {$(".link-item").find(".edit").button({icons: { primary: "ui-icon-pencil" }, text: false}).show();});');
+  if (!opt_sb) return output.toString();
+};
+
+
+net.hmrradio.podcastsite.templates.test = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('$("#', soy.$$escapeHtml(opt_data.target), '").text("hello world");');
   if (!opt_sb) return output.toString();
 };

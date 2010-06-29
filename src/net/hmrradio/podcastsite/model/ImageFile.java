@@ -12,9 +12,10 @@ import org.slim3.datastore.Model;
 import org.slim3.datastore.Sort;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 @Model(schemaVersion = 1)
-public class ImageFile extends AbstractModel implements Serializable {
+public class ImageFile implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -145,9 +146,11 @@ public class ImageFile extends AbstractModel implements Serializable {
         return true;
     }
 
-    @Override
     public String getKeyString() {
-        return keyToString(key);
+        if (key == null) {
+            return "";
+        }
+        return KeyFactory.keyToString(key);
     }
 
     /**

@@ -7,9 +7,10 @@ import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 @Model
-public class MailMessage extends AbstractModel implements Serializable {
+public class MailMessage implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -180,8 +181,11 @@ public class MailMessage extends AbstractModel implements Serializable {
         this.sendDate = sendDate;
     }
 
-    @Override
     public String getKeyString() {
-        return keyToString(key);
+        if (key == null) {
+            return "";
+        }
+        return KeyFactory.keyToString(key);
     }
+
 }

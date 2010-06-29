@@ -2,10 +2,8 @@ package net.hmrradio.podcastsite.controller;
 
 import net.hmrradio.podcastsite.bean.BlogEntryQueryBean;
 import net.hmrradio.podcastsite.define.AttrName;
-import net.hmrradio.podcastsite.define.Values;
 import net.hmrradio.podcastsite.service.BlogEntryService;
 import net.hmrradio.podcastsite.service.LinkService;
-import net.hmrradio.podcastsite.util.SoyUtil;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
@@ -30,10 +28,7 @@ public class IndexController extends Controller {
                 queryBean.setKeyEq(asKey("p"));
             }
 
-            requestScope("blogEntries", SoyUtil.render(
-                Values.SOY_NS,
-                "showBlogEntries",
-                blogEntryService.list(queryBean)));
+            requestScope("blogEntries", blogEntryService.list(queryBean));
 
         } catch (IllegalArgumentException e) {
             return notFound();
@@ -42,10 +37,7 @@ public class IndexController extends Controller {
         }
 
         // リンク集
-        requestScope("links", SoyUtil.render(
-            Values.SOY_NS,
-            "showLinks",
-            linkService.list()));
+        requestScope("links", linkService.list());
 
         return forward("index.jsp");
     }

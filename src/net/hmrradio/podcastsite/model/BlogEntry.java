@@ -12,11 +12,12 @@ import org.slim3.datastore.Model;
 import org.slim3.util.StringUtil;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.repackaged.com.google.common.collect.Sets;
 
 @Model(schemaVersion = 1)
-public class BlogEntry extends AbstractModel implements Serializable {
+public class BlogEntry implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -128,9 +129,11 @@ public class BlogEntry extends AbstractModel implements Serializable {
         return key;
     }
 
-    @Override
     public String getKeyString() {
-        return keyToString(key);
+        if (key == null) {
+            return "";
+        }
+        return KeyFactory.keyToString(key);
     }
 
     public Set<String> getMembers() {

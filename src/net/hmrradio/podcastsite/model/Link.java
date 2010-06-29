@@ -8,10 +8,11 @@ import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Text;
 
 @Model(schemaVersion = 1)
-public class Link extends AbstractModel implements Serializable {
+public class Link implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -60,9 +61,11 @@ public class Link extends AbstractModel implements Serializable {
         return key;
     }
 
-    @Override
     public String getKeyString() {
-        return keyToString(key);
+        if (key == null) {
+            return "";
+        }
+        return KeyFactory.keyToString(key);
     }
 
     @JSONHint(ignore = true)

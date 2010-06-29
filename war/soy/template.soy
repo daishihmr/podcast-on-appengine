@@ -78,8 +78,7 @@
 /**
  * @param keyString
  */
-{template .afterShowEpisode}
-<script type="text/javascript">{\n}
+{template .afterShowBlogEntry}
 $("#{$keyString}").find("a").each(function() {lb}
     $(this).css({lb}
         position: "relative",
@@ -99,7 +98,6 @@ checkLoginAdmin(function() {lb}
         text: false
     {rb}).show();
 {rb});
-</script>
 {/template}
 
 
@@ -115,6 +113,30 @@ checkLoginAdmin(function() {lb}
     {/foreach}
 {/template}
 
+/**
+ *
+ */
+{template .afterShowBlogEntries}
+$(".post").find("a").each(function() {lb}
+    $(this).css({lb}
+        position: "relative",
+        zIndex: 100
+    {rb});
+    var text = $(this).text();
+    $(this).text(text.split("/corner/").join("").split("/member/").join(""));
+{rb});
+
+$(".post").find("a[href*='/member/']").click(clickMember);
+$(".post").find("a[href*='/corner/']").click(clickCorner);
+$(".post").find("a[href*='/tags/']").click(clickTags);
+
+checkLoginAdmin(function() {lb}
+    $(".post").find(".edit").button({lb}
+        icons: {lb} primary: "ui-icon-pencil" {rb},
+        text: false
+    {rb}).show();
+{rb});
+{/template}
 
 /**
  * showLink
@@ -126,20 +148,23 @@ checkLoginAdmin(function() {lb}
  * @param textString 説明
  */
 {template .showLink}
-<li id="{$keyString}">
+<li id="{$keyString}" class="link-item">
     <a href="{$url}" title="{$textString}">{$title}</a>
     &nbsp;&nbsp;
     <button class="edit" style="display:none" onclick="editLink('{$keyString}')"></button>
 </li>
+{/template}
 
-<script type="text/javascript">
+/**
+ * @param keyString データストアのキー
+ */
+{template .afterShowLink}
 checkLoginAdmin(function() {lb}
     $("#{$keyString}").find(".edit").button({lb}
         icons: {lb} primary: "ui-icon-pencil" {rb},
         text: false
     {rb}).show();
 {rb});
-</script>
 {/template}
 
 /**
@@ -152,4 +177,23 @@ checkLoginAdmin(function() {lb}
     {foreach $link in $list}
         {call .showLink data="$link" /}
     {/foreach}
+{/template}
+
+/**
+ *
+ */
+{template .afterShowLinks}
+checkLoginAdmin(function() {lb}
+    $(".link-item").find(".edit").button({lb}
+        icons: {lb} primary: "ui-icon-pencil" {rb},
+        text: false
+    {rb}).show();
+{rb});
+{/template}
+
+/**
+ * @param target
+ */
+{template .test}
+$("#{$target}").text("hello world");
 {/template}

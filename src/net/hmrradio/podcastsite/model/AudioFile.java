@@ -9,9 +9,10 @@ import org.slim3.util.LongUtil;
 import org.slim3.util.StringUtil;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 @Model
-public class AudioFile extends AbstractModel implements Serializable {
+public class AudioFile implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -225,9 +226,11 @@ public class AudioFile extends AbstractModel implements Serializable {
         this.entryDate = entryDate;
     }
 
-    @Override
     public String getKeyString() {
-        return keyToString(key);
+        if (key == null) {
+            return "";
+        }
+        return KeyFactory.keyToString(key);
     }
 
     /**

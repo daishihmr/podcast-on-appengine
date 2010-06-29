@@ -7,25 +7,26 @@ import java.util.Set;
 
 import net.arnx.jsonic.JSON;
 
+import org.slim3.util.StringUtil;
+
 import com.google.appengine.repackaged.com.google.common.collect.Maps;
 import com.google.template.soy.SoyFileSet;
 import com.google.template.soy.jssrc.SoyJsSrcOptions;
 import com.google.template.soy.msgs.SoyMsgBundle;
 import com.google.template.soy.tofu.SoyTofu;
+import com.google.template.soy.tofu.SoyTofuException;
 
 public class SoyUtil {
 
-    private static SoyTofu tofu;
-    static {
-        tofu =
-            (new SoyFileSet.Builder())
-                .add(new File("soy/template.soy"))
-                .build()
-                .compileToJavaObj();
-    }
-
     private SoyUtil() {
         // 使用不可
+    }
+
+    private static SoyTofu getTofu() {
+        return (new SoyFileSet.Builder())
+            .add(new File("soy/template.soy"))
+            .build()
+            .compileToJavaObj();
     }
 
     public static String render(String namespace, String template, Object arg) {
@@ -45,7 +46,21 @@ public class SoyUtil {
             data = null;
         }
 
-        return tofu.render(namespace + "." + template, data, null);
+        StringBuffer sb = new StringBuffer();
+        sb.append(getTofu().render(namespace + "." + template, data, null));
+        try {
+            StringBuffer asb = new StringBuffer();
+            asb.append("<script type=\"text/javascript\">");
+            asb.append(getTofu().render(
+                namespace + "." + "after" + StringUtil.capitalize(template),
+                data,
+                null));
+            asb.append("</script>");
+            sb.append(asb);
+        } catch (SoyTofuException e) {
+        }
+
+        return sb.toString();
     }
 
     @SuppressWarnings("unchecked")

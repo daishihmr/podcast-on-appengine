@@ -2,8 +2,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
+<%@taglib prefix="soy" uri="/WEB-INF/soy-render.tld" %>
+
 <!DOCTYPE html>
-<html>
+
+<%@page import="net.hmrradio.podcastsite.define.Values"%><html>
 <head>
 <title>HMRのやっつけラジオ</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,9 +27,13 @@
 <script type="text/javascript" src="/js/template.js"></script>
 <script type="text/javascript" src="/js/common.js"></script>
 <script type="text/javascript" src="/js/index.js"></script>
-<% if (true) { %>
+<%
+	if (true) {
+%>
 <script type="text/javascript" src="/js/admin.js"></script>
-<% } %>
+<%
+	}
+%>
 <!--[if lt IE 7]>
 <script src="/js/IE7.js"></script>
 <![endif]-->
@@ -89,8 +96,11 @@ $(function() {
                     <h2 class="title">Create New Entry&nbsp;<button id="create-entry" class="admin-only" style="font-size:xx-small"></button></h2>
                 </div>
                 <!-- end 新規作成 -->
+
                 <!-- begin 記事 -->
-                <%= request.getAttribute("blogEntries") %>
+<c:forEach items="${ blogEntries }" var="blogEntry">
+    <soy:soyrender namespace="<%= Values.SOY_NS %>" template="showBlogEntry" value="${ blogEntry }"/>
+</c:forEach>
                 <!-- end 記事 -->
             </div>
 
@@ -132,7 +142,7 @@ $(function() {
                     <h2>Link&nbsp;<button id="add-link" class="add admin-only" style="font-size:xx-small"></button></h2>
                     <div style="padding: 20px">
                         <ul id="linkUl">
-                            <%= request.getAttribute("links") %>
+                            <soy:soyrender namespace="<%=Values.SOY_NS %>" template="showLinks" value="${ links }"/>
                         </ul>
                     </div>
                 </li>

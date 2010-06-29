@@ -8,10 +8,11 @@ import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Text;
 
 @Model(schemaVersion = 1)
-public class Corner extends AbstractModel implements Serializable {
+public class Corner implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -125,9 +126,11 @@ public class Corner extends AbstractModel implements Serializable {
         this.description = description;
     }
 
-    @Override
     public String getKeyString() {
-        return keyToString(key);
+        if (key == null) {
+            return "";
+        }
+        return KeyFactory.keyToString(key);
     }
 
     public String getDescriptionHtml() {

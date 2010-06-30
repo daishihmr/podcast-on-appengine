@@ -11,8 +11,9 @@ public class LoginCheckController extends BaseController {
 
     @Override
     protected boolean validate() {
+        // TODO
         // return isAdmin();
-        return false;
+        return true;
     }
 
 }

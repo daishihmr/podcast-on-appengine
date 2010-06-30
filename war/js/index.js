@@ -26,8 +26,4 @@ function clickTags() {
  * 「さらに過去」クリック時
  */
 function clickNextLink() {
-	$.getJSON("/blogEntry", {}, function(data) {
-		var html = Tofu.showBlogEntries(data.body);
-		$("#posts").append($(html));
-	});
 }

@@ -16,7 +16,7 @@
  * @param createDate 公開日
  */
 {template .showBlogEntry}
-<div id="{$keyString}" class="post">
+<div id="showBlogEntry-{$keyString}" class="post">
     <h2 class="title">
         <strong>{$title}</strong>
         &nbsp;&nbsp;
@@ -54,10 +54,7 @@
     </div>
     <div class="meta">
         <p class="tags"><b>Tags:</b>&nbsp;
-            {foreach $tag in $tags}
-                {if not isFirst($tag)},&nbsp;{/if}
-                <a href="/tags/{$tag}" style="position: relative; z-index: 100;">{$tag}</a>
-            {/foreach}
+            {foreach $tag in $tags}{if not isFirst($tag)},&nbsp;{/if}<a href="/tags/{$tag}" style="position: relative; z-index: 100;">{$tag}</a>{/foreach}
         </p>
         <p class="links">
             <a href="https://twitter.com/home?status=%23hmrradio%20" class="comments"
@@ -79,7 +76,7 @@
  * @param keyString
  */
 {template .afterShowBlogEntry}
-$("#{$keyString}").find("a").each(function() {lb}
+$("#showBlogEntry-{$keyString}").find("a").each(function() {lb}
     $(this).css({lb}
         position: "relative",
         zIndex: 100
@@ -88,18 +85,79 @@ $("#{$keyString}").find("a").each(function() {lb}
     $(this).text(text.split("/corner/").join("").split("/member/").join(""));
 {rb});
 
-$("#{$keyString}").find("a[href*='/member/']").click(clickMember);
-$("#{$keyString}").find("a[href*='/corner/']").click(clickCorner);
-$("#{$keyString}").find("a[href*='/tags/']").click(clickTags);
+$("#showBlogEntry-{$keyString}").find("a[href*='/member/']").click(clickMember);
+$("#showBlogEntry-{$keyString}").find("a[href*='/corner/']").click(clickCorner);
+$("#showBlogEntry-{$keyString}").find("a[href*='/tags/']").click(clickTags);
 
 checkLoginAdmin(function() {lb}
-    $("#{$keyString}").find(".edit").button({lb}
+    $("#showBlogEntry-{$keyString}").find(".edit").button({lb}
         icons: {lb} primary: "ui-icon-pencil" {rb},
         text: false
     {rb}).show();
 {rb});
 {/template}
 
+/**
+ * @param keyString
+ */
+{template .beforeEditBlogEntry}
+$("#editBlogEntry-{$keyString}").remove();
+{/template}
+
+/**
+ * editBlogEntry
+ * １件のBlogEntryを表示する。
+ *
+ * @param keyString 文字列化されたデータストアキー
+ * @param title 記事タイトル
+ * @param recordingDate 収録日
+ * @param audioFileURL 音声ファイルURL
+ * @param contentWiki 本文（WikiText）
+ * @param tags タグ（Array）
+ */
+{template .editBlogEntry}
+<div id="editBlogEntry-{$keyString}">
+<form name="editBlogEntry-{$keyString}" class="dialog-form">
+<input type="hidden" name="key" value="{$keyString}" />
+<table>
+    <tr>
+        <th>タイトル</th>
+        <td><input type="text" name="title" value="{$title}" size="30" /></td>
+    </tr>
+    <tr>
+        <th>収録日</th>
+        <td><input type="text" name="recordingDate" value="{$recordingDate}" size="12" /></td>
+    </tr>
+    <tr>
+        <th>音声ファイルURL</th>
+        <td><input type="text" name="audioFileURL" value="{$audioFileURL}" size="30" /></td>
+    </tr>
+    <tr>
+        <th>内容</th>
+        <td><textarea name="content" cols="50" rows="20">{$contentWiki}</textarea></td>
+    </tr>
+    <tr>
+        <th>タグ</th>
+        <td><input type="text" name="tags" value="{foreach $tag in $tags}{if not isFirst($tag)}, {/if}{$tag}{/foreach}" size="50" /></td>
+    </tr>
+</table>
+</form>
+</div>
+{/template}
+
+/**
+ * @param keyString
+ */
+{template .afterEditBlogEntry}
+$("#editBlogEntry-{$keyString}").dialog({lb}
+    title: "記事編集",
+    width: 700,
+    buttons: {lb}
+        "Cancel": function() {lb} $(this).dialog("close") {rb},
+        "Ok": function() {lb} postBlogEntry("editBlogEntry-{$keyString}") {rb}
+    {rb}
+{rb});
+{/template}
 
 /**
  * showBlogEntries
@@ -148,7 +206,7 @@ checkLoginAdmin(function() {lb}
  * @param textString 説明
  */
 {template .showLink}
-<li id="{$keyString}" class="link-item">
+<li id="showLink-{$keyString}" class="link-item">
     <a href="{$url}" title="{$textString}">{$title}</a>
     &nbsp;&nbsp;
     <button class="edit" style="display:none" onclick="editLink('{$keyString}')"></button>
@@ -160,7 +218,7 @@ checkLoginAdmin(function() {lb}
  */
 {template .afterShowLink}
 checkLoginAdmin(function() {lb}
-    $("#{$keyString}").find(".edit").button({lb}
+    $("#showLink-{$keyString}").find(".edit").button({lb}
         icons: {lb} primary: "ui-icon-pencil" {rb},
         text: false
     {rb}).show();
@@ -197,3 +255,4 @@ checkLoginAdmin(function() {lb}
 {template .test}
 $("#{$target}").text("hello world");
 {/template}
+

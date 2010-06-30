@@ -1,5 +1,7 @@
 package net.hmrradio.podcastsite.util;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import net.hmrradio.podcastsite.bean.ResultBean;
@@ -7,10 +9,20 @@ import net.hmrradio.podcastsite.define.AttrName;
 
 import org.slim3.controller.validator.Errors;
 
+import com.google.common.collect.Maps;
+
 public class JsonResponseUtil {
+
+    @SuppressWarnings("unchecked")
     public static Object jsonResponse(HttpServletRequest request, Object bean) {
         if (bean == null) {
             bean = new ResultBean(true);
+        } else if (bean instanceof Object[] || bean instanceof Iterable) {
+            Map<String, Object> map = Maps.newHashMap();
+            map.put("list", bean);
+            ResultBean wrapper = new ResultBean(true);
+            wrapper.setBody(map);
+            bean = wrapper;
         } else if (bean instanceof ResultBean == false) {
             ResultBean wrapper = new ResultBean(true);
             wrapper.setBody(bean);

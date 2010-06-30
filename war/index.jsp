@@ -1,12 +1,12 @@
 <%@page pageEncoding="UTF-8" isELIgnored="false" session="false"%>
+<%@page import="net.hmrradio.podcastsite.define.Values"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
 <%@taglib prefix="soy" uri="/WEB-INF/soy-render.tld" %>
 
 <!DOCTYPE html>
-
-<%@page import="net.hmrradio.podcastsite.define.Values"%><html>
+<html>
 <head>
 <title>HMRのやっつけラジオ</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -27,13 +27,6 @@
 <script type="text/javascript" src="/js/template.js"></script>
 <script type="text/javascript" src="/js/common.js"></script>
 <script type="text/javascript" src="/js/index.js"></script>
-<%
-	if (true) {
-%>
-<script type="text/javascript" src="/js/admin.js"></script>
-<%
-	}
-%>
 <!--[if lt IE 7]>
 <script src="/js/IE7.js"></script>
 <![endif]-->

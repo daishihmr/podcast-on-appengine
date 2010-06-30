@@ -93,6 +93,12 @@ public class BlogEntryService {
         return result;
     }
 
+    /**
+     * 
+     * @param key
+     * @return
+     * @throws EntityAlreadyDeletedException
+     */
     public BlogEntry get(Key key) {
         try {
             return Datastore.get(BlogEntry.class, key);
@@ -101,19 +107,29 @@ public class BlogEntryService {
         }
     }
 
-    public void create(BlogEntry newEntry) {
-        newEntry.setCreateDate(new Date());
-        newEntry.setPubDate(new Date());
-        Datastore.put(newEntry);
+    public void put(BlogEntry blogEntry) {
+        if (blogEntry.getKey() != null) {
+            blogEntry.setCreateDate(new Date());
+            blogEntry.setPubDate(blogEntry.getCreateDate());
+        } else {
+            blogEntry.setPubDate(new Date());
+        }
+        Datastore.put(blogEntry);
     }
 
-    public void update(BlogEntry entry) {
-        BlogEntry base = Datastore.get(BlogEntry.class, entry.getKey());
-        entry.setCreateDate(base.getCreateDate());
-        entry.setPubDate(new Date());
-        entry.setVersion(base.getVersion());
-        Datastore.put(entry);
-    }
+    // public void create(BlogEntry newEntry) {
+    // newEntry.setCreateDate(new Date());
+    // newEntry.setPubDate(new Date());
+    // Datastore.put(newEntry);
+    // }
+
+    // public void update(BlogEntry entry) {
+    // BlogEntry base = Datastore.get(BlogEntry.class, entry.getKey());
+    // entry.setCreateDate(base.getCreateDate());
+    // entry.setPubDate(new Date());
+    // entry.setVersion(base.getVersion());
+    // Datastore.put(entry);
+    // }
 
     public List<BlogEntry> listAll() {
         List<BlogEntry> result =
@@ -142,7 +158,7 @@ public class BlogEntryService {
         Datastore.delete(key);
     }
 
-    public Set<String> getCorners(String entry) {
+    public Set<String> findCorners(String entry) {
         if (entry == null) {
             return null;
         }
@@ -162,7 +178,7 @@ public class BlogEntryService {
         return result;
     }
 
-    public Set<String> getPersonalities(String entry) {
+    public Set<String> findPersonalities(String entry) {
         if (entry == null) {
             return null;
         }

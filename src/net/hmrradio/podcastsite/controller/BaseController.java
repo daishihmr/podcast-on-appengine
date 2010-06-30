@@ -68,6 +68,10 @@ public abstract class BaseController extends Controller {
 
             return redirect(userService.createLoginURL(request.getRequestURI()));
 
+        } catch (Exception e) {
+
+            return exceptionError(ERROR);
+
         } finally {
 
             afterExec();

@@ -65,6 +65,46 @@ public class BlogEntry implements Serializable {
     @Attribute
     private Date createDate;
 
+    public void listupCorners() {
+        if (content == null) {
+            return;
+        }
+        Set<String> result = Sets.newHashSet();
+        StringBuffer content = new StringBuffer(getContentWiki());
+
+        while (content.indexOf("[/corner/") != -1) {
+            int from = content.indexOf("[/corner/");
+            int to = content.indexOf("]", from);
+            if (from == -1 || to == -1) {
+                break;
+            }
+            result.add(content.substring(from + "[/corner/".length(), to));
+            content.delete(from, to + 1);
+        }
+
+        corners = result;
+    }
+
+    public void listupMembers() {
+        if (content == null) {
+            return;
+        }
+        Set<String> result = Sets.newHashSet();
+        StringBuffer content = new StringBuffer(getContentWiki());
+
+        while (content.indexOf("[/member/") != -1) {
+            int from = content.indexOf("[/member/");
+            int to = content.indexOf("]", from);
+            if (from == -1 || to == -1) {
+                break;
+            }
+            result.add(content.substring(from + "[/member/".length(), to));
+            content.delete(from, to + 1);
+        }
+
+        members = result;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -108,6 +148,9 @@ public class BlogEntry implements Serializable {
     }
 
     public String getContentWiki() {
+        if (content == null) {
+            return "";
+        }
         return content.getValue();
     }
 

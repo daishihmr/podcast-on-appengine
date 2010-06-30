@@ -1,17 +1,13 @@
 @CHARSET "utf-8";
 
-/*
-.small-button {
-	color: #666;
-	text-align: right;
-	margin-left: 10px;
-	display: none;
-	height: 20px;
-	width: 20px;
-	font-size: xx-small;
-	vertical-align: middle;
+.dialog-form {
+	color: white;
+	font-size: 60%;
 }
-*/
+
+.dialog-form input {
+	font-size: 60%;
+}
 
 .admin-only {
 	display: none;

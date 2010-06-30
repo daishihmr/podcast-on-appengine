@@ -1,4 +1,5 @@
 rem [SOYC START]
+echo %TIME%
 
 cd %~dp0
 
@@ -7,3 +8,4 @@ java -jar closure-templates-for-javascript-latest\SoyToJsSrcCompiler.jar ^
 war\soy\template.soy
 
 rem [SOYC COMPLETE]
+echo %TIME%

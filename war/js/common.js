@@ -2,48 +2,15 @@ if (typeof net == 'undefined') { var net = {}; }
 if (typeof net.hmrradio == 'undefined') { net.hmrradio = {}; }
 if (typeof net.hmrradio.podcastsite == 'undefined') { net.hmrradio.podcastsite = {}; }
 if (typeof net.hmrradio.podcastsite.common == 'undefined') { net.hmrradio.podcastsite.common = {}; }
+
 net.hmrradio.podcastsite.common.isAdmin = "unknown";
 net.hmrradio.podcastsite.common.fArray = [];
 net.hmrradio.podcastsite.common.eArray = [];
-
-var Tofu = net.hmrradio.podcastsite.templates;
-
-jQuery.fn.extend( {
-
-    /**
-     * フォームにsubmitイベントハンドラをセットする.
-     *
-     * @param url
-     *            ポスト先URL
-     * @param callback
-     *            function(data:Object)
-     * @return void
-     */
-    setAjaxSubmit : function(url, callback) {
-        this.submit(function() {
-            return post(url, $(this).attr("name"), callback);
-        });
-    }
-
-});
 
 $(function() {
     $.ajaxSetup( {
         error : function(xhr, status, e) {
             ajaxError(xhr, status, e);
-        }
-    });
-
-    var alertDialog = $("<div id='alertDialog'></div>");
-    alertDialog.append($("<p id='alertMessage'></p>"));
-    $(document).append(alertDialog);
-
-    alertDialog.dialog({
-        title: "エラー",
-        modal: true,
-        autoOpen: false,
-        buttons: {
-            "OK": function() { $(this).dialog('close'); }
         }
     });
 });
@@ -59,13 +26,28 @@ $(function() {
  *            function(data:Object)
  * @return false(固定)
  */
-var post = function(url, formName, callback) {
+var postForm = function(url, formName, callback) {
     var data = {};
     if (formName) {
         var f = $("form[name='" + formName + "']");
         data = f.serializeArray();
     }
-    $.post(url, data, getCallbackFunction(callback), "json");
+    return postData(url, data, callback);
+};
+
+/**
+ * データをポストする.
+ *
+ * @param url
+ *            ポスト先URL
+ * @param data
+ *            data
+ * @param callback
+ *            function(data:Object)
+ * @return false(固定)
+ */
+var postData = function(url, data, callback) {
+    $.post(url, data, wrapFunc(callback), "json");
 
     return false;
 };
@@ -77,7 +59,7 @@ var post = function(url, formName, callback) {
  *            成功時の関数
  * @return 関数
  */
-var getCallbackFunction = function(f) {
+var wrapFunc = function(f) {
     return function(data, status) {
         if (status != "success") {
             return ajaxError(null, status);
@@ -112,8 +94,7 @@ var ajaxError = function(xhr, status) {
  * @param data
  */
 var error = function(data) {
-    $("#alertMessage").text(data.messages.join("\n"));
-    $("#alertDialog").dialog("open");
+    alert(data.messages.join("\n"));
 };
 
 /**
@@ -155,34 +136,6 @@ var checkLoginAdmin = function(f, e) {
     } else {
         if (e) e();
     }
-};
-
-var createPlayer = function(audioFileURL) {
-    if (!audioFileURL) return null;
-    var filename = audioFileURL.split("/")[audioFileURL.split("/").length - 1];
-    var player = $("<p>" +
-            "<object type='application/x-shockwave-flash' data='/player_mp3_maxi.swf' width='20' height='20'>" +
-                "<param name='movie' value='/player_mp3_maxi.swf' />" +
-                "<param name='bgcolor' value='#000000' />" +
-                "<param name='FlashVars' value='mp3=" + encodeURI(audioFileURL) + "&amp;width=20&amp;showstop=0&amp;showslider=0&amp;buttonwidth=20' />" +
-            "</object> " +
-            "<a href='" + audioFileURL + "'>" + filename + "</a>" +
-        "</p>");
-    return player;
-}
-
-var personality = function(p) {
-    p.profile = p.profile.value;
-    return p;
-};
-
-var corner = function(row) {
-    row.description = row.description.value;
-    return row;
-};
-
-var link = function(row) {
-    row.text = row.text.value;
 };
 
 var toDate = function(t) {

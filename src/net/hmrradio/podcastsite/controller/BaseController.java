@@ -12,12 +12,12 @@ import net.hmrradio.podcastsite.exception.EntityAlreadyDeletedException;
 import net.hmrradio.podcastsite.exception.EntityAlreadyExistsException;
 import net.hmrradio.podcastsite.exception.NoLoggedInException;
 import net.hmrradio.podcastsite.util.JsonResponseUtil;
+import net.hmrradio.podcastsite.util.LoginCheckUtil;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.util.ApplicationMessage;
 
-import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
@@ -80,18 +80,7 @@ public abstract class BaseController extends Controller {
     }
 
     protected boolean isAdmin() {
-        if (!userService.isUserLoggedIn()) {
-            return false;
-        }
-        User user = userService.getCurrentUser();
-        if (user == null) {
-            return false;
-        }
-        if ("daishi.hmr@gmail.com".equals(user.getEmail())
-            || "hmrblog@gmail.com".equals(user.getEmail())) {
-            return true;
-        }
-        return false;
+        return LoginCheckUtil.isAdmin();
     }
 
     protected Navigation validationError() throws Exception {

@@ -12,7 +12,7 @@ public class IndexController extends BaseController {
 
     @Override
     protected Navigation exec() throws Exception {
-        return redirect("/");
+        return redirect("../");
     }
 
 }

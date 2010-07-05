@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 <%@page pageEncoding="UTF-8" isELIgnored="false" session="false"%>
 <%@page import="net.hmrradio.podcastsite.define.Values"%>
+<%@page import="net.hmrradio.podcastsite.util.LoginCheckUtil"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
 <%@taglib prefix="soy" uri="/WEB-INF/soy-render.tld" %>
 
-<!DOCTYPE html>
 <html>
 <head>
 <title>HMRのやっつけラジオ</title>
@@ -22,41 +23,11 @@
 <link rel="canonical" href="http://www.hmr-radio.net/" />
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.hmr-radio.net/rss" />
 
-<script type="text/javascript" src="/js/jquery-and-others.js"></script>
-<script type="text/javascript" src="/js/soyutils.js"></script>
-<script type="text/javascript" src="/js/template.js"></script>
-<script type="text/javascript" src="/js/common.js"></script>
+<%@include file="/script.jsp" %>
 <script type="text/javascript" src="/js/index.js"></script>
-<!--[if lt IE 7]>
-<script src="/js/IE7.js"></script>
-<![endif]-->
-<!-- script -->
-<script type="text/javascript">
-if (typeof net == 'undefined') { var net = {}; }
-if (typeof net.hmrradio == 'undefined') { net.hmrradio = {}; }
-if (typeof net.hmrradio.podcastsite == 'undefined') { net.hmrradio.podcastsite = {}; }
-
-/** 表示中の一番古い記事の公開日 */
-net.hmrradio.podcastsite.createDateOldest = new Date(2100, 1, 1).getTime();
-/** 表示中のクエリ */
-net.hmrradio.podcastsite.currentQuery = {};
-
-$(function() {
-
-    $("#header li a").button();
-    $("#header ul").buttonset();
-
-    // リンクパス付加
-    $("#menu-bbs").tinyTips('dark', "未実装");
-    $("#menu-member");
-    $("#menu-corner");
-    $("#menu-tag");
-    $("#menu-mail").attr("href", "mailto:hmrradio@gmail.com");
-    $("#menu-about").tinyTips('dark', "未実装");
-    
-    $("#next-link").button();
-});
-</script>
+<% if (LoginCheckUtil.isAdmin()) { %>
+<script type="text/javascript" src="/js/admin.js"></script>
+<% } %>
 
 </head>
 <body>
@@ -142,7 +113,7 @@ $(function() {
                 <li>
                     <h2>Twitter</h2>
                     <div style="padding: 20px">
-                        <!--
+<%--
                         <script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
                         <script type="text/javascript">
                         new TWTR.Widget({
@@ -176,7 +147,7 @@ $(function() {
                             }
                         }).render().setList('daishi_hmr', 'hmr').start();
                         </script>
-                        -->
+--%>
                     </div>
                 </li>
                 <li>
@@ -205,7 +176,11 @@ $(function() {
 <!-- end wrap -->
 <div style="text-align: center; font-size: 0.75em;">Design downloaded from <a href="http://www.freewebtemplates.com/">free website templates</a>.</div>
 
-<!-- 
+<!-- start ダイアログ -->
+<div id="dialog"></div>
+<!-- end ダイアログ -->
+
+<%--
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -215,7 +190,7 @@ try {
 var pageTracker = _gat._getTracker("UA-968682-13");
 pageTracker._trackPageview();
 } catch(err) {}</script>
--->
+--%>
 
 </body>
 </html>

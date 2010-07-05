@@ -116,13 +116,13 @@ $("#editBlogEntry-{$keyString}").remove();
  * @param tags タグ（Array）
  */
 {template .editBlogEntry}
-<div id="editBlogEntry-{$keyString}">
-<form name="editBlogEntry-{$keyString}" class="dialog-form">
+<div id="editBlogEntry">
+<form name="editBlogEntry" class="dialog-form">
 <input type="hidden" name="key" value="{$keyString}" />
 <table>
     <tr>
         <th>タイトル</th>
-        <td><input type="text" name="title" value="{$title}" size="30" /></td>
+        <td><input type="text" name="title" value="{$title}" size="70" /></td>
     </tr>
     <tr>
         <th>収録日</th>
@@ -134,7 +134,7 @@ $("#editBlogEntry-{$keyString}").remove();
     </tr>
     <tr>
         <th>内容</th>
-        <td><textarea name="content" cols="50" rows="20">{$contentWiki}</textarea></td>
+        <td><textarea name="content" cols="100" rows="20">{$contentWiki}</textarea></td>
     </tr>
     <tr>
         <th>タグ</th>
@@ -146,15 +146,18 @@ $("#editBlogEntry-{$keyString}").remove();
 {/template}
 
 /**
- * @param keyString
+ *
  */
 {template .afterEditBlogEntry}
-$("#editBlogEntry-{$keyString}").dialog({lb}
+$("#editBlogEntry").find("input[name='recordingDate']").datepicker({lb}
+	dateFormat: 'yy/mm/dd'
+{rb});
+$("#editBlogEntry").dialog({lb}
     title: "記事編集",
     width: 700,
     buttons: {lb}
-        "Cancel": function() {lb} $(this).dialog("close") {rb},
-        "Ok": function() {lb} postBlogEntry("editBlogEntry-{$keyString}") {rb}
+        "Cancel": function() {lb} $(this).dialog("close").remove() {rb},
+        "Ok": function() {lb} postBlogEntry() {rb}
     {rb}
 {rb});
 {/template}

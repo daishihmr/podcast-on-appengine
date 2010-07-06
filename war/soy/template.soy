@@ -134,7 +134,23 @@ $("#editBlogEntry-{$keyString}").remove();
     </tr>
     <tr>
         <th>内容</th>
-        <td><textarea name="content" cols="100" rows="20">{$contentWiki}</textarea></td>
+        <td><textarea name="content" cols="100" rows="20">
+        {if $keyString == ''}
+{$contentWiki}
+        {else}
+参加メンバー{\n}
+[/member/〇〇]{\n}
+[/member/〇〇]{\n}
+[/member/〇〇]{\n}
+{\n}
+【[/corner/〇〇]】 〇〇〇〇[[BR]]{\n}
+【[/corner/〇〇]】 〇〇〇〇[[BR]]{\n}
+【[/corner/〇〇]】 〇〇〇〇[[BR]]{\n}
+【[/corner/〇〇]】 〇〇〇〇[[BR]]{\n}
+{\n}
+本文{\n}
+        {/if}
+        </textarea></td>
     </tr>
     <tr>
         <th>タグ</th>

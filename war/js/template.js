@@ -37,12 +37,12 @@ net.hmrradio.podcastsite.templates.beforeEditBlogEntry = function(opt_data, opt_
 
 net.hmrradio.podcastsite.templates.editBlogEntry = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
-  output.append('<div id="editBlogEntry"><form name="editBlogEntry" class="dialog-form"><input type="hidden" name="key" value="', soy.$$escapeHtml(opt_data.keyString), '" /><table><tr><th>タイトル</th><td><input type="text" name="title" value="', soy.$$escapeHtml(opt_data.title), '" size="70" /></td></tr><tr><th>収録日</th><td><input type="text" name="recordingDate" value="', soy.$$escapeHtml(opt_data.recordingDate), '" size="12" /></td></tr><tr><th>音声ファイルURL</th><td><input type="text" name="audioFileURL" value="', soy.$$escapeHtml(opt_data.audioFileURL), '" size="30" /></td></tr><tr><th>内容</th><td><textarea name="content" cols="100" rows="20">', soy.$$escapeHtml(opt_data.contentWiki), '</textarea></td></tr><tr><th>タグ</th><td><input type="text" name="tags" value="');
-  var tagList66 = opt_data.tags;
-  var tagListLen66 = tagList66.length;
-  for (var tagIndex66 = 0; tagIndex66 < tagListLen66; tagIndex66++) {
-    var tagData66 = tagList66[tagIndex66];
-    output.append((! (tagIndex66 == 0)) ? ', ' : '', soy.$$escapeHtml(tagData66));
+  output.append('<div id="editBlogEntry"><form name="editBlogEntry" class="dialog-form"><input type="hidden" name="key" value="', soy.$$escapeHtml(opt_data.keyString), '" /><table><tr><th>タイトル</th><td><input type="text" name="title" value="', soy.$$escapeHtml(opt_data.title), '" size="70" /></td></tr><tr><th>収録日</th><td><input type="text" name="recordingDate" value="', soy.$$escapeHtml(opt_data.recordingDate), '" size="12" /></td></tr><tr><th>音声ファイルURL</th><td><input type="text" name="audioFileURL" value="', soy.$$escapeHtml(opt_data.audioFileURL), '" size="30" /></td></tr><tr><th>内容</th><td><textarea name="content" cols="100" rows="20">', (opt_data.keyString == '') ? soy.$$escapeHtml(opt_data.contentWiki) : '参加メンバー\n[/member/〇〇]\n[/member/〇〇]\n[/member/〇〇]\n\n【[/corner/〇〇]】 〇〇〇〇[[BR]]\n【[/corner/〇〇]】 〇〇〇〇[[BR]]\n【[/corner/〇〇]】 〇〇〇〇[[BR]]\n【[/corner/〇〇]】 〇〇〇〇[[BR]]\n\n本文\n', '</textarea></td></tr><tr><th>タグ</th><td><input type="text" name="tags" value="');
+  var tagList70 = opt_data.tags;
+  var tagListLen70 = tagList70.length;
+  for (var tagIndex70 = 0; tagIndex70 < tagListLen70; tagIndex70++) {
+    var tagData70 = tagList70[tagIndex70];
+    output.append((! (tagIndex70 == 0)) ? ', ' : '', soy.$$escapeHtml(tagData70));
   }
   output.append('" size="50" /></td></tr></table></form></div>');
   if (!opt_sb) return output.toString();
@@ -58,11 +58,11 @@ net.hmrradio.podcastsite.templates.afterEditBlogEntry = function(opt_data, opt_s
 
 net.hmrradio.podcastsite.templates.showBlogEntries = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
-  var blogEntryList76 = opt_data.list;
-  var blogEntryListLen76 = blogEntryList76.length;
-  for (var blogEntryIndex76 = 0; blogEntryIndex76 < blogEntryListLen76; blogEntryIndex76++) {
-    var blogEntryData76 = blogEntryList76[blogEntryIndex76];
-    net.hmrradio.podcastsite.templates.showBlogEntry(blogEntryData76, output);
+  var blogEntryList80 = opt_data.list;
+  var blogEntryListLen80 = blogEntryList80.length;
+  for (var blogEntryIndex80 = 0; blogEntryIndex80 < blogEntryListLen80; blogEntryIndex80++) {
+    var blogEntryData80 = blogEntryList80[blogEntryIndex80];
+    net.hmrradio.podcastsite.templates.showBlogEntry(blogEntryData80, output);
   }
   if (!opt_sb) return output.toString();
 };
@@ -91,11 +91,11 @@ net.hmrradio.podcastsite.templates.afterShowLink = function(opt_data, opt_sb) {
 
 net.hmrradio.podcastsite.templates.showLinks = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
-  var linkList98 = opt_data.list;
-  var linkListLen98 = linkList98.length;
-  for (var linkIndex98 = 0; linkIndex98 < linkListLen98; linkIndex98++) {
-    var linkData98 = linkList98[linkIndex98];
-    net.hmrradio.podcastsite.templates.showLink(linkData98, output);
+  var linkList102 = opt_data.list;
+  var linkListLen102 = linkList102.length;
+  for (var linkIndex102 = 0; linkIndex102 < linkListLen102; linkIndex102++) {
+    var linkData102 = linkList102[linkIndex102];
+    net.hmrradio.podcastsite.templates.showLink(linkData102, output);
   }
   if (!opt_sb) return output.toString();
 };

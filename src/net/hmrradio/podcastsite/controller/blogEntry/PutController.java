@@ -22,7 +22,6 @@ public class PutController extends BaseController {
     private BlogEntryService blogEntryService = new BlogEntryService();
 
     public PutController() {
-        super();
         // TODO
         // necessaryLoggedIn = true;
     }

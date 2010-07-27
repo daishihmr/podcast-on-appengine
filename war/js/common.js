@@ -26,7 +26,7 @@ $(function() {
  *            function(data:Object)
  * @return false(固定)
  */
-var postForm = function(url, formName, callback) {
+function postForm(url, formName, callback) {
     var data = {};
     if (formName) {
         var f = $("form[name='" + formName + "']");
@@ -46,7 +46,7 @@ var postForm = function(url, formName, callback) {
  *            function(data:Object)
  * @return false(固定)
  */
-var postData = function(url, data, callback) {
+function postData(url, data, callback) {
     $.post(url, data, wrapFunc(callback), "json");
 
     return false;
@@ -59,7 +59,7 @@ var postData = function(url, data, callback) {
  *            成功時の関数
  * @return 関数
  */
-var wrapFunc = function(f) {
+function wrapFunc(f) {
     return function(data, status) {
         if (status != "success") {
             return ajaxError(null, status);
@@ -77,7 +77,7 @@ var wrapFunc = function(f) {
  * @param xhr
  * @param status
  */
-var ajaxError = function(xhr, status) {
+function ajaxError(xhr, status) {
     if (xhr.status == "500") {
         alert("Ajaxエラーが発生しました。F5を押してみてください。");
     } else {
@@ -93,7 +93,7 @@ var ajaxError = function(xhr, status) {
  *
  * @param data
  */
-var error = function(data) {
+function error(data) {
     alert(data.messages.join("\n"));
 };
 
@@ -106,7 +106,7 @@ var error = function(data) {
  *            Adminログインしていない時に実行する処理
  * @return void
  */
-var checkLoginAdmin = function(f, e) {
+function checkLoginAdmin(f, e) {
     if (net.hmrradio.podcastsite.common.isAdmin == "unknown") {
         net.hmrradio.podcastsite.common.isAdmin = "checking";
         if (f) net.hmrradio.podcastsite.common.fArray.push(f);
@@ -138,13 +138,36 @@ var checkLoginAdmin = function(f, e) {
     }
 };
 
-var toDate = function(t) {
+/**
+ * 新規投稿
+ */
+function createNewPost() {
+	var entry = {
+		keyString : "",
+		title : "",
+		recordingDate : "",
+		audioFileURL : "",
+		contentWiki : "",
+		tags : []
+	};
+	$("#dialog").html(Tofu.editBlogEntry(entry));
+	eval(Tofu.afterEditBlogEntry(entry));
+}
+
+/**
+ * 記事編集完了
+ */
+function postBlogEntry() {
+	alert("post");
+}
+
+function toDate(t) {
     var d = new Date(t);
     var fmt = new DateFormat("yyyy/MM/dd");
     return fmt.format(d);
 };
 
-var format = function(o, pre) {
+function format(o, pre) {
     if (!o) {
         return o;
     }

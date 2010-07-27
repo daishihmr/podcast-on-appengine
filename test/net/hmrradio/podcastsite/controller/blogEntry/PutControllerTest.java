@@ -1,9 +1,10 @@
 package net.hmrradio.podcastsite.controller.blogEntry;
 
-import org.slim3.tester.ControllerTestCase;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+import org.slim3.tester.ControllerTestCase;
 
 public class PutControllerTest extends ControllerTestCase {
 
@@ -14,5 +15,11 @@ public class PutControllerTest extends ControllerTestCase {
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
         assertThat(tester.getDestinationPath(), is(nullValue()));
+
+        assertThat("hello", is("world"));
+    }
+
+    @Test
+    public void go() {
     }
 }

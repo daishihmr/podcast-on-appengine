@@ -107,7 +107,7 @@ $("#editBlogEntry-{$keyString}").remove();
 /**
  * editBlogEntry
  * １件のBlogEntryを表示する。
- *
+ * 
  * @param keyString 文字列化されたデータストアキー
  * @param title 記事タイトル
  * @param recordingDate 収録日
@@ -162,7 +162,7 @@ $("#editBlogEntry-{$keyString}").remove();
 {/template}
 
 /**
- *
+ * afterEditBlogEntry
  */
 {template .afterEditBlogEntry}
 $("#editBlogEntry").find("input[name='recordingDate']").datepicker({lb}
@@ -173,8 +173,17 @@ $("#editBlogEntry").dialog({lb}
     width: 700,
     buttons: {lb}
         "Cancel": function() {lb} $(this).dialog("close").remove() {rb},
-        "Ok": function() {lb} postBlogEntry() {rb}
-    {rb}
+        "Ok": function() {lb}
+            var self = $(this);
+            postBlogEntry("", function() {lb}
+                self.dialog("close");
+                self.remove();
+            {rb});
+        {rb}
+    {rb},
+    show: "scale",
+    hide: "scale",
+    modal: true
 {rb});
 {/template}
 

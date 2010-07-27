@@ -155,6 +155,7 @@
                     <div style="padding: 20px">
                         <ul>
                             <li><a id="login" href="/admin/">ログイン</a></li>
+                            <li><a onclick="createNewPost()" href="javascript:void(0)">新規投稿</a></li>
                         </ul>
                     </div>
                 </li>

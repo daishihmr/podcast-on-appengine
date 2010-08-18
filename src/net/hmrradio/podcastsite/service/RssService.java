@@ -18,12 +18,11 @@ public class RssService {
     private AudioFileService audioFileService = new AudioFileService();
 
     public PodcastChannel getRss() {
-        List<BlogEntry> list = blogEntryService.listAll();
+        List<BlogEntry> list = blogEntryService.list();
 
         PodcastChannel result = YattsukeFactory.createChannel();
-        for (BlogEntry _blog : list) {
+        for (BlogEntry blog : list) {
             try {
-                BlogEntry blog = blogEntryService.plainText(_blog);
                 PodcastItem item = new PodcastItem();
 
                 item.title = blog.getTitle();
@@ -31,10 +30,7 @@ public class RssService {
                 item.subtitle = blog.getContent().getValue();
                 item.summary = blog.getContent().getValue();
                 item.description = new SyndContentImpl();
-                item.description.setValue(blog
-                    .getContent()
-                    .getValue()
-                    .replaceAll("\\n", ""));
+                item.description.setValue(blog.getContent().getValue());
                 item.description.setType("text/plain");
                 item.pubDate = blog.getCreateDate();
                 if (item.pubDate != null) {

@@ -22,10 +22,21 @@ public class BlogEntryService {
 
     private BlogEntryMeta b = BlogEntryMeta.get();
 
+    /**
+     * データをDELETEする。
+     * 
+     * @param key
+     */
     public void delete(Key key) {
         Datastore.delete(key);
     }
 
+    /**
+     * 記事内からコーナー名の集合を抽出する。
+     * 
+     * @param entry
+     * @return
+     */
     public Set<String> findCorners(String entry) {
         if (entry == null) {
             return null;
@@ -46,6 +57,12 @@ public class BlogEntryService {
         return result;
     }
 
+    /**
+     * 記事内からメンバー名の集合を抽出する。
+     * 
+     * @param entry
+     * @return
+     */
     public Set<String> findPersonalities(String entry) {
         if (entry == null) {
             return null;
@@ -66,6 +83,12 @@ public class BlogEntryService {
         return result;
     }
 
+    /**
+     * データをGETする。
+     * 
+     * @param key
+     * @return
+     */
     public BlogEntry get(Key key) {
         try {
             return Datastore.get(BlogEntry.class, key);
@@ -75,7 +98,8 @@ public class BlogEntryService {
     }
 
     /**
-     * 全検索。投稿日時の降順で抽出する。
+     * 全検索。<br />
+     * 投稿日時の降順で抽出する。
      * 
      * @return
      */
@@ -87,7 +111,8 @@ public class BlogEntryService {
     }
 
     /**
-     * 条件指定検索。条件に合致するブログ記事を５件、投稿日時の降順で抽出する。
+     * 条件指定検索。<br />
+     * 条件に合致するブログ記事を５件、投稿日時の降順で抽出する。
      * 
      * @param queryBean
      * @return
@@ -96,6 +121,11 @@ public class BlogEntryService {
         return list(createQuery(queryBean));
     }
 
+    /**
+     * データをPUTする。
+     * 
+     * @param blogEntry
+     */
     public void put(BlogEntry blogEntry) {
         if (blogEntry.getKey() != null) {
             blogEntry.setCreateDate(new Date());

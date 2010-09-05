@@ -7,6 +7,16 @@
 
 .dialog-form input {
 	font-size: 60%;
+	font-family: monospace;
+	border-color: gray;
+	border-width: 1px;
+}
+
+.dialog-form textarea {
+	font-size: 60%;
+	font-family: monospace;
+	border-color: gray;
+	border-width: 1px;
 }
 
 .admin-only {

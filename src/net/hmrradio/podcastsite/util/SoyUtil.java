@@ -36,6 +36,7 @@ public class SoyUtil {
     @SuppressWarnings("unchecked")
     public static String render(String namespace, String template,
             Object mainArg, Object afterArg) {
+
         mainArg = wrapCollection(mainArg);
         afterArg = wrapCollection(afterArg);
 
@@ -63,7 +64,7 @@ public class SoyUtil {
         return sb.toString();
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     private static Object wrapCollection(Object o) {
         if (o instanceof List || o instanceof Set || o instanceof Object[]) {
             Map map = Maps.newHashMap();

@@ -10,10 +10,14 @@ import org.slim3.controller.Navigation;
 import org.slim3.datastore.EntityNotFoundRuntimeException;
 import org.slim3.util.ApplicationMessage;
 
+import com.google.appengine.repackaged.org.apache.commons.logging.Log;
+import com.google.appengine.repackaged.org.apache.commons.logging.LogFactory;
+
 public class IndexController extends Controller {
 
     private BlogEntryService blogEntryService = new BlogEntryService();
     private LinkService linkService = new LinkService();
+    private Log log = LogFactory.getLog(IndexController.class);
 
     @Override
     public Navigation run() throws Exception {
@@ -24,6 +28,7 @@ public class IndexController extends Controller {
 
             if (requestScope("p") != null) {
                 // 記事指定
+                log.info("key = " + asString("p"));
                 queryBean = new BlogEntryQueryBean();
                 queryBean.setKeyEq(asKey("p"));
             }
@@ -43,8 +48,9 @@ public class IndexController extends Controller {
     }
 
     private Navigation notFound() {
-        requestScope(AttrName.ERROR_MESSAGES, ApplicationMessage
-            .get("message.noSuchBlogEntry"));
+        requestScope(
+            AttrName.ERROR_MESSAGES,
+            ApplicationMessage.get("message.noSuchBlogEntry"));
         return forward("error.jsp");
     }
 

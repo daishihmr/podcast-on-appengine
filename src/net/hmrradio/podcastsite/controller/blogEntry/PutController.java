@@ -15,15 +15,19 @@ import org.slim3.controller.validator.RequiredValidator;
 import org.slim3.controller.validator.Validators;
 import org.slim3.util.BeanUtil;
 
+import com.google.appengine.repackaged.org.apache.commons.logging.Log;
+import com.google.appengine.repackaged.org.apache.commons.logging.LogFactory;
+
 public class PutController extends BaseController {
 
     private BlogEntryMeta b = BlogEntryMeta.get();
 
     private BlogEntryService blogEntryService = new BlogEntryService();
 
+    private Log log = LogFactory.getLog(PutController.class);
+
     public PutController() {
-        // TODO
-        // necessaryLoggedIn = true;
+        necessaryLoggedIn = true;
     }
 
     @Override
@@ -31,6 +35,9 @@ public class PutController extends BaseController {
 
         BlogEntry blogEntry = new BlogEntry();
         BeanUtil.copy(request, blogEntry, new BlogEntryCopyOptions());
+
+        log.info(blogEntry);
+
         blogEntry.listupMembers();
         blogEntry.listupCorners();
 

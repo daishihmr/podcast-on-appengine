@@ -26,5 +26,4 @@ public class LoginCheckUtil {
         User user = service.getCurrentUser();
         return adminUsers.contains(user.getEmail());
     }
-
 }

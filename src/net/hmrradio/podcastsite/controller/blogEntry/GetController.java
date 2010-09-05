@@ -7,12 +7,17 @@ import org.slim3.controller.Navigation;
 import org.slim3.controller.validator.RequiredValidator;
 import org.slim3.controller.validator.Validators;
 
+import com.google.appengine.repackaged.org.apache.commons.logging.Log;
+import com.google.appengine.repackaged.org.apache.commons.logging.LogFactory;
+
 public class GetController extends BaseController {
 
     private BlogEntryService blogEntryService = new BlogEntryService();
+    private Log log = LogFactory.getLog(GetController.class);
 
     @Override
     protected Navigation exec() throws Exception {
+        log.info(asString("key"));
         return forwardJson(blogEntryService.get(asKey("key")));
     }
 

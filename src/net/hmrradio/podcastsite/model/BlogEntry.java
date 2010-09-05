@@ -1,6 +1,7 @@
 package net.hmrradio.podcastsite.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
 
@@ -162,9 +163,16 @@ public class BlogEntry implements Serializable {
         return coverImageKey;
     }
 
-    @JSONHint(format = "yyyy/MM/dd")
+    @JSONHint(format = "yyyy/MM/dd HH:mm:ss")
     public Date getCreateDate() {
-        return createDate;
+        if (createDate != null) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(createDate);
+            cal.add(Calendar.HOUR, 9);
+            return cal.getTime();
+        } else {
+            return null;
+        }
     }
 
     @JSONHint(ignore = true)
@@ -183,14 +191,28 @@ public class BlogEntry implements Serializable {
         return members;
     }
 
-    @JSONHint(format = "yyyy/MM/dd")
+    @JSONHint(format = "yyyy/MM/dd HH:mm:ss")
     public Date getPubDate() {
-        return pubDate;
+        if (pubDate != null) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(pubDate);
+            cal.add(Calendar.HOUR, 9);
+            return cal.getTime();
+        } else {
+            return null;
+        }
     }
 
     @JSONHint(format = "yyyy/MM/dd")
     public Date getRecordingDate() {
-        return recordingDate;
+        if (recordingDate != null) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(recordingDate);
+            cal.add(Calendar.HOUR, 9);
+            return cal.getTime();
+        } else {
+            return null;
+        }
     }
 
     public Set<String> getTags() {

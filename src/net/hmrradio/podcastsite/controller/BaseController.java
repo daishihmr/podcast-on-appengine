@@ -2,8 +2,6 @@ package net.hmrradio.podcastsite.controller;
 
 import static net.hmrradio.podcastsite.define.MsgKey.*;
 
-import java.util.logging.Logger;
-
 import javax.transaction.NotSupportedException;
 
 import net.arnx.jsonic.JSON;
@@ -20,12 +18,16 @@ import org.slim3.util.ApplicationMessage;
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.appengine.repackaged.org.apache.commons.logging.Log;
+import com.google.appengine.repackaged.org.apache.commons.logging.LogFactory;
 
 public abstract class BaseController extends Controller {
 
     protected boolean necessaryLoggedIn = false;
 
     private UserService userService = UserServiceFactory.getUserService();
+
+    private Log log = LogFactory.getLog(getClass());
 
     @Override
     protected Navigation run() throws Exception {
@@ -51,14 +53,17 @@ public abstract class BaseController extends Controller {
 
         } catch (EntityAlreadyDeletedException e) {
 
+            log.error(e);
             return exceptionError(NO_DATA);
 
         } catch (EntityAlreadyExistsException e) {
 
+            log.error(e);
             return exceptionError(ALREADY_EXISTS);
 
         } catch (NotSupportedException e) {
 
+            log.error(e);
             if ("POST".equals(e.getMessage())) {
                 return exceptionError(POST_ONLY_API);
             }
@@ -66,10 +71,12 @@ public abstract class BaseController extends Controller {
 
         } catch (NoLoggedInException e) {
 
+            log.error(e);
             return redirect(userService.createLoginURL(request.getRequestURI()));
 
         } catch (Exception e) {
 
+            log.error(e);
             return exceptionError(ERROR);
 
         } finally {
@@ -116,11 +123,6 @@ public abstract class BaseController extends Controller {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        Logger logger = Logger.getLogger("json.jsp");
-        if (request.getAttribute("slim3.controller") instanceof Controller) {
-            logger.info(getClass().getName() + " : " + JSON.encode(jsonBean));
-        }
-
         response.getWriter().print(JSON.encode(jsonBean));
         response.flushBuffer();
 
@@ -131,11 +133,6 @@ public abstract class BaseController extends Controller {
         Object jsonBean = JsonResponseUtil.jsonResponse(request, object);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-
-        Logger logger = Logger.getLogger("json.jsp");
-        if (request.getAttribute("slim3.controller") instanceof Controller) {
-            logger.info(getClass().getName() + " : " + JSON.encode(jsonBean));
-        }
 
         response.getWriter().print(JSON.encode(jsonBean));
         response.flushBuffer();
@@ -148,11 +145,6 @@ public abstract class BaseController extends Controller {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        Logger logger = Logger.getLogger("json.jsp");
-        if (request.getAttribute("slim3.controller") instanceof Controller) {
-            logger.info(getClass().getName() + " : " + JSON.encode(jsonBean));
-        }
-
         response.getWriter().print(JSON.encode(jsonBean));
         response.flushBuffer();
 
@@ -163,16 +155,11 @@ public abstract class BaseController extends Controller {
     protected Navigation forwardJsonError(String errorKey, Object... args)
             throws Exception {
         Object jsonBean =
-            JsonResponseUtil.jsonError(request, ApplicationMessage.get(
-                errorKey,
-                args));
+            JsonResponseUtil.jsonError(
+                request,
+                ApplicationMessage.get(errorKey, args));
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-
-        Logger logger = Logger.getLogger("json.jsp");
-        if (request.getAttribute("slim3.controller") instanceof Controller) {
-            logger.info(getClass().getName() + " : " + JSON.encode(jsonBean));
-        }
 
         response.getWriter().print(JSON.encode(jsonBean));
         response.flushBuffer();

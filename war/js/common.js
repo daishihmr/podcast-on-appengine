@@ -36,6 +36,23 @@ function postForm(url, formName, callback) {
 };
 
 /**
+ * データを取得する.
+ *
+ * @param url
+ *            ポスト先URL
+ * @param data
+ *            data
+ * @param callback
+ *            function(data:Object)
+ * @return false(固定)
+ */
+function getData(url, data, callback) {
+    $.get(url, data, wrapFunc(callback), "json");
+
+    return false;
+};
+
+/**
  * データをポストする.
  *
  * @param url
@@ -155,10 +172,36 @@ function createNewPost() {
 }
 
 /**
+ * 記事編集
+ * @param keyString キー
+ */
+function editPost(keyString) {
+	getData("/blogEntry/get", {key: keyString}, function(entry){
+		$("#dialog").html(Tofu.editBlogEntry(entry));
+		eval(Tofu.afterEditBlogEntry(entry));
+	});
+}
+
+/**
  * 記事編集完了
  */
-function postBlogEntry() {
-	alert("post");
+function postBlogEntry(data, f) {
+	postData("/blogEntry/put", data, function(entry) {
+		if ($("#showBlogEntry-" + entry.keyString).length != 0) {
+			$("#showBlogEntry-" + entry.keyString).replaceWith(Tofu.showBlogEntry(entry));
+			eval(Tofu.afterShowBlogEntry(entry));
+			f();
+		} else {
+			alert("新規");
+		}
+	});
+}
+
+/**
+ * 画像ウィンドウ表示
+ */
+function openImageWindow() {
+	
 }
 
 function toDate(t) {

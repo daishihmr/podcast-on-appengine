@@ -11,9 +11,9 @@
  * @param audioFileURL 音声ファイルURL
  * @param audioFileName 音声ファイル名
  * @param contentHtml 本文（HTML）
+ * @param createDate 公開日
  * @param pubDate 更新日
  * @param tags タグ（Array）
- * @param createDate 公開日
  */
 {template .showBlogEntry}
 <div id="showBlogEntry-{$keyString}" class="post">
@@ -26,6 +26,7 @@
         <p class="byline">
             <i>公開日：{$createDate}</i>&nbsp;<i>更新日：{$pubDate}</i>
         </p>
+        {if $audioFileURL != ''}
         <p>
             <object type="application/x-shockwave-flash" data="/player_mp3_maxi.swf" width="20" height="20">
                 <param name="movie" value="/player_mp3_maxi.swf">
@@ -34,6 +35,7 @@
             </object>
             <a href="{$audioFileURL}" style="position: relative; z-index: 100;">{$audioFileName}</a>
         </p>
+        {/if}
         <p>収録日：{$recordingDate}</p>
 
         {$contentHtml |noAutoescape}
@@ -63,7 +65,7 @@
             </a>
             &nbsp;&nbsp;&bull;&nbsp;&nbsp;
             <a class="permalink"
-                href="http://www.hmr-radio.net/?p={$keyString}"
+                href="/?p={$keyString}"
                 style="position: relative; z-index: 100;">
                 Permalink
             </a>
@@ -109,6 +111,8 @@ $("#editBlogEntry-{$keyString}").remove();
  * １件のBlogEntryを表示する。
  * 
  * @param keyString 文字列化されたデータストアキー
+ * @param createDate 公開日
+ * @param pubDate 更新日
  * @param title 記事タイトル
  * @param recordingDate 収録日
  * @param audioFileURL 音声ファイルURL
@@ -117,25 +121,27 @@ $("#editBlogEntry-{$keyString}").remove();
  */
 {template .editBlogEntry}
 <div id="editBlogEntry">
-<form name="editBlogEntry" class="dialog-form">
+<form id="form-{$keyString}" name="editBlogEntry" class="dialog-form">
 <input type="hidden" name="key" value="{$keyString}" />
+<input type="hidden" name="createDate" value="{$createDate}" />
+<input type="hidden" name="pubDate" value="{$pubDate}" />
 <table>
     <tr>
         <th>タイトル</th>
-        <td><input type="text" name="title" value="{$title}" size="70" /></td>
+        <td><input type="text" name="title" value="{$title}" size="70" class="ui-corner-all" /></td>
     </tr>
     <tr>
         <th>収録日</th>
-        <td><input type="text" name="recordingDate" value="{$recordingDate}" size="12" /></td>
+        <td><input type="text" name="recordingDate" value="{$recordingDate}" size="15" class="ui-corner-all" /></td>
     </tr>
     <tr>
         <th>音声ファイルURL</th>
-        <td><input type="text" name="audioFileURL" value="{$audioFileURL}" size="30" /></td>
+        <td><input type="text" name="audioFileURL" value="{$audioFileURL}" size="30" class="ui-corner-all" /></td>
     </tr>
     <tr>
         <th>内容</th>
-        <td><textarea name="content" cols="100" rows="20">
-        {if $keyString == ''}
+        <td><textarea name="content" cols="100" rows="20" class="ui-corner-all">
+        {if $keyString != ''}
 {$contentWiki}
         {else}
 参加メンバー{\n}
@@ -154,7 +160,7 @@ $("#editBlogEntry-{$keyString}").remove();
     </tr>
     <tr>
         <th>タグ</th>
-        <td><input type="text" name="tags" value="{foreach $tag in $tags}{if not isFirst($tag)}, {/if}{$tag}{/foreach}" size="50" /></td>
+        <td><input type="text" name="tags" value="{foreach $tag in $tags}{if not isFirst($tag)}, {/if}{$tag}{/foreach}" size="70" class="ui-corner-all" /></td>
     </tr>
 </table>
 </form>
@@ -163,6 +169,8 @@ $("#editBlogEntry-{$keyString}").remove();
 
 /**
  * afterEditBlogEntry
+ * 
+ * @param keyString 文字列化されたデータストアキー
  */
 {template .afterEditBlogEntry}
 $("#editBlogEntry").find("input[name='recordingDate']").datepicker({lb}
@@ -172,18 +180,20 @@ $("#editBlogEntry").dialog({lb}
     title: "記事編集",
     width: 700,
     buttons: {lb}
-        "Cancel": function() {lb} $(this).dialog("close").remove() {rb},
+        "Cancel": function() {lb}
+            $(this).dialog("destroy");
+            $(this).remove();
+        {rb},
         "Ok": function() {lb}
             var self = $(this);
-            postBlogEntry("", function() {lb}
-                self.dialog("close");
+            postBlogEntry($("#form-{$keyString}").serialize(), function() {lb}
+                self.dialog("destroy");
                 self.remove();
             {rb});
         {rb}
     {rb},
     show: "scale",
-    hide: "scale",
-    modal: true
+    hide: "scale"
 {rb});
 {/template}
 

@@ -3,6 +3,8 @@ package net.hmrradio.podcastsite.controller.admin;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import net.hmrradio.podcastsite.controller.LogoutController;
+
 import org.junit.Test;
 import org.slim3.tester.ControllerTestCase;
 

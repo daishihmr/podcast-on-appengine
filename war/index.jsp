@@ -23,11 +23,8 @@
 <link rel="canonical" href="http://www.hmr-radio.net/" />
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.hmr-radio.net/rss" />
 
-<%@include file="/script.jsp" %>
+<%@include file="/import-scripts.jsp" %>
 <script type="text/javascript" src="/js/index.js"></script>
-<% if (LoginCheckUtil.isAdmin()) { %>
-<script type="text/javascript" src="/js/admin.js"></script>
-<% } %>
 
 </head>
 <body>
@@ -78,6 +75,18 @@
         <!-- begin sidebar -->
         <div id="sidebar">
             <ul>
+<% if (LoginCheckUtil.isAdmin()) { %>
+                <li>
+                    <h2>for HMR only</h2>
+                    <div style="padding: 20px">
+                        <ul>
+                            <li><a id="login" href="/logout">ログアウト</a></li>
+                            <li><a onclick="createNewPost()" href="javascript:void(0)">新規投稿</a></li>
+                            <li><a onclick="openImageWindow()" href="javascript:void(0)">画像投稿</a></li>
+                        </ul>
+                    </div>
+                </li>
+<% } %>
                 <li>
                     <h2>Information</h2>
                     <div style="padding: 20px">
@@ -150,15 +159,16 @@
 --%>
                     </div>
                 </li>
+<% if (!LoginCheckUtil.isAdmin()) { %>
                 <li>
                     <h2>for HMR only</h2>
                     <div style="padding: 20px">
                         <ul>
-                            <li><a id="login" href="/admin/">ログイン</a></li>
-                            <li><a onclick="createNewPost()" href="javascript:void(0)">新規投稿</a></li>
+                            <li><a id="login" href="/login">ログイン</a></li>
                         </ul>
                     </div>
                 </li>
+<% } %>
             </ul>
         </div>
         <!-- end sidebar -->

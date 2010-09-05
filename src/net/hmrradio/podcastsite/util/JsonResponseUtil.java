@@ -13,7 +13,6 @@ import com.google.common.collect.Maps;
 
 public class JsonResponseUtil {
 
-    @SuppressWarnings("unchecked")
     public static Object jsonResponse(HttpServletRequest request, Object bean) {
         if (bean == null) {
             bean = new ResultBean(true);

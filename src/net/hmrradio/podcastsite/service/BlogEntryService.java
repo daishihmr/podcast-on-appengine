@@ -17,10 +17,13 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.repackaged.com.google.common.collect.Sets;
+import com.google.appengine.repackaged.org.apache.commons.logging.Log;
+import com.google.appengine.repackaged.org.apache.commons.logging.LogFactory;
 
 public class BlogEntryService {
 
     private BlogEntryMeta b = BlogEntryMeta.get();
+    private Log log = LogFactory.getLog(BlogEntryService.class);
 
     /**
      * データをDELETEする。
@@ -90,6 +93,7 @@ public class BlogEntryService {
      * @return
      */
     public BlogEntry get(Key key) {
+        log.info("key = " + ((key == null) ? "null" : key.toString()));
         try {
             return Datastore.get(BlogEntry.class, key);
         } catch (Exception e) {
@@ -127,11 +131,12 @@ public class BlogEntryService {
      * @param blogEntry
      */
     public void put(BlogEntry blogEntry) {
+        Date date = new Date();
         if (blogEntry.getKey() != null) {
-            blogEntry.setCreateDate(new Date());
-            blogEntry.setPubDate(blogEntry.getCreateDate());
+            blogEntry.setPubDate(date);
         } else {
-            blogEntry.setPubDate(new Date());
+            blogEntry.setCreateDate(date);
+            blogEntry.setPubDate(date);
         }
         Datastore.put(blogEntry);
     }

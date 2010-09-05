@@ -23,11 +23,16 @@ $(function() {
     $("#next-link").button();
 });
 
+function getHrefBottom(element) {
+	return element.attr("href").split("/").pop();
+}
+
 /**
  * メンバー名クリック時
  */
 function clickMember() {
-	alert(this.href.split("/").pop());
+	var member = getHrefBottom($(this));
+	alert(member);
 	return false;
 }
 
@@ -35,7 +40,8 @@ function clickMember() {
  * コーナー名クリック時
  */
 function clickCorner() {
-	alert(this.href);
+	var corner = getHrefBottom($(this));
+	alert(corner);
 	return false;
 }
 
@@ -43,7 +49,8 @@ function clickCorner() {
  * タグクリック時
  */
 function clickTags() {
-	alert(this.href);
+	var tag = getHrefBottom($(this));
+	alert(tag);
 	return false;
 }
 

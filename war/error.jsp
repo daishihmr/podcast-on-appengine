@@ -1,15 +1,15 @@
+<!DOCTYPE html>
 <%@page pageEncoding="UTF-8" isELIgnored="false" session="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="/css/dark-hive/jquery-ui-1.8.custom.css" />    
-<script type="text/javascript" src="/js/jquery-and-others.js"></script>
-<script type="text/javascript">
+<script src="/js/jquery-and-others.js"></script>
+<script>
 $(function() {
 	$("#return-top").button({
 		icons: { primary: "ui-icon-arrowreturnthick-1-w" }
@@ -54,9 +54,7 @@ $(function() {
     <!-- end page -->
     <!-- begin footer -->
     <div id="footer">
-        <!-- All we ask of you is to keep this credits intact. We hope you don't mind :) -->
-        <p class="legal"><a href="http://www.thewebhub.com/2008/11/lightspeed/">LightSpeed Free CSS Template</a> by <a href="http://thewebhub.com/">TheWebHub.com</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/ph/">Creative Commons Attribution-Share Alike 3.0 Philippines License</a>.<br />
-            <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/ph/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by-sa/3.0/ph/88x31.png" /></a></p>
+        <p class="legal"><a href="http://www.thewebhub.com/2008/11/lightspeed/">LightSpeed Free CSS Template</a> by <a href="http://thewebhub.com/">TheWebHub.com</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/ph/">Creative Commons Attribution-Share Alike 3.0 Philippines License</a>.
     </div>
     <!-- end footer -->
 </div>

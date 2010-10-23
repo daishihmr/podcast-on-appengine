@@ -8,7 +8,7 @@ import net.java.textilej.parser.markup.trac.TracWikiDialect;
 
 import com.google.appengine.api.datastore.Text;
 
-public class WikiUtil {
+public final class WikiUtil {
 
     private WikiUtil() {
     }

@@ -145,6 +145,9 @@ public class BlogEntry implements Serializable {
     }
 
     public String getContentHtml() {
+        if (content == null) {
+            return "";
+        }
         return WikiUtil.toHtml(content.getValue());
     }
 

@@ -1,7 +1,11 @@
 package net.hmrradio.podcastsite.controller;
 
-import net.hmrradio.podcastsite.bean.BlogEntryQueryBean;
+import java.util.List;
+import java.util.logging.Logger;
+
 import net.hmrradio.podcastsite.define.AttrName;
+import net.hmrradio.podcastsite.model.BlogEntry;
+import net.hmrradio.podcastsite.model.Link;
 import net.hmrradio.podcastsite.service.BlogEntryService;
 import net.hmrradio.podcastsite.service.LinkService;
 
@@ -10,30 +14,23 @@ import org.slim3.controller.Navigation;
 import org.slim3.datastore.EntityNotFoundRuntimeException;
 import org.slim3.util.ApplicationMessage;
 
-import com.google.appengine.repackaged.org.apache.commons.logging.Log;
-import com.google.appengine.repackaged.org.apache.commons.logging.LogFactory;
-
 public class IndexController extends Controller {
+
+    private Logger log = Logger.getLogger(IndexController.class.getName());
 
     private BlogEntryService blogEntryService = new BlogEntryService();
     private LinkService linkService = new LinkService();
-    private Log log = LogFactory.getLog(IndexController.class);
 
     @Override
     public Navigation run() throws Exception {
+        log.info("index start");
 
         // 記事
-        BlogEntryQueryBean queryBean = null;
         try {
 
-            if (requestScope("p") != null) {
-                // 記事指定
-                log.info("key = " + asString("p"));
-                queryBean = new BlogEntryQueryBean();
-                queryBean.setKeyEq(asKey("p"));
-            }
-
-            requestScope("blogEntries", blogEntryService.list(queryBean));
+            List<BlogEntry> list = blogEntryService.list();
+            requestScope(AttrName.ENTRY_LIST, list);
+            log.info("エントリ数 = " + list.size());
 
         } catch (IllegalArgumentException e) {
             return notFound();
@@ -42,8 +39,11 @@ public class IndexController extends Controller {
         }
 
         // リンク集
-        requestScope("links", linkService.list());
+        List<Link> linkList = linkService.list();
+        requestScope(AttrName.LINK_LIST, linkList);
+        log.info("リンク数 = " + linkList.size());
 
+        log.info("index end");
         return forward("index.jsp");
     }
 

@@ -9,7 +9,7 @@ import org.slim3.controller.Navigation;
 import org.slim3.datastore.Datastore;
 
 import com.google.appengine.api.datastore.Text;
-import com.google.common.collect.Lists;
+import com.google.appengine.repackaged.com.google.common.collect.Lists;
 
 public class IndexController extends Controller {
 

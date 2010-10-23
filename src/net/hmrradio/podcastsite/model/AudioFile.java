@@ -247,22 +247,30 @@ public class AudioFile implements Serializable {
                 return LongUtil.toPrimitiveLong(d);
             } else if (d.length() <= 5) {
                 String[] sp = d.split(":");
-                return LongUtil.toPrimitiveLong(sp[0])
-                    * 60
-                    * 1000
-                    + LongUtil.toPrimitiveLong(sp[1])
-                    * 1000;
+                if (sp.length == 2) {
+                    return LongUtil.toPrimitiveLong(sp[0])
+                        * 60
+                        * 1000
+                        + LongUtil.toPrimitiveLong(sp[1])
+                        * 1000;
+                } else {
+                    return 0L;
+                }
             } else if (d.length() <= 8) {
                 String[] sp = d.split(":");
-                return LongUtil.toPrimitiveLong(sp[0])
-                    * 60
-                    * 60
-                    * 1000
-                    + LongUtil.toPrimitiveLong(sp[1])
-                    * 60
-                    * 1000
-                    + LongUtil.toPrimitiveLong(sp[2])
-                    * 1000;
+                if (sp.length == 3) {
+                    return LongUtil.toPrimitiveLong(sp[0])
+                        * 60
+                        * 60
+                        * 1000
+                        + LongUtil.toPrimitiveLong(sp[1])
+                        * 60
+                        * 1000
+                        + LongUtil.toPrimitiveLong(sp[2])
+                        * 1000;
+                } else {
+                    return 0L;
+                }
             } else {
                 return 0;
             }

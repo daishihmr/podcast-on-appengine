@@ -9,9 +9,11 @@ import net.hmrradio.podcastsite.define.AttrName;
 
 import org.slim3.controller.validator.Errors;
 
-import com.google.common.collect.Maps;
+import com.google.appengine.repackaged.com.google.common.collect.Maps;
 
-public class JsonResponseUtil {
+public final class JsonResponseUtil {
+    private JsonResponseUtil() {
+    }
 
     public static Object jsonResponse(HttpServletRequest request, Object bean) {
         if (bean == null) {

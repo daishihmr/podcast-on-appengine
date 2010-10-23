@@ -15,15 +15,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/net.java.textilej_2.2.864.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/slim3-1.0.2.jar" sourcepath="libsrc/slim3-1.0.2-sources.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/soy-20100426.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jdom.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jsonic-1.2.0.jar"/>
-	<classpathentry kind="src" path=".apt_generated">
-		<attributes>
-			<attribute name="optional" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine (6)"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>

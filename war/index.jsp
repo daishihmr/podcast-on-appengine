@@ -18,12 +18,12 @@
 <meta name="keywords" content="ネットラジオ,佐世保,Podcast,九州ネットラジオ組合,関東ネットラジオリンク,電脳,オタク,映画,風俗,音楽,コンビニ,ゲーム" />
 <meta name="discription" content="佐世保出身の30代男性集団が送る、笑いと情熱のポッドキャスト。車、電脳、オタク、映画、風俗、音楽、ゲームなどをネタに、幅広い話題を提供。やっつけ仕事でなるべく週１回ぐらいで更新していくネットラジオです。" />
 <meta name="robots" content="index,nofollow,archive" />
+<link rel="canonical" href="http://www.hmr-radio.net/" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="/css/dark-hive/jquery-ui-1.8.custom.css" />
-<link rel="canonical" href="http://www.hmr-radio.net/" />
-<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.hmr-radio.net/rss" />
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/rss" />
 
-<%@include file="/import-scripts.jsp" %>
+<%@include file="/importScripts.jsp" %>
 <script type="text/javascript" src="/js/index.js"></script>
 
 </head>
@@ -99,7 +99,7 @@
                     <h2>Podcast Feed</h2>
                     <div style="padding: 20px">
                         <div style="text-align:center">
-                            <a href="http://www.hmr-radio.net/rss"><img src="/images/podcast-rss.gif" /></a>
+                            <a href="/rss"><img src="/images/podcast-rss.gif" /></a>
                         </div>
                         このバナーを<strong><a href="http://www.apple.com/jp/itunes/download/">iTunes(無料)</a></strong>上へドラッグ＆ドロップすることで番組を登録することができます。<br />
                         登録するとiTunesが自動的にやっつけラジオの最新放送をチェックします。<br />
@@ -122,7 +122,6 @@
                 <li>
                     <h2>Twitter</h2>
                     <div style="padding: 20px">
-<%--
                         <script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
                         <script type="text/javascript">
                         new TWTR.Widget({
@@ -156,7 +155,6 @@
                             }
                         }).render().setList('daishi_hmr', 'hmr').start();
                         </script>
---%>
                     </div>
                 </li>
 <% if (!LoginCheckUtil.isAdmin()) { %>
@@ -191,7 +189,6 @@
 <div id="dialog"></div>
 <!-- end ダイアログ -->
 
-<%--
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -201,7 +198,6 @@ try {
 var pageTracker = _gat._getTracker("UA-968682-13");
 pageTracker._trackPageview();
 } catch(err) {}</script>
---%>
 
 </body>
 </html>

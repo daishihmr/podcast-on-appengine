@@ -187,13 +187,7 @@ function editPost(keyString) {
  */
 function postBlogEntry(data, f) {
 	postData("/blogEntry/put", data, function(entry) {
-		if ($("#showBlogEntry-" + entry.keyString).length != 0) {
-			$("#showBlogEntry-" + entry.keyString).replaceWith(Tofu.showBlogEntry(entry));
-			eval(Tofu.afterShowBlogEntry(entry));
-			f();
-		} else {
-			alert("新規");
-		}
+		location.href = "/";
 	});
 }
 

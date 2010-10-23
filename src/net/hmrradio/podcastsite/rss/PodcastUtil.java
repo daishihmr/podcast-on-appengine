@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.io.Writer;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import net.hmrradio.podcastsite.define.Values;
 
 import com.sun.syndication.feed.module.itunes.EntryInformation;
 import com.sun.syndication.feed.module.itunes.EntryInformationImpl;
@@ -20,12 +24,15 @@ import com.sun.syndication.io.SyndFeedOutput;
 
 public class PodcastUtil {
 
+    private static Logger log = Logger.getLogger(PodcastUtil.class.getName());
+
     @SuppressWarnings("unchecked")
     public static void out(PodcastChannel channel, Writer writer)
             throws IOException, FeedException {
-        validate(channel);
+        log.info("RSS 出力 start");
 
         try {
+            validate(channel);
 
             SyndFeed feed = new SyndFeedImpl();
             feed.setFeedType("rss_2.0");
@@ -56,10 +63,14 @@ public class PodcastUtil {
             SyndFeedOutput output = new SyndFeedOutput();
             output.output(feed, writer);
 
+        } catch (IllegalArgumentException e) {
+            log.log(Level.WARNING, "RSS 出力中にエラー", e);
         } finally {
             try {
                 writer.flush();
                 writer.close();
+
+                log.info("RSS 出力 end");
             } catch (Exception e) {
             }
         }
@@ -72,10 +83,9 @@ public class PodcastUtil {
         entry.setDescription(item.description);
         entry.setAuthor(item.author);
         if (item.enclosure != null) {
-            // TODO あとでちゃんとする
             SyndEnclosure cover = new SyndEnclosureImpl();
             {
-                cover.setUrl("http://www.hmr-radio.net/yattsu-ke.jpg");
+                cover.setUrl(Values.SITE_URL + "/yattsu-ke.jpg");
                 cover.setType("image/jpeg");
                 cover.setLength(19987L);
             }
@@ -93,16 +103,6 @@ public class PodcastUtil {
         feed.setLanguage(channel.language);
         feed.setCopyright(channel.copyright);
         feed.setPublishedDate(channel.pubDate);
-        // feed.setCategories(channel.categories);
-        // feed.setImage(new SyndImageImpl());
-        // {
-        // if (channel.image != null) {
-        // feed.getImage().setUrl(channel.image.url);
-        // feed.getImage().setTitle(channel.image.title);
-        // feed.getImage().setLink(channel.image.link);
-        // feed.getImage().setDescription(channel.image.description);
-        // }
-        // }
     }
 
     private static void setItunesEntry(PodcastItem item,

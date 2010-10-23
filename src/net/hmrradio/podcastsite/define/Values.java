@@ -7,6 +7,8 @@ public class Values {
 
     public static final String SOY_NS = "net.hmrradio.podcastsite.templates";
 
+    public static final String SITE_URL = "http://www.hmr-radio.net";
+
     private Values() {
     };
 }

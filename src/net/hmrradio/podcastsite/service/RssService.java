@@ -1,7 +1,10 @@
 package net.hmrradio.podcastsite.service;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import net.hmrradio.podcastsite.define.Values;
 import net.hmrradio.podcastsite.model.AudioFile;
 import net.hmrradio.podcastsite.model.BlogEntry;
 import net.hmrradio.podcastsite.rss.PodcastChannel;
@@ -14,14 +17,19 @@ import com.sun.syndication.feed.synd.SyndEnclosureImpl;
 
 public class RssService {
 
+    private Logger log = Logger.getLogger(RssService.class.getName());
+
     private BlogEntryService blogEntryService = new BlogEntryService();
     private AudioFileService audioFileService = new AudioFileService();
 
     public PodcastChannel getRss() {
+        log.info("RSS 作成 start");
+
         List<BlogEntry> list = blogEntryService.list();
 
         PodcastChannel result = YattsukeFactory.createChannel();
         for (BlogEntry blog : list) {
+            log.info("記事[" + blog.getTitle() + "] start");
             try {
                 PodcastItem item = new PodcastItem();
 
@@ -50,8 +58,7 @@ public class RssService {
                     item.duration =
                         new Duration(audio.getDurationMillisecond());
                 }
-                item.guid =
-                    "http://www.hmr-radio.net/?p=" + blog.getKeyString();
+                item.guid = Values.SITE_URL + "/?p=" + blog.getKeyString();
 
                 item.keywords =
                     blog.getTags().toArray(new String[blog.getTags().size()]);
@@ -59,9 +66,14 @@ public class RssService {
 
                 result.items.add(item);
             } catch (Exception e) {
+                log.log(Level.WARNING, "記事[" + blog.getTitle() + "] でエラー", e);
+                break;
             }
+
+            log.info("記事[" + blog.getTitle() + "] end");
         }
 
+        log.info("RSS 作成 end");
         return result;
     }
 

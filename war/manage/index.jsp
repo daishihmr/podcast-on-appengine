@@ -23,7 +23,7 @@
 <link rel="canonical" href="http://www.hmr-radio.net/" />
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.hmr-radio.net/rss" />
 
-<%@include file="/script.jsp" %>
+<%@include file="/importScripts.jsp" %>
 <script type="text/javascript" src="/js/index.js"></script>
 <% if (LoginCheckUtil.isAdmin()) { %>
 <script type="text/javascript" src="/js/admin.js"></script>

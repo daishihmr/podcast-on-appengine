@@ -15,15 +15,17 @@
         </p>
         ${entry.contentHtml}
 <c:if test="${s.index == 0}">
-        <!-- AdSense -->
-        <script type="text/javascript">
-        google_ad_client = "pub-3487863134090836";
-        google_ad_slot = "7912561868";
-        google_ad_width = 468;
-        google_ad_height = 60;
-        </script>
-        <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
-        <!-- AdSense -->
+        <div style="text-align:center">
+            <!-- AdSense -->
+            <script type="text/javascript">
+            google_ad_client = "pub-3487863134090836";
+            google_ad_slot = "7912561868";
+            google_ad_width = 468;
+            google_ad_height = 60;
+            </script>
+            <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+            <!-- AdSense -->
+        </div>
 </c:if>
     </div>
     <div class="meta">

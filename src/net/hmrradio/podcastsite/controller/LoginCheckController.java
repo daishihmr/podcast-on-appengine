@@ -14,4 +14,9 @@ public class LoginCheckController extends BaseController {
         return isAdmin();
     }
 
+    @Override
+    protected Navigation input() {
+        return forward("index.jsp");
+    }
+
 }

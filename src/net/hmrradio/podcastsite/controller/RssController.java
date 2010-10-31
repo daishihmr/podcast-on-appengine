@@ -30,4 +30,10 @@ public class RssController extends BaseController {
         log.info("RSS Controller end");
         return null;
     }
+
+    @Override
+    protected Navigation input() {
+        return null;
+    }
+
 }

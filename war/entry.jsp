@@ -10,9 +10,11 @@
             <i>公開日：<fmt:formatDate value="${entry.createDate}" pattern="yyyy/MM/dd" /></i>
             <i>更新日：<fmt:formatDate value="${entry.pubDate}" pattern="yyyy/MM/dd" /></i>
         </p>
+<c:if test="${entry.audioFileURL != null}">
         <p>
             <a href="${entry.audioFileURL}" style="position:relative;z-index:100">MP3 File</a>
         </p>
+</c:if>
         ${entry.contentHtml}
 <c:if test="${s.index == 0}">
         <div style="text-align:center">

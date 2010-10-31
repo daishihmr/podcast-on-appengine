@@ -14,4 +14,9 @@ public class ListController extends BaseController {
         return forwardJson(blogEntryService.list());
     }
 
+    @Override
+    protected Navigation input() {
+        return forward("index.jsp");
+    }
+
 }

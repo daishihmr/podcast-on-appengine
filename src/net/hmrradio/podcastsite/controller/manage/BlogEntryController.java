@@ -12,4 +12,9 @@ public class BlogEntryController extends BaseController {
         return null;
     }
 
+    @Override
+    protected Navigation input() {
+        return forward("index.jsp");
+    }
+
 }

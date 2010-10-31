@@ -47,7 +47,7 @@
             <div id="posts">
                 <!-- begin 記事 -->
 <c:forEach items="${ ENTRY_LIST }" var="entry" varStatus="s">
-    <%@include file="entry.jsp" %>
+                <%@include file="entry.jsp" %>
 </c:forEach>
                 <!-- end 記事 -->
             </div>
@@ -63,7 +63,7 @@
                     <div style="padding: 20px">
                         <ul>
                             <li><a id="login" href="/logout">ログアウト</a></li>
-                            <li><a onclick="createNewPost()" href="javascript:void(0)">新規投稿</a></li>
+                            <li><a href="/blogEntry/">新規投稿</a></li>
                             <li><a onclick="openImageWindow()" href="javascript:void(0)">画像投稿</a></li>
                         </ul>
                     </div>
@@ -100,7 +100,7 @@
                     <div style="padding: 20px">
                         <ul id="linkUl">
 <c:forEach items="${LINK_LIST}" var="link">
-    <%@include file="link.jsp" %>
+                            <%@include file="link.jsp" %>
 </c:forEach>
                         </ul>
                     </div>

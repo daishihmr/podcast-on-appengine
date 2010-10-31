@@ -47,7 +47,7 @@ public abstract class BaseController extends Controller {
             }
             beforeExec();
             if (!validate()) {
-                return validationError();
+                return input();
             }
             return exec();
 
@@ -85,6 +85,8 @@ public abstract class BaseController extends Controller {
 
         }
     }
+
+    protected abstract Navigation input() throws Exception;
 
     protected boolean isAdmin() {
         return LoginCheckUtil.isAdmin();

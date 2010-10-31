@@ -29,4 +29,9 @@ public class GetController extends BaseController {
 
         return v.validate();
     }
+
+    @Override
+    protected Navigation input() {
+        return forward("index.jsp");
+    }
 }

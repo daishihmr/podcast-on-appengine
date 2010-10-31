@@ -40,4 +40,9 @@ public class SendmailController extends BaseController {
 
         return v.validate();
     }
+
+    @Override
+    protected Navigation input() throws Exception {
+        return forwardJsonError();
+    }
 }

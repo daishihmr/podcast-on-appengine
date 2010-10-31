@@ -15,4 +15,9 @@ public class IndexController extends BaseController {
         return forward("index.jsp");
     }
 
+    @Override
+    protected Navigation input() {
+        return forward("index.jsp");
+    }
+
 }

@@ -1,4 +1,4 @@
-package net.hmrradio.podcastsite.controller.member;
+package net.hmrradio.podcastsite.controller.blogEntry;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
@@ -7,6 +7,6 @@ public class IndexController extends Controller {
 
     @Override
     public Navigation run() throws Exception {
-        return redirect("/");
+        return forward("index.jsp");
     }
 }

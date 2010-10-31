@@ -44,7 +44,7 @@ public class IndexController extends Controller {
         log.info("リンク数 = " + linkList.size());
 
         log.info("index end");
-        return forward("index.jsp");
+        return forward("/index.jsp");
     }
 
     private Navigation notFound() {

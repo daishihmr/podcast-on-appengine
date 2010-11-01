@@ -18,10 +18,22 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
 <script type="text/javascript">
+var waiting = false
 $(function() {
     $("#buttonOk").button();
+    $("#buttonUpload").button();
     $("input[name='recordingDate']").datepicker({
        dateFormat: "yy/mm/dd" 
+    });
+    $("textarea[name='content']").keyup(function() {
+        if (!waiting) {
+            var wiki = $(this).val();
+            waiting = true;
+            postData("/api/wiki", {wiki:wiki}, function(html) {
+                $("#preview").html(html);
+                waiting = false;
+            });
+        }
     });
 });
 </script>
@@ -46,8 +58,16 @@ $(function() {
                     <td><input type="text" name="title" class="ui-corner-all" style="width:400px" /></td>
                 </tr>
                 <tr>
-                    <th>本文</th>
-                    <td><textarea name="content" class="ui-corner-all" style="width:500px;height:400px"></textarea></td>
+                    <th>音声ファイルURL</th>
+                    <td><input type="text" name="audioFileURL" class="ui-corner-all" style="width:400px" /><input type="button" value="upload" id="buttonUpload" /></td>
+                </tr>
+                <tr>
+                    <th rowspan="2">本文</th>
+                    <td>preview:<div id="preview" style="width:500px;height: 300px;overflow:scroll;padding:5px;background:black">
+                    </div></td>
+                </tr>
+                <tr>
+                    <td><textarea name="content" class="ui-corner-all" style="width:500px;height:300px"></textarea></td>
                 </tr>
                 <tr>
                     <th>収録日</th>

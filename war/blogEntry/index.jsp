@@ -21,7 +21,11 @@
 var waiting = false
 $(function() {
     $("#buttonOk").button();
-    $("#buttonUpload").button();
+    $("#buttonUpload").button().click(function() {
+    	open("http://hmr.sakura.ne.jp/qakgiehsnsgewa.html",
+    		"child",
+    		"width=400,height=300,menubar=no,toolbar=no,scrollbars=no,resizable=no,location=no");
+    });
     $("input[name='recordingDate']").datepicker({
        dateFormat: "yy/mm/dd" 
     });

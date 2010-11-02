@@ -8,13 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="/css/dark-hive/jquery-ui-1.8.custom.css" />    
-<script src="/js/jquery-and-others.js"></script>
+<%@include file="importScripts.jsp" %>
 <script>
 $(function() {
 	$("#return-top").button({
 		icons: { primary: "ui-icon-arrowreturnthick-1-w" }
-	}).click(function() {
-		location.href = "/";
 	});
 });
 </script>
@@ -25,26 +23,20 @@ $(function() {
 <div id="wrap">
     <!-- begin page -->
     <div id="page">
-	    <!-- begin header -->
-	    <div id="header">
-	        <h1>HMRのやっつけラジオ</h1>
-	        <h2>佐世保出身の30代男性集団が送る、笑いと情熱のポッドキャスト</h2>
-	    </div>
-	    <!-- end header -->
         <!-- begin content -->
         <div id="content">
             <div class="post">
                 <h2 class="title">Error</h2>
                 <div class="entry">
-                    <p class="byline"><i>hmr-y-radio</i></p>
+                    <p class="byline"><i>error page</i></p>
                     <p>
-<c:forEach var="msg" items="${ERROR_MESSAGES}">
+<c:forEach var="msg" items="${f:errors()}">
                         <span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em; margin-top: 3px"></span>
                         <strong>${f:h(msg)}</strong><br />
 </c:forEach>
                     </p>
                     <p>
-                        <button id="return-top">トップへ戻る</button>
+                        <a href="/" id="return-top">トップへ戻る</a>
                     </p>
                 </div>
             </div>
@@ -52,13 +44,7 @@ $(function() {
         <!-- end content -->
     </div>
     <!-- end page -->
-    <!-- begin footer -->
-    <div id="footer">
-        <p class="legal"><a href="http://www.thewebhub.com/2008/11/lightspeed/">LightSpeed Free CSS Template</a> by <a href="http://thewebhub.com/">TheWebHub.com</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/ph/">Creative Commons Attribution-Share Alike 3.0 Philippines License</a>.
-    </div>
-    <!-- end footer -->
 </div>
 <!-- end wrap -->
-<div style="text-align: center; font-size: 0.75em;">Design downloaded from <a href="http://www.freewebtemplates.com/">free website templates</a>.</div>
 </body>
 </html>

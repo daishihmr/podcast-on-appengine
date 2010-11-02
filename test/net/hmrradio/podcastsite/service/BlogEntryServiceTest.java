@@ -3,7 +3,9 @@ package net.hmrradio.podcastsite.service;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -14,6 +16,7 @@ import org.junit.Test;
 import org.slim3.datastore.Datastore;
 import org.slim3.tester.AppEngineTestCase;
 import org.slim3.util.DateUtil;
+import org.slim3.util.TimeZoneLocator;
 
 public class BlogEntryServiceTest extends AppEngineTestCase {
 
@@ -26,25 +29,23 @@ public class BlogEntryServiceTest extends AppEngineTestCase {
 
     @Test
     public void 全検索() throws Exception {
-        for (int i = 1; i <= 30; i++) {
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        fmt.setTimeZone(TimeZoneLocator.get());
+        for (int i = 1; i <= 31; i++) {
             BlogEntry entry = new BlogEntry();
             entry.setTitle("title" + i);
-            Calendar cal = Calendar.getInstance();
-            cal.set(2010, 7, i, 0, 0, 0);
-            entry.setCreateDate(cal.getTime());
-
+            entry.setCreateDate(fmt.parse(String.format(
+                "2010/08/%02d 00:00:00",
+                i)));
             Datastore.put(entry);
         }
 
         List<BlogEntry> list = service.list();
 
-        assertThat(list.size(), is(30));
-        assertThat(list.get(0).getTitle(), is("title30"));
-        assertThat(
-            list.get(29).getCreateDate().toString(),
-            is(DateUtil
-                .toDate("2010/08/01 00:00:00", "yyyy/MM/dd HH:mm:ss")
-                .toString()));
+        assertThat(list.size(), is(31));
+        assertThat(list.get(0).getTitle(), is("title31"));
+        Date d = list.get(list.size() - 1).getCreateDate();
+        assertThat(DateUtil.toString(d, "yyyy/MM/dd"), is("2010/08/01"));
     }
 
     @Test

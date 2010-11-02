@@ -1,9 +1,10 @@
 package net.hmrradio.podcastsite.controller.blogEntry;
 
-import org.slim3.tester.ControllerTestCase;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+import org.slim3.tester.ControllerTestCase;
 
 public class GetControllerTest extends ControllerTestCase {
 
@@ -13,6 +14,6 @@ public class GetControllerTest extends ControllerTestCase {
         GetController controller = tester.getController();
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
-        assertThat(tester.getDestinationPath(), is(nullValue()));
+        assertThat(tester.getDestinationPath(), is("/blogEntry/index.jsp"));
     }
 }

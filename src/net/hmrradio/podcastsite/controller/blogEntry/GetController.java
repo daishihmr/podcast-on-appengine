@@ -18,7 +18,7 @@ public class GetController extends BaseController {
     @Override
     protected Navigation exec() throws Exception {
         log.info(asString("key"));
-        return forwardJson(blogEntryService.get(asKey("key")));
+        return forward("index.jsp");
     }
 
     @Override

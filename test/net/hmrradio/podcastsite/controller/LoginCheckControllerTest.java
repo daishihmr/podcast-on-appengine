@@ -1,9 +1,10 @@
 package net.hmrradio.podcastsite.controller;
 
-import org.slim3.tester.ControllerTestCase;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+import org.slim3.tester.ControllerTestCase;
 
 public class LoginCheckControllerTest extends ControllerTestCase {
 
@@ -13,6 +14,6 @@ public class LoginCheckControllerTest extends ControllerTestCase {
         LoginCheckController controller = tester.getController();
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
-        assertThat(tester.getDestinationPath(), is("/loginCheck.jsp"));
+        assertThat(tester.getDestinationPath(), is("/index.jsp"));
     }
 }

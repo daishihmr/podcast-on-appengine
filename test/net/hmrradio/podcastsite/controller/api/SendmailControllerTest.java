@@ -24,7 +24,7 @@ public class SendmailControllerTest extends ControllerTestCase {
         SendmailController controller = tester.getController();
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
-        assertThat(tester.getDestinationPath(), is("/json.jsp"));
+        assertThat(tester.getDestinationPath(), is(nullValue()));
 
         MailMessageMeta m = MailMessageMeta.get();
         int count =

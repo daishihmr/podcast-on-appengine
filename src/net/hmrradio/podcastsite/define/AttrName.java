@@ -13,4 +13,6 @@ public class AttrName {
     public static final String LINK_LIST = "LINK_LIST";
     public static final String RSS_CACHE = "RSS_CACHE";
     public static final String BLOG_ENTRY_QUERY = "BLOG_ENTRY_QUERY";
+
+    public static final String RETURN_TOP = "RETURN_TOP";
 }

@@ -13,6 +13,9 @@ import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.datastore.EntityNotFoundRuntimeException;
 import org.slim3.util.ApplicationMessage;
+import org.slim3.util.StringUtil;
+
+import com.google.appengine.repackaged.com.google.common.collect.Lists;
 
 public class IndexController extends Controller {
 
@@ -27,8 +30,13 @@ public class IndexController extends Controller {
 
         // 記事
         try {
+            List<BlogEntry> list;
 
-            List<BlogEntry> list = blogEntryService.list();
+            if (StringUtil.isEmpty(asString("p"))) {
+                list = blogEntryService.list();
+            } else {
+                list = Lists.newArrayList(blogEntryService.get(asKey("p")));
+            }
             requestScope(AttrName.ENTRY_LIST, list);
             log.info("エントリ数 = " + list.size());
 
@@ -48,9 +56,8 @@ public class IndexController extends Controller {
     }
 
     private Navigation notFound() {
-        requestScope(
-            AttrName.ERROR_MESSAGES,
-            ApplicationMessage.get("message.noSuchBlogEntry"));
+        errors.put("global", ApplicationMessage.get("message.noSuchBlogEntry"));
+        requestScope(AttrName.RETURN_TOP, true);
         return forward("error.jsp");
     }
 

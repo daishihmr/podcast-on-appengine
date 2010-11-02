@@ -43,7 +43,7 @@ public class PutController extends BaseController {
 
         blogEntryService.put(blogEntry);
 
-        return forward("index.jsp");
+        return forward("/");
     }
 
     @Override
@@ -54,7 +54,7 @@ public class PutController extends BaseController {
         v.add(b.audioFileURL, new RegexpValidator(Values.URL_PATTERN));
         v.add(b.recordingDate, new DateTypeValidator("yyyy/MM/dd"));
         v.add("content", RequiredValidator.INSTANCE, new MaxlengthValidator(
-            2000));
+            5000));
 
         return v.validate();
     }

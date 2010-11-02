@@ -10,7 +10,7 @@
 
 <html>
 <head>
-<title>HMRのやっつけラジオ</title>
+<title>HMRのやっつけラジオ<c:if test="${p!=null}"> - ${ENTRY_LIST[0].title}</c:if></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Language" content="ja" />
 <meta http-equiv="Pragma" content="no-cache" />
@@ -21,9 +21,16 @@
 <meta name="robots" content="index,nofollow,archive" />
 
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/rss" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
 
 <%@include file="/importScripts.jsp" %>
+<script type="text/javascript">
+$(function() {
+	$(".editEntryButton").button({
+		icons: { primary: "ui-icon-pencil" }
+	});
+});
+</script>
 
 </head>
 <body>

@@ -26,42 +26,38 @@ public final class WikiUtil {
         if (wiki == null) {
             return "";
         }
-        StringBuffer sb = new StringBuffer(wiki);
 
-        {
-            Pattern p = Pattern.compile("\\[/member/(.+)\\]");
+        wiki = convertLink(wiki, "member");
+        wiki = convertLink(wiki, "corner");
 
-            Matcher m;
-            // while ((m = p.matcher(sb)).matches()) {
-            // System.out.println(m.group(1));
-            // sb.replace(
-            // m.regionStart(),
-            // m.regionEnd(),
-            // String.format("[/member/%s %s]", m.group(1), m.group(1)));
-            // }
-        }
-
-        {
-            Pattern p = Pattern.compile("\\[/corner/(\\S+)\\]");
-
-            Matcher m;
-            while ((m = p.matcher(sb)).matches()) {
-                sb.replace(
-                    m.regionStart(),
-                    m.regionEnd(),
-                    String.format("[/corner/%s %s]", m.group(1), m.group(1)));
-            }
-        }
         StringWriter out = new StringWriter();
 
         HtmlDocumentBuilder builder = new HtmlDocumentBuilder(out);
+        builder.setDefaultAbsoluteLinkTarget("_blank");
         builder.setEmitAsDocument(false);
 
         MarkupParser parser = new MarkupParser(new TracWikiDialect());
         parser.setBuilder(builder);
-        parser.parse(sb.toString());
+        parser.parse(wiki);
 
         return out.toString();
+    }
+
+    private static String convertLink(String src, String folder) {
+        StringBuffer sb = new StringBuffer();
+        Pattern p = Pattern.compile("(\\[/" + folder + "/([^ \\]]+)\\])");
+
+        Matcher m = p.matcher(src);
+        int i = 0;
+        for (i = 0; m.find(i); i = m.end()) {
+            sb.append(src.substring(i, m.start()));
+            sb.append(String.format(
+                "[/" + folder + "/%s %s]",
+                m.group(2),
+                m.group(2)));
+        }
+        sb.append(src.substring(i));
+        return sb.toString();
     }
 
 }

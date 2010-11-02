@@ -16,48 +16,54 @@ public class WikiUtilTest {
     @Test
     public void member() {
         assertThat(
-            WikiUtil.toHtml("[/member/daishi]"),
-            is("<p><a href=\"/member/daishi\">daishi</a></p>"));
+            WikiUtil.toHtml("[/member/だいし]"),
+            is("<p><a href=\"/member/だいし\">だいし</a></p>"));
     }
 
     @Test
     public void member2() {
         assertThat(
-            WikiUtil.toHtml("さっき[/member/daishi1]と[/member/daishi2]が[/member/daishi3]を殴ってた"),
-            is("<p>さっき<a href=\"/member/daishi1\">daishi1</a>と"
-                + "<a href=\"/member/daishi2\">daishi2</a>が"
-                + "<a href=\"/member/daishi3\">daishi3</a>を殴ってた</p>"));
+            WikiUtil.toHtml("さっき[/member/だいし1]と[/member/だいし2]が[/member/だいし3]を殴ってた"),
+            is("<p>さっき<a href=\"/member/だいし1\">だいし1</a>と"
+                + "<a href=\"/member/だいし2\">だいし2</a>が"
+                + "<a href=\"/member/だいし3\">だいし3</a>を殴ってた</p>"));
     }
 
     @Test
     public void corner() {
         assertThat(
-            WikiUtil.toHtml("[/corner/daishi]"),
-            is("<p><a href=\"/corner/daishi\">daishi</a></p>"));
+            WikiUtil.toHtml("[/corner/だいし]"),
+            is("<p><a href=\"/corner/だいし\">だいし</a></p>"));
     }
 
     @Test
     public void corner2() {
         assertThat(
-            WikiUtil.toHtml("さっき[/corner/daishi1]と[/corner/daishi2]が[/corner/daishi3]を殴ってた"),
-            is("<p>さっき<a href=\"/corner/daishi1\">daishi1</a>と"
-                + "<a href=\"/corner/daishi2\">daishi2</a>が"
-                + "<a href=\"/corner/daishi3\">daishi3</a>を殴ってた</p>"));
+            WikiUtil.toHtml("さっき[/corner/だいし1]と[/corner/だいし2]が[/corner/だいし3]を殴ってた"),
+            is("<p>さっき<a href=\"/corner/だいし1\">だいし1</a>と"
+                + "<a href=\"/corner/だいし2\">だいし2</a>が"
+                + "<a href=\"/corner/だいし3\">だいし3</a>を殴ってた</p>"));
     }
 
     @Test
     public void both() {
+        assertThat(WikiUtil.toHtml("さっき[/corner/だいし1]で"
+            + "[/member/だいし2]と"
+            + "[/member/だいし3]が"
+            + "[/member/だいし4]を殴ってた"
+            + "[/corner/だいし5]"), is("<p>さっき<a href=\"/corner/だいし1\">だいし1</a>で"
+            + "<a href=\"/member/だいし2\">だいし2</a>と"
+            + "<a href=\"/member/だいし3\">だいし3</a>が"
+            + "<a href=\"/member/だいし4\">だいし4</a>を殴ってた"
+            + "<a href=\"/corner/だいし5\">だいし5</a></p>"));
+    }
+
+    @Test
+    public void alink() {
         assertThat(
-            WikiUtil.toHtml("さっき[/corner/daishi1]で"
-                + "[/member/daishi2]と"
-                + "[/member/daishi3]が"
-                + "[/member/daishi4]を殴ってた"
-                + "[/corner/daishi5]"),
-            is("<p>さっき<a href=\"/corner/daishi1\">daishi1</a>で"
-                + "<a href=\"/member/daishi2\">daishi2</a>と"
-                + "<a href=\"/member/daishi3\">daishi3</a>が"
-                + "<a href=\"/member/daishi4\">daishi4</a>を殴ってた"
-                + "<a href=\"/corner/daishi5\">daishi5</a></p>"));
+            WikiUtil.toHtml("[http://www.google.co.jp g]"),
+            is("<p>"
+                + "<a href=\"http://www.google.co.jp\" target=\"_blank\">g</a></p>"));
     }
 
 }

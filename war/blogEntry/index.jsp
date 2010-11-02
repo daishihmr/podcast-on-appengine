@@ -7,7 +7,7 @@
 
 <html>
 <head>
-<title>HMRのやっつけラジオ - blogEntry</title>
+<title>HMRのやっつけラジオ - 記事編集</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Language" content="ja" />
 <meta http-equiv="Pragma" content="no-cache" />
@@ -20,7 +20,13 @@
 <script type="text/javascript">
 var waiting = false
 $(function() {
-    $("#buttonOk").button();
+    $("#buttonOk").button({
+    	icons: {primary: "ui-icon-circle-arrow-n"}
+    });
+    $("#buttonCancel").button({
+    	icons: {primary: "ui-icon-cancel"}
+    });
+
     $("#buttonUpload").button().click(function() {
     	open(
             //"http://hmr.sakura.ne.jp/qakgiehsnsgewa.html",
@@ -32,18 +38,56 @@ $(function() {
     $("input[name='recordingDate']").datepicker({
        dateFormat: "yy/mm/dd" 
     });
-    $("textarea[name='content']").keyup(function() {
+
+    var wikiToHtml = function() {
         if (!waiting) {
-            var wiki = $(this).val();
+            var wiki = $("textarea[name='content']").val();
             waiting = true;
             postData("/api/wiki", {wiki:wiki}, function(html) {
                 $("#preview").html(html);
                 waiting = false;
             });
         }
+    };
+
+    var validateTitle = function() {
+        if ($("input[name='title']").val()) {
+            $("#alertTitle").text("");
+        } else {
+            $("#alertTitle").text("必須入力です");
+        }
+    };
+
+    var validateContent = function() {
+        var c = $("textarea[name='content']").val();
+        if (c != null && c != "") {
+            if (c.length <= 5000) {
+                $("#alertContent").text("");
+            } else {
+                $("#alertContent").text("5000字以内でよろしく");
+            }
+        } else {
+        	$("#alertContent").text("必須入力です");
+        }
+    };
+
+    $("input[name='title']").keyup(validateTitle);
+    $("textarea[name='content']").keyup(function() {
+        validateContent();
+        wikiToHtml();
     });
+
+    validateTitle();
+    wikiToHtml();
+    validateContent();
 });
 </script>
+<style type="text/css">
+.alert {
+    color: red;
+    font-weight: bold;
+}
+</style>
 
 </head>
 <body>
@@ -51,42 +95,52 @@ $(function() {
 <div id="wrap">
     <!-- begin header -->
     <div id="header">
-        <h1>new entry</h1>
+        <h1>記事編集</h1>
     </div>
     <!-- end header -->
     <!-- begin page -->
     <div id="page">
         <!-- begin content -->
         <div id="content">
-			<ul class="error">
+			<ul class="error-ul">
 <c:forEach var="e" items="${f:errors()}">
                 <li>${f:h(e)}</li>
 </c:forEach>			
 			</ul>
         <form action="put" method="POST">
+            <input type="hidden" ${f:hidden("key")} />
+            <input type="hidden" ${f:hidden("createAt")} />
+            <input type="hidden" ${f:hidden("updateAt")} />
             <table style="width:100%">
                 <tr>
                     <th>タイトル</th>
-                    <td><input type="text" ${f:text("title")} class="ui-corner-all" style="width:400px" /></td>
+                    <td>
+                        <div id="alertTitle" class="alert"></div>
+                        <input type="text" ${f:text("title")} class="ui-corner-all" style="width:400px" maxlength="50"/>
+                    </td>
                 </tr>
                 <tr>
                     <th>音声ファイルURL</th>
-                    <td><input type="text" id="audioFileURL" name="audioFileURL" class="ui-corner-all" style="width:400px" /><input type="button" value="upload" id="buttonUpload" /></td>
+                    <td><input type="text" id="audioFileURL" ${f:text("audioFileURL")} class="ui-corner-all" style="width:400px" /><input type="button" value="upload" id="buttonUpload" /></td>
                 </tr>
                 <tr>
                     <th rowspan="2">本文</th>
-                    <td>preview:<div id="preview" style="width:500px;height: 300px;overflow:scroll;padding:5px;background:black">
+                    <td>
+                        <div id="alertContent" class="alert"></div>
+                        <textarea name="content" class="ui-corner-all" style="width:500px;height:200px">${content}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>preview:<div id="preview" style="width:500px;padding:5px;background:black">
                     </div></td>
                 </tr>
                 <tr>
-                    <td><textarea name="content" class="ui-corner-all" style="width:500px;height:300px"></textarea></td>
-                </tr>
-                <tr>
                     <th>収録日</th>
-                    <td><input type="text" name="recordingDate" class="ui-corner-all" /></td>
+                    <td><input type="text" ${f:text("recordingDate")} class="ui-corner-all" /></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align:right">
+                        <input type="button" value="キャンセル" id="buttonCancel" onclick="location.href='/'" />
                         <input type="submit" value="OK" id="buttonOk" />
                     </td>
                 </tr>

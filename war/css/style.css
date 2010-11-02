@@ -27,9 +27,9 @@
 	display: none;
 }
 
-ul .error li{
+.error-ul {
 	list-style: none;
-	color: #ff6666;
+	color: red;
 	font-weight: bold;
 }
 

@@ -15,7 +15,7 @@ $(function() {
 	$("#logout").button({
 		icons: { primary: "ui-icon-arrowreturnthick-1-w" }
 	}).click(function() {
-		location.href = "/admin/logout";
+		location.href = "/logout";
 	});
     $("#close").button({
         icons: { primary: "ui-icon-closethick" }

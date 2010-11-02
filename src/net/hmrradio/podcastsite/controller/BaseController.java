@@ -42,7 +42,7 @@ public abstract class BaseController extends Controller {
                 checkAuth();
                 if (!isAdmin()) {
                     requestScope(AttrName.ERROR_MESSAGES, "Admin権限が必要です。");
-                    return forward("/admin/error.jsp");
+                    return forward("/noAdminError.jsp");
                 }
             }
             beforeExec();

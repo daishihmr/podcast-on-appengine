@@ -56,7 +56,7 @@ public class UploadController extends BaseController {
 
     @Override
     protected Navigation exceptionError(String error) throws Exception {
-        errors.put("GROVAL", ApplicationMessage.get(error));
+        errors.put("global", ApplicationMessage.get(error));
         return forward("/error.jsp");
     }
 }

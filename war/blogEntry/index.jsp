@@ -59,7 +59,7 @@ $(function() {
             <table style="width:100%">
                 <tr>
                     <th>タイトル</th>
-                    <td><input type="text" name="title" class="ui-corner-all" style="width:400px" /></td>
+                    <td><input type="text" ${f:text("title")} class="ui-corner-all" style="width:400px" /></td>
                 </tr>
                 <tr>
                     <th>音声ファイルURL</th>

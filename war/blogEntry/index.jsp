@@ -22,9 +22,12 @@ var waiting = false
 $(function() {
     $("#buttonOk").button();
     $("#buttonUpload").button().click(function() {
-    	open("http://hmr.sakura.ne.jp/qakgiehsnsgewa.html",
+    	open(
+            //"http://hmr.sakura.ne.jp/qakgiehsnsgewa.html",
+            "/test/uploaderTest",
     		"child",
-    		"width=400,height=300,menubar=no,toolbar=no,scrollbars=no,resizable=no,location=no");
+    		"width=400,height=300,menubar=no,toolbar=no,scrollbars=no"
+        );
     });
     $("input[name='recordingDate']").datepicker({
        dateFormat: "yy/mm/dd" 
@@ -63,7 +66,7 @@ $(function() {
                 </tr>
                 <tr>
                     <th>音声ファイルURL</th>
-                    <td><input type="text" name="audioFileURL" class="ui-corner-all" style="width:400px" /><input type="button" value="upload" id="buttonUpload" /></td>
+                    <td><input type="text" id="audioFileURL" name="audioFileURL" class="ui-corner-all" style="width:400px" /><input type="button" value="upload" id="buttonUpload" /></td>
                 </tr>
                 <tr>
                     <th rowspan="2">本文</th>

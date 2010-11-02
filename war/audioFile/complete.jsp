@@ -14,8 +14,8 @@
 <script type="text/javascript">
 $(function() {
 	var url = "${url}";
-	alert(url);
-	opener.document.forms[0].audioFileURL.value = url;
+	opener.$("input[name='audioFileURL']").val(url);
+	close();
 });
 </script>
 </body>

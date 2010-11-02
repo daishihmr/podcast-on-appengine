@@ -36,7 +36,12 @@ $(function() {
 </c:forEach>
                     </p>
                     <p>
+<c:if test="${RETURN_TOP}">
                         <a href="/" id="return-top">トップへ戻る</a>
+</c:if>
+<c:if test="${!RETURN_TOP}">
+                        <a href="javascript:close()" id="return-top">閉じる</a>
+</c:if>
                     </p>
                 </div>
             </div>

@@ -27,6 +27,12 @@
 	display: none;
 }
 
+ul .error li{
+	list-style: none;
+	color: #ff6666;
+	font-weight: bold;
+}
+
 /* -------------------------------------------------------------- */
 
 .darkTip                        {  }

@@ -7,7 +7,7 @@
 
 <html>
 <head>
-<title>HMRのやっつけラジオ</title>
+<title>HMRのやっつけラジオ - blogEntry</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Language" content="ja" />
 <meta http-equiv="Pragma" content="no-cache" />
@@ -58,6 +58,11 @@ $(function() {
     <div id="page">
         <!-- begin content -->
         <div id="content">
+			<ul class="error">
+<c:forEach var="e" items="${f:errors()}">
+                <li>${f:h(e)}</li>
+</c:forEach>			
+			</ul>
         <form action="put" method="POST">
             <table style="width:100%">
                 <tr>

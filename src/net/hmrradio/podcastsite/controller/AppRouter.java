@@ -9,6 +9,7 @@ public class AppRouter extends RouterImpl {
         addRouting("/image/show/{key}", "/image/show?key={key}");
         addRouting("/member/{memberName}", "/member/?member={memberName}");
         addRouting("/corner/{cornerTitle}", "/corner/?corner={cornerTitle}");
+        addRouting("/tag/{tag}", "/corner/?tag={tag}");
     }
 
 }

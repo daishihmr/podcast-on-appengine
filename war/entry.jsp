@@ -18,7 +18,6 @@
         </p>
 </c:if>
         ${entry.contentHtml}
-<%--
 <c:if test="${s.index == 0}">
         <div style="text-align:center">
             <!-- AdSense -->
@@ -32,7 +31,6 @@
             <!-- AdSense -->
         </div>
 </c:if>
---%>
     </div>
     <div class="meta">
         <p class="tags">

@@ -77,14 +77,6 @@ $(function() {
                 </li>
 <% } %>
                 <li>
-                    <h2>Information</h2>
-                    <div style="padding: 20px">
-                       <div>現在、<span id="information">すべてのエピソードを表示しています</span></div>
-                       <div id="information-detail"></div>
-                       <div><a id="show-all-link" style="display:none" href="/">すべてのエピソードを表示する</a></div>
-                    </div>
-                </li>
-                <li>
                     <h2>Podcast Feed</h2>
                     <div style="padding: 20px">
                         <div style="text-align:center">

@@ -16,7 +16,7 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Cache-Control" content="no-cache" />
 <meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GM"/>
-<meta name="keywords" content="ネットラジオ,佐世保,Podcast,九州ネットラジオ組合,関東ネットラジオリンク,電脳,オタク,映画,風俗,音楽,コンビニ,ゲーム" />
+<meta name="keywords" content="${tags}" />
 <meta name="discription" content="佐世保出身の30代男性集団が送る、笑いと情熱のポッドキャスト。車、電脳、オタク、映画、風俗、音楽、ゲームなどをネタに、幅広い話題を提供。やっつけ仕事でなるべく週１回ぐらいで更新していくネットラジオです。" />
 <meta name="robots" content="index,nofollow,archive" />
 
@@ -76,7 +76,6 @@ $(function() {
                     </div>
                 </li>
 <% } %>
-<%--
                 <li>
                     <h2>Information</h2>
                     <div style="padding: 20px">
@@ -85,7 +84,6 @@ $(function() {
                        <div><a id="show-all-link" style="display:none" href="/">すべてのエピソードを表示する</a></div>
                     </div>
                 </li>
---%>
                 <li>
                     <h2>Podcast Feed</h2>
                     <div style="padding: 20px">

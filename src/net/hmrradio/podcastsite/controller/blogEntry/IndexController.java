@@ -34,6 +34,13 @@ public class IndexController extends BaseController {
             requestScope(
                 "pubDate",
                 DateUtil.toString(entry.getPubDate(), "yyyy/MM/dd"));
+            StringBuffer tags = new StringBuffer();
+            for (String tag : entry.getTags()) {
+                tags.append(", " + tag);
+            }
+            if (tags.length() != 0) {
+                requestScope("tags", tags.substring(2));
+            }
         } else {
             requestScope("content", "参加メンバー:\n"
                 + "[/member/○○]\n"
@@ -51,7 +58,7 @@ public class IndexController extends BaseController {
                 + "== 編集後記 ==\n");
         }
 
-        return forward("index.jsp");
+        return forward("/dashboard/index.jsp");
     }
 
     @Override

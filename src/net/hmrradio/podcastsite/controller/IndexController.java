@@ -34,8 +34,18 @@ public class IndexController extends Controller {
 
             if (StringUtil.isEmpty(asString("p"))) {
                 list = blogEntryService.list();
+                requestScope(
+                    "tags",
+                    "ネットラジオ,佐世保,Podcast,九州ネットラジオ組合,関東ネットラジオリンク,電脳,オタク,映画,風俗,音楽,コンビニ,ゲーム");
             } else {
                 list = Lists.newArrayList(blogEntryService.get(asKey("p")));
+                StringBuffer tags = new StringBuffer();
+                for (String tag : list.get(0).getTags()) {
+                    tags.append(", " + tag);
+                }
+                if (tags.length() != 0) {
+                    requestScope("tags", tags.substring(2));
+                }
             }
             requestScope(AttrName.ENTRY_LIST, list);
             log.info("エントリ数 = " + list.size());

@@ -43,7 +43,7 @@ public class PutController extends BaseController {
 
         blogEntryService.put(blogEntry);
 
-        return forward("/");
+        return forward("/dashboard/index.jsp");
     }
 
     @Override
@@ -61,7 +61,7 @@ public class PutController extends BaseController {
 
     @Override
     protected Navigation input() {
-        return forward("index.jsp");
+        return forward("/dashboard/index.jsp");
     }
 
 }

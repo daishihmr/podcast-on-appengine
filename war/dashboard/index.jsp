@@ -4,7 +4,6 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
 
-
 <html>
 <head>
 <title>HMRのやっつけラジオ - ダッシュボード</title>
@@ -14,6 +13,7 @@
 <meta http-equiv="Cache-Control" content="no-cache" />
 <meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GM"/>
 
+
 <%@include file="/importScripts.jsp" %>
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
@@ -21,16 +21,21 @@
 var waiting = false
 $(function() {
     $("#buttonOk").button({
-    	icons: {primary: "ui-icon-circle-arrow-n"}
+    	icons: {primary: "ui-icon-circlesmall-plus"}
     });
     $("#buttonCancel").button({
     	icons: {primary: "ui-icon-cancel"}
     });
+    $("#buttonDelete").button({
+        icons: {primary: "ui-icon-circlesmall-minus"}
+    });
 
     $("#buttonUpload").button().click(function() {
     	open(
-            //"http://hmr.sakura.ne.jp/qakgiehsnsgewa.html",
+<%--
             "/test/uploaderTest",
+--%>
+            "http://hmr.sakura.ne.jp/qakgiehsnsgewa.html",
     		"child",
     		"width=400,height=300,menubar=no,toolbar=no,scrollbars=no"
         );
@@ -141,13 +146,17 @@ function deleteEntry() {
                     </div></td>
                 </tr>
                 <tr>
+                    <th>タグ</th>
+                    <td><input type="text" ${f:text("tags")} class="ui-corner-all" /></td>
+                </tr>
+                <tr>
                     <th>収録日</th>
                     <td><input type="text" ${f:text("recordingDate")} class="ui-corner-all" /></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align:right">
-                        <input type="button" value="削除" id="buttonCancel" onclick="deleteEntry()" />
-                        ${f:nbsp("   ")}
+                        <input type="button" value="削除" id="buttonDelete" onclick="deleteEntry()" />
+                        ${f:nbsp("  ")}
                         <input type="button" value="キャンセル" id="buttonCancel" onclick="location.href='/'" />
                         <input type="submit" value="OK" id="buttonOk" />
                     </td>

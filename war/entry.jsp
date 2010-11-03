@@ -8,6 +8,7 @@
     <h2 class="title">${entry.title}<%if (LoginCheckUtil.isAdmin()){%> <a href="/blogEntry/?key=${entry.keyString}" class="editEntryButton" style="font-size:small">Edit</a><%}%></h2>
     <div class="entry">
         <p class="byline">
+            <i>収録日：<fmt:formatDate value="${entry.recordingDate}" pattern="yyyy/MM/dd" /></i>
             <i>公開日：<fmt:formatDate value="${entry.createDate}" pattern="yyyy/MM/dd" /></i>
             <i>更新日：<fmt:formatDate value="${entry.pubDate}" pattern="yyyy/MM/dd" /></i>
         </p>

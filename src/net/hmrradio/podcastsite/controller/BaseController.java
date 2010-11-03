@@ -97,7 +97,8 @@ public abstract class BaseController extends Controller {
     }
 
     protected Navigation exceptionError(String error) throws Exception {
-        return forwardJsonError(error);
+        errors.put("global", ApplicationMessage.get(error));
+        return forward("/error.jsp");
     }
 
     private void checkAuth() {

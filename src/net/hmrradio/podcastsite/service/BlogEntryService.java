@@ -142,11 +142,11 @@ public class BlogEntryService {
     }
 
     private ModelQuery<BlogEntry> createQuery(BlogEntryQueryBean queryBean) {
-        if (queryBean == null) {
-            return null;
-        }
-
         ModelQuery<BlogEntry> result = Datastore.query(BlogEntry.class);
+
+        if (queryBean == null) {
+            return result;
+        }
 
         if (queryBean.getKeyEq() != null) {
             result.filter(

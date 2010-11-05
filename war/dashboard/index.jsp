@@ -89,7 +89,9 @@ $(function() {
 
 function deleteEntry() {
 	if (confirm("ホントに削除してもいいですか？")) {
-		location.href = "/blogEntry/delete?key=" + $("input[name='key']").val();
+		location.href = "/blogEntry/delete" +
+		  "?key=" + $("input[name='key']").val() +
+		  "&title=" + $("input[name='title']").val();
 	}
 }
 </script>

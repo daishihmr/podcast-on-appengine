@@ -43,6 +43,8 @@ public class PutController extends BaseController {
 
         blogEntryService.put(blogEntry);
 
+        requestScope("message", blogEntry.getTitle() + "を保存しました。");
+
         return forward("/"); // TODO
     }
 

@@ -3,7 +3,9 @@ package net.hmrradio.podcastsite.controller;
 import java.util.List;
 import java.util.logging.Logger;
 
+import net.hmrradio.podcastsite.bean.BlogEntryQueryBean;
 import net.hmrradio.podcastsite.define.AttrName;
+import net.hmrradio.podcastsite.define.Values;
 import net.hmrradio.podcastsite.model.BlogEntry;
 import net.hmrradio.podcastsite.model.Link;
 import net.hmrradio.podcastsite.service.BlogEntryService;
@@ -32,13 +34,10 @@ public class IndexController extends Controller {
         try {
             List<BlogEntry> list;
 
-            if (StringUtil.isEmpty(asString("p"))) {
-                list = blogEntryService.list();
-                requestScope(
-                    "tags",
-                    "ネットラジオ,佐世保,Podcast,九州ネットラジオ組合,関東ネットラジオリンク,電脳,オタク,映画,風俗,音楽,コンビニ,ゲーム");
-            } else {
+            if (!StringUtil.isEmpty(asString("p"))) {
+
                 list = Lists.newArrayList(blogEntryService.get(asKey("p")));
+
                 StringBuffer tags = new StringBuffer();
                 for (String tag : list.get(0).getTags()) {
                     tags.append(", " + tag);
@@ -46,6 +45,37 @@ public class IndexController extends Controller {
                 if (tags.length() != 0) {
                     requestScope("tags", tags.substring(2));
                 }
+
+            } else if (!StringUtil.isEmpty(param("member"))) {
+
+                BlogEntryQueryBean query = new BlogEntryQueryBean();
+                query.setMemberEq(param("member"));
+                list = blogEntryService.list(query);
+
+                requestScope("tags", Values.DEFAULT_TAGS);
+
+            } else if (!StringUtil.isEmpty(param("corner"))) {
+
+                BlogEntryQueryBean query = new BlogEntryQueryBean();
+                query.setCornerEq(param("corner"));
+                list = blogEntryService.list(query);
+
+                requestScope("tags", Values.DEFAULT_TAGS);
+
+            } else if (!StringUtil.isEmpty(param("tag"))) {
+
+                BlogEntryQueryBean query = new BlogEntryQueryBean();
+                query.setTagEq(param("tag"));
+                list = blogEntryService.list(query);
+
+                requestScope("tags", Values.DEFAULT_TAGS);
+
+            } else {
+
+                list = blogEntryService.list(null);
+
+                requestScope("tags", Values.DEFAULT_TAGS);
+
             }
             requestScope(AttrName.ENTRY_LIST, list);
             log.info("エントリ数 = " + list.size());
@@ -62,6 +92,7 @@ public class IndexController extends Controller {
         log.info("リンク数 = " + linkList.size());
 
         log.info("index end");
+
         return forward("/index.jsp");
     }
 

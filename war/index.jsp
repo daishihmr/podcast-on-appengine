@@ -51,6 +51,10 @@ $(function() {
 	$(".editEntryButton").button({
 		icons: { primary: "ui-icon-pencil" }
 	});
+
+    setTimeout(function() {
+        $("#message").slideUp();
+    }, 3000);
 });
 // ]]>
 </script>
@@ -58,6 +62,7 @@ $(function() {
 </head>
 
 <body>
+
 <!-- begin wrap -->
 <div id="wrap">
     <!-- begin header -->
@@ -190,6 +195,15 @@ $(function() {
 <!-- end wrap -->
 <div style="text-align: center; font-size: 0.75em;">Design downloaded from <a href="http://www.freewebtemplates.com/">free website templates</a>.</div>
 
+<!-- begin message -->
+<c:if test="${message != null}">
+    <div id="message" style="position:fixed;top:0;width:100%;text-align:center;background:white;color:black">
+    ${message}
+    </div>
+</c:if>
+<!-- end message -->
+
+<%--
 <script>
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -200,6 +214,7 @@ var pageTracker = _gat._getTracker("UA-968682-13");
 pageTracker._trackPageview();
 } catch(err) {}
 </script>
+--%>
 
 </body>
 </html>

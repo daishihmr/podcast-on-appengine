@@ -25,7 +25,9 @@ public class DeleteController extends BaseController {
 
         blogEntryService.delete(asKey("key"));
 
-        return redirect("/");
+        requestScope("message", asString("title") + "を削除しました。");
+
+        return forward("/"); // TODO
     }
 
     @Override

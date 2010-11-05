@@ -91,6 +91,9 @@ public class IndexController extends Controller {
         requestScope(AttrName.LINK_LIST, linkList);
         log.info("リンク数 = " + linkList.size());
 
+        // 広告を表示
+        requestScope("showAds", true);
+
         log.info("index end");
 
         return forward("/index.jsp");

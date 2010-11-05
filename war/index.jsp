@@ -44,19 +44,44 @@
 
 <%@include file="/importScripts.jsp" %>
 <script type="text/javascript">
-// <![CDATA[
+var createAtLt = "";
 $(function() {
     $("#content > a").css({ "z-index" : "100"});
 
 	$(".editEntryButton").button({
 		icons: { primary: "ui-icon-pencil" }
 	});
+	
+	$("#nextButton").button().click(function() {
+	   var self = $(this);
+	   self.mouseout();
+	   self.css({
+	       color: "gray",
+	       cursor: "wait"
+	   });
+	   self.attr("disabled", "disabled");
+	   $.ajax({
+	       url: "/ajax/blogEntry/",
+	       type: "GET",
+	       dataType: "html",
+	       data: {
+	           createAtLt : createAtLt
+	       },
+	       success: function(data) {
+	           $("#nextButton").before(data);
+               self.removeAttr("disabled");
+               self.css({
+                   color: "white",
+                   cursor: "pointer"
+               });
+	       }
+	   }); 
+	});
 
     setTimeout(function() {
         $("#message").slideUp();
     }, 3000);
 });
-// ]]>
 </script>
 
 </head>
@@ -83,8 +108,9 @@ $(function() {
             <div id="posts">
                 <!-- begin 記事 -->
 <c:forEach items="${ ENTRY_LIST }" var="entry" varStatus="s">
-                <%@include file="entry.jsp" %>
+                <%@include file="/entry.jsp" %>
 </c:forEach>
+                <button id="nextButton" style="width:100%">次の５件</button>
                 <!-- end 記事 -->
             </div>
 

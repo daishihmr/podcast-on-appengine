@@ -30,10 +30,10 @@ public class IndexController extends BaseController {
                 DateUtil.toString(entry.getRecordingDate(), "yyyy/MM/dd"));
             requestScope(
                 "createDate",
-                DateUtil.toString(entry.getCreateDate(), "yyyy/MM/dd"));
+                DateUtil.toString(entry.getCreateDate(), "yyyy/MM/dd HH:mm:ss"));
             requestScope(
                 "pubDate",
-                DateUtil.toString(entry.getPubDate(), "yyyy/MM/dd"));
+                DateUtil.toString(entry.getPubDate(), "yyyy/MM/dd HH:mm:ss"));
             StringBuffer tags = new StringBuffer();
             for (String tag : entry.getTags()) {
                 tags.append(", " + tag);

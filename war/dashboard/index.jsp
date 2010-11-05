@@ -120,8 +120,8 @@ function deleteEntry() {
 			</ul>
         <form action="put" method="POST">
             <input type="hidden" ${f:hidden("key")} />
-            <input type="hidden" ${f:hidden("createAt")} />
-            <input type="hidden" ${f:hidden("updateAt")} />
+            <input type="hidden" ${f:hidden("createDate")} />
+            <input type="hidden" ${f:hidden("pubDate")} />
             <table style="width:100%">
                 <tr>
                     <th>タイトル</th>

@@ -1,6 +1,5 @@
 package net.hmrradio.podcastsite.common;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
 
@@ -33,10 +32,7 @@ public class CopyOptions extends org.slim3.util.CopyOptions {
                 || "null".equals(value)) {
                 return null;
             }
-            Calendar cal = Calendar.getInstance();
-            Date date = super.getAsObject(value);
-            cal.setTime(date);
-            return cal.getTime();
+            return super.getAsObject(value);
         }
     }
 

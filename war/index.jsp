@@ -8,9 +8,25 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
 
-<html>
+<html
+   xmlns:og="http://ogp.me/ns#"
+   xmlns:mixi="http://mixi-platform.com/ns#">
+
 <head>
+
 <title>HMRのやっつけラジオ<c:if test="${p!=null}"> - ${ENTRY_LIST[0].title}</c:if></title>
+
+<%
+  String ua = request.getHeader("user-agent");
+  if (ua.contains("iPhone") || ua.contains("iPod")) {
+%>
+<!-- begin for iPhone -->
+<meta name="viewport" content="width=device-width" />
+<!-- end for iPhone -->
+<%
+  }
+%>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Language" content="ja" />
 <meta http-equiv="Pragma" content="no-cache" />
@@ -18,21 +34,29 @@
 <meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GM"/>
 <meta name="keywords" content="${tags}" />
 <meta name="discription" content="佐世保出身の30代男性集団が送る、笑いと情熱のポッドキャスト。車、電脳、オタク、映画、風俗、音楽、ゲームなどをネタに、幅広い話題を提供。やっつけ仕事でなるべく週１回ぐらいで更新していくネットラジオです。" />
-<meta name="robots" content="index,nofollow,archive" />
-
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/rss" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
+<!-- begin for Mixi Check -->
+<meta property="mixi:content-rating" content="1" />
+<link rel="mixi-check-image" type="image/jpeg" href="http://www.hmr-radio.net/yattsu-ke.jpg" />
+<!-- end for Mixi Check -->
+
 <%@include file="/importScripts.jsp" %>
 <script type="text/javascript">
+// <![CDATA[
 $(function() {
+    $("#content > a").css({ "z-index" : "100"});
+
 	$(".editEntryButton").button({
 		icons: { primary: "ui-icon-pencil" }
 	});
 });
+// ]]>
 </script>
 
 </head>
+
 <body>
 <!-- begin wrap -->
 <div id="wrap">

@@ -43,7 +43,7 @@ public class PutController extends BaseController {
 
         blogEntryService.put(blogEntry);
 
-        return forward("/dashboard/index.jsp");
+        return forward("/"); // TODO
     }
 
     @Override

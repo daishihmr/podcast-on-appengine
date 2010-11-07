@@ -16,17 +16,6 @@
 
 <title>HMRのやっつけラジオ<c:if test="${p!=null}"> - ${ENTRY_LIST[0].title}</c:if></title>
 
-<%
-  String ua = request.getHeader("user-agent");
-  if (ua.contains("iPhone") || ua.contains("iPod")) {
-%>
-<!-- begin for iPhone -->
-<meta name="viewport" content="width=device-width" />
-<!-- end for iPhone -->
-<%
-  }
-%>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Language" content="ja" />
 <meta http-equiv="Pragma" content="no-cache" />
@@ -44,7 +33,7 @@
 
 <%@include file="/importScripts.jsp" %>
 <script type="text/javascript">
-var createAtLt = "";
+var createDateLt = "";
 $(function() {
     $("#content > a").css({ "z-index" : "100"});
 
@@ -53,29 +42,34 @@ $(function() {
 	});
 	
 	$("#nextButton").button().click(function() {
-	   var self = $(this);
-	   self.mouseout();
-	   self.css({
-	       color: "gray",
-	       cursor: "wait"
-	   });
-	   self.attr("disabled", "disabled");
-	   $.ajax({
-	       url: "/ajax/blogEntry/",
-	       type: "GET",
-	       dataType: "html",
-	       data: {
-	           createAtLt : createAtLt
-	       },
-	       success: function(data) {
-	           $("#nextButton").before(data);
-               self.removeAttr("disabled");
-               self.css({
-                   color: "white",
-                   cursor: "pointer"
-               });
-	       }
-	   }); 
+	    var self = $(this);
+	    self.mouseout();
+	    self.css({
+	        color: "gray"
+	    });
+	    self.attr("disabled", "disabled");
+	    $.ajax({
+	        url: "/ajax/blogEntry/",
+	        type: "GET",
+	        dataType: "html",
+	        data: {
+	            <c:if test="${member!=null}">memberEq : "${member}",</c:if>
+                <c:if test="${corner!=null}">cornerEq : "${corner}",</c:if>
+                <c:if test="${tag!=null}">tagEq : "${tag}",</c:if>
+                createDateLt : createDateLt
+	        },
+	        success: function(data) {
+	            if (data != "error" && data != "no data") {
+	                $("#nextButton").before(data);
+	                self.removeAttr("disabled");
+	                self.css({
+	                    color: "white"
+	                });
+	            } else if (data =="no data") {
+		            alert("no data");
+		        }
+	        }
+	    }); 
 	});
 
     setTimeout(function() {
@@ -95,11 +89,26 @@ $(function() {
         <h1><a href="/"><img src="/images/header_logo-trans.png" /></a></h1>
         <h1 style="display:none">HMRのやっつけラジオ</h1>
         <h2>佐世保出身の30代男性集団が送る、笑いと情熱のポッドキャスト</h2>
-        <ul>
-            <li></li>
-        </ul>
     </div>
     <!-- end header -->
+
+    <!-- begin information -->
+<c:if test="${ member != null }">
+    <div style="margin:0 auto;width:960px">
+        <div class="post">
+            <h2 class="title">メンバー： ${member}</h2>
+            <div class="entry">
+            </div>
+            <div class="meta">
+                <p class="links">
+                    <a href="#" class="comments" style="position:relative;z-index:100">Twitter</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</c:if>
+    <!-- end information -->
+
     <!-- begin page -->
     <div id="page">
         <!-- begin content -->
@@ -110,8 +119,14 @@ $(function() {
 <c:forEach items="${ ENTRY_LIST }" var="entry" varStatus="s">
                 <%@include file="/entry.jsp" %>
 </c:forEach>
-                <button id="nextButton" style="width:100%">次の５件</button>
                 <!-- end 記事 -->
+
+                <!-- begin 次の5件ボタン -->
+<c:if test="${p == null}">
+                <button id="nextButton" style="width:100%">次の５件</button>
+</c:if>
+                <!-- end 次の5件ボタン -->
+
             </div>
 
         </div>
@@ -229,7 +244,6 @@ $(function() {
 </c:if>
 <!-- end message -->
 
-<%--
 <script>
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -240,7 +254,6 @@ var pageTracker = _gat._getTracker("UA-968682-13");
 pageTracker._trackPageview();
 } catch(err) {}
 </script>
---%>
 
 </body>
 </html>

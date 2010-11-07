@@ -3,6 +3,7 @@ package net.hmrradio.podcastsite.service;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import net.hmrradio.podcastsite.bean.BlogEntryQueryBean;
 import net.hmrradio.podcastsite.exception.EntityAlreadyDeletedException;
@@ -17,13 +18,11 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.repackaged.com.google.common.collect.Sets;
-import com.google.appengine.repackaged.org.apache.commons.logging.Log;
-import com.google.appengine.repackaged.org.apache.commons.logging.LogFactory;
 
 public class BlogEntryService {
 
     private BlogEntryMeta b = BlogEntryMeta.get();
-    private Log log = LogFactory.getLog(BlogEntryService.class);
+    private Logger log = Logger.getLogger(BlogEntryService.class.getName());
 
     /**
      * データをDELETEする。

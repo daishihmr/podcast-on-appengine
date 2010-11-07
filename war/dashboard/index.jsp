@@ -17,7 +17,7 @@
 <%@include file="/importScripts.jsp" %>
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
-<script type="text/javascript">
+<script type="text/javascript"><!--
 var waiting = false
 $(function() {
     $("#buttonOk").button({
@@ -32,9 +32,6 @@ $(function() {
 
     $("#buttonUpload").button().click(function() {
     	open(
-<%--
-            "/test/uploaderTest",
---%>
             "http://hmr.sakura.ne.jp/qakgiehsnsgewa.html",
     		"child",
     		"width=400,height=300,menubar=no,toolbar=no,scrollbars=no"
@@ -94,6 +91,7 @@ function deleteEntry() {
 		  "&title=" + $("input[name='title']").val();
 	}
 }
+//-->
 </script>
 <style type="text/css">
 .alert {
@@ -123,7 +121,6 @@ function deleteEntry() {
         <form action="put" method="POST">
             <input type="hidden" ${f:hidden("key")} />
             <input type="hidden" ${f:hidden("createDate")} />
-            <input type="hidden" ${f:hidden("pubDate")} />
             <table style="width:100%">
                 <tr>
                     <th>タイトル</th>

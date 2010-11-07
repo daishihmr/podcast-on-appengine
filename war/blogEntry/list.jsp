@@ -3,8 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
-
-
 <html>
 <head>
 <title>HMRのやっつけラジオ - 記事一覧</title>
@@ -13,10 +11,8 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Cache-Control" content="no-cache" />
 <meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GM"/>
-
 <%@include file="/importScripts.jsp" %>
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
-
 </head>
 <body>
 <!-- begin wrap -->
@@ -35,14 +31,14 @@
                     <th>No</th>
                     <th>Title</th>
                 </tr>
-<c:forEach var="entry" items="${list}" varStatus="s">
+                <c:forEach var="entry" items="${list}" varStatus="s">
                 <tr>
                     <td>${s.count}</td>
                     <td>
                         <a href="/p/${entry.keyString}">${f:h(entry.title)}</a>
                     </td>
                 </tr>
-</c:forEach>
+                </c:forEach>
             </table>
         </div>
         <!-- end content -->

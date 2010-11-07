@@ -28,12 +28,7 @@ public class IndexController extends BaseController {
             requestScope(
                 "recordingDate",
                 DateUtil.toString(entry.getRecordingDate(), "yyyy/MM/dd"));
-            requestScope(
-                "createDate",
-                DateUtil.toString(entry.getCreateDate(), "yyyy/MM/dd HH:mm:ss"));
-            requestScope(
-                "pubDate",
-                DateUtil.toString(entry.getPubDate(), "yyyy/MM/dd HH:mm:ss"));
+            requestScope("createDate", entry.getCreateDate().getTime());
             StringBuffer tags = new StringBuffer();
             for (String tag : entry.getTags()) {
                 tags.append(", " + tag);
@@ -55,7 +50,12 @@ public class IndexController extends BaseController {
                 + "\n"
                 + "[[BR]]\n"
                 + "\n"
-                + "== 編集後記 ==\n");
+                + "=== 編集後記 ===\n"
+                + "==== その１ ====\n"
+                + "あああああ。\n"
+                + "\n"
+                + "==== その２ ====\n"
+                + "あああああ。\n");
         }
 
         return forward("/dashboard/index.jsp");

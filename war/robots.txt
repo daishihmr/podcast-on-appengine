@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /tag/*
+Disallow: /corner/*
+Disallow: /member/*
+Disallow: /rss
+Disallow: /login
+Allow: /
+

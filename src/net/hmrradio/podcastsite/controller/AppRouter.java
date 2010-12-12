@@ -10,6 +10,7 @@ public class AppRouter extends RouterImpl {
         addRouting("/member/{memberName}", "/?member={memberName}");
         addRouting("/corner/{cornerTitle}", "/?corner={cornerTitle}");
         addRouting("/tag/{tag}", "/?tag={tag}");
+        addRouting("/sitemap", "/blogEntry/list");
     }
 
 }

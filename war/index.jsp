@@ -105,7 +105,7 @@ $(function() {
             <div class="entry">
 <c:if test="${ member != null }">
     <c:if test="${ memberModel != null }">
-                <div><img src="/image/show/${ memberModel.icon }" /></div>
+                <div><img src="/image/show/${ memberModel.icon }" width="128" /></div>
                 <div>
                     <b>Twitter ID</b>&nbsp;<a href="http://twitter.com/#!/${ memberModel.twitterId }" target="_blank">${ memberModel.twitterId }</a>
                 </div>

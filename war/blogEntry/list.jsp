@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <title>HMRのやっつけラジオ - 記事一覧</title>
@@ -36,6 +37,17 @@
                     <td>${s.count}</td>
                     <td>
                         <a href="/p/${entry.keyString}">${f:h(entry.title)}</a>
+                    </td>
+                    <td>
+<fmt:timeZone value="Asia/Tokyo">
+                        <fmt:formatDate value="${entry.createDate}" pattern="yyyy/MM/dd HH:mm:ss.SSS" />
+</fmt:timeZone>
+                    </td>
+                    <td>
+                        ${ entry.createDate }
+                    </td>
+                    <td>
+                        ${ entry.createDate.time }
                     </td>
                 </tr>
                 </c:forEach>

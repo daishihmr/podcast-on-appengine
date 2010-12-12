@@ -11,7 +11,7 @@
     </h2>
     <div class="entry">
         <p class="byline">
-<fmt:timeZone value="JST">
+<fmt:timeZone value="Asia/Tokyo">
             <i>収録日：<fmt:formatDate value="${entry.recordingDate}" pattern="yyyy/MM/dd" /></i>
             <i>公開日：<fmt:formatDate value="${entry.createDate}" pattern="yyyy/MM/dd HH:mm:ss" /></i>
             <i>更新日：<fmt:formatDate value="${entry.pubDate}" pattern="yyyy/MM/dd HH:mm:ss" /></i>
@@ -46,14 +46,14 @@
             <b>Tags:</b>&nbsp;<c:forEach items="${entry.tags}" var="tag"><a href="/tag/${tag}">${tag}</a>&nbsp;</c:forEach>
         </p>
         <p class="links">
-            <a class="permalink" href="/p/${entry.keyString}">Permalink</a>
-            &nbsp;・&nbsp;
-            <a href="https://twitter.com/home?status=%23hmrradio%20" class="comments" style="position:relative;z-index:100">Twitterでつぶやく</a>
+            <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="yattsuketan" data-lang="ja">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
             &nbsp;・&nbsp;
             <a href="http://mixi.jp/share.pl" class="mixi-check-button"
                 data-key="bd2465c84747c17a088d91f01127a90aa8b3d056"
                 style="padding-left:0">Check</a>
             <script type="text/javascript" src="http://static.mixi.jp/js/share.js"></script>
+            &nbsp;・&nbsp;
+            <a class="permalink" href="/p/${entry.keyString}">Permalink</a>
         </p>
     </div>
 </div>

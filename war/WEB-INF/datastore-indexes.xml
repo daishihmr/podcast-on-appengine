@@ -1,5 +1,15 @@
 <datastore-indexes autoGenerate="true">
 
+    <datastore-index kind="BlogEntry" ancestor="false" source="manual">
+        <property name="corners" direction="asc"/>
+        <property name="createDate" direction="desc"/>
+    </datastore-index>
+
+    <datastore-index kind="BlogEntry" ancestor="false" source="manual">
+        <property name="members" direction="asc"/>
+        <property name="createDate" direction="desc"/>
+    </datastore-index>
+
     <datastore-index kind="ImageFileFragment" ancestor="false"
         source="manual">
         <property name="imageDataRef" direction="asc" />

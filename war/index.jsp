@@ -93,16 +93,16 @@ $(function() {
     <!-- end header -->
 
     <!-- begin information -->
-<c:if test="${ member != null }">
+<c:if test="${ member != null || corner != null }">
     <div style="margin:0 auto;width:960px">
         <div class="post">
+<c:if test="${ member != null }">
             <h2 class="title">メンバー： ${member}</h2>
+</c:if>
+<c:if test="${ corner != null }">
+            <h2 class="title">コーナー： ${corner}</h2>
+</c:if>
             <div class="entry">
-            </div>
-            <div class="meta">
-                <p class="links">
-                    <a href="#" class="comments" style="position:relative;z-index:100">Twitter</a>
-                </p>
             </div>
         </div>
     </div>

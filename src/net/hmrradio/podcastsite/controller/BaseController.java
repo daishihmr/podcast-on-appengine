@@ -2,6 +2,8 @@ package net.hmrradio.podcastsite.controller;
 
 import static net.hmrradio.podcastsite.define.MsgKey.*;
 
+import java.util.Enumeration;
+
 import javax.transaction.NotSupportedException;
 
 import net.arnx.jsonic.JSON;
@@ -173,5 +175,13 @@ public abstract class BaseController extends Controller {
 
     public void setNecessaryLoggedIn(boolean necessaryLoggedIn) {
         this.necessaryLoggedIn = necessaryLoggedIn;
+    }
+
+    protected void debugPrint() {
+        Enumeration names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            String name = (String) names.nextElement();
+            System.out.println(name + " : " + param(name));
+        }
     }
 }

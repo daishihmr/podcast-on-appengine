@@ -7,9 +7,13 @@ import net.hmrradio.podcastsite.bean.BlogEntryQueryBean;
 import net.hmrradio.podcastsite.define.AttrName;
 import net.hmrradio.podcastsite.define.Values;
 import net.hmrradio.podcastsite.model.BlogEntry;
+import net.hmrradio.podcastsite.model.Corner;
 import net.hmrradio.podcastsite.model.Link;
+import net.hmrradio.podcastsite.model.Personality;
 import net.hmrradio.podcastsite.service.BlogEntryService;
+import net.hmrradio.podcastsite.service.CornerService;
 import net.hmrradio.podcastsite.service.LinkService;
+import net.hmrradio.podcastsite.service.PersonalityService;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
@@ -25,6 +29,9 @@ public class IndexController extends Controller {
 
     private BlogEntryService blogEntryService = new BlogEntryService();
     private LinkService linkService = new LinkService();
+
+    private PersonalityService personalityService = new PersonalityService();
+    private CornerService cornerService = new CornerService();
 
     @Override
     public Navigation run() throws Exception {
@@ -52,7 +59,12 @@ public class IndexController extends Controller {
                 query.setMemberEq(param("member"));
                 list = blogEntryService.list(query);
 
+                Personality member =
+                    personalityService.findByName(param("member"));
+
                 requestScope("tags", Values.DEFAULT_TAGS);
+                requestScope("memberModel", member);
+                System.out.println("member = " + member);
 
             } else if (!StringUtil.isEmpty(param("corner"))) {
 
@@ -60,7 +72,10 @@ public class IndexController extends Controller {
                 query.setCornerEq(param("corner"));
                 list = blogEntryService.list(query);
 
+                Corner corner = cornerService.findByTitle(param("corner"));
+
                 requestScope("tags", Values.DEFAULT_TAGS);
+                requestScope("cornerModel", corner);
 
             } else if (!StringUtil.isEmpty(param("tag"))) {
 

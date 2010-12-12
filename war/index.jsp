@@ -103,6 +103,31 @@ $(function() {
             <h2 class="title">コーナー： ${corner}</h2>
 </c:if>
             <div class="entry">
+<c:if test="${ member != null }">
+    <c:if test="${ memberModel != null }">
+                <div><img src="/image/show/${ memberModel.icon }" /></div>
+                <div>
+                    <b>Twitter ID</b>&nbsp;<a href="http://twitter.com/#!/${ memberModel.twitterId }" target="_blank">${ memberModel.twitterId }</a>
+                </div>
+                <div>
+                    ${ memberModel.profileHtml }
+                </div>
+    </c:if>
+    <c:if test="${ memberModel == null }">
+        NO DATA
+    </c:if>
+</c:if>
+<c:if test="${ corner != null }">
+    <c:if test="${ cornerModel != null }">
+                <div>
+                    ${ cornerModel.descriptionHtml }
+                </div>
+    </c:if>
+    <c:if test="${ cornerModel == null }">
+        NO DATA
+    </c:if>
+</c:if>
+                <br /><br />
             </div>
         </div>
     </div>

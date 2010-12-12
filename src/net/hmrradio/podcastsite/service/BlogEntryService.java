@@ -157,6 +157,7 @@ public class BlogEntryService {
 
         if (queryBean.getCreateDateLt() != 0) {
             Date date = new Date(queryBean.getCreateDateLt());
+            System.out.println("query createDate < " + date);
             result.filter(
                 b.createDate.getName(),
                 FilterOperator.LESS_THAN,

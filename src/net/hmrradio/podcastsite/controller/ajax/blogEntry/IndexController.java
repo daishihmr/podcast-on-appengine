@@ -13,7 +13,6 @@ import org.slim3.controller.Navigation;
 import org.slim3.controller.validator.LongTypeValidator;
 import org.slim3.controller.validator.RequiredValidator;
 import org.slim3.controller.validator.Validators;
-import org.slim3.util.StringUtil;
 
 /**
  * HTML断片（記事部分だけ）を返す
@@ -44,15 +43,9 @@ public class IndexController extends BaseController {
 
         BlogEntryQueryBean query = new BlogEntryQueryBean();
         query.setCreateDateLt(asLong("createDateLt"));
-        if (StringUtil.isEmpty(param("conrerEq"))) {
-            query.setCornerEq(param("createDateLt"));
-        }
-        if (StringUtil.isEmpty(param("memberEq"))) {
-            query.setMemberEq(param("memberEq"));
-        }
-        if (StringUtil.isEmpty(param("tagEq"))) {
-            query.setTagEq(param("tagEq"));
-        }
+        query.setCornerEq(param("cornerEq"));
+        query.setMemberEq(param("memberEq"));
+        query.setTagEq(param("tagEq"));
 
         List<BlogEntry> list = blogEntryService.list(query);
 

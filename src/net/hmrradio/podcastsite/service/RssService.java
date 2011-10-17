@@ -49,14 +49,16 @@ public class RssService {
                 }
 
                 item.enclosure = new SyndEnclosureImpl();
-                AudioFile audio =
-                    audioFileService.findByUrl(blog.getAudioFileURL());
-                if (audio != null) {
-                    item.enclosure.setUrl(audio.getUrl());
-                    item.enclosure.setType(audio.getType());
-                    item.enclosure.setLength(audio.getLength());
-                    item.duration =
-                        new Duration(audio.getDurationMillisecond());
+                if (blog.getAudioFileURL() != null) {
+                    AudioFile audio =
+                        audioFileService.findByUrl(blog.getAudioFileURL());
+                    if (audio != null) {
+                        item.enclosure.setUrl(audio.getUrl());
+                        item.enclosure.setType(audio.getType());
+                        item.enclosure.setLength(audio.getLength());
+                        item.duration =
+                            new Duration(audio.getDurationMillisecond());
+                    }
                 }
                 item.guid = Values.SITE_URL + "/?p=" + blog.getKeyString();
 

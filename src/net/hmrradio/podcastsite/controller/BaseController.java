@@ -14,14 +14,14 @@ import net.hmrradio.podcastsite.exception.NoLoggedInException;
 import net.hmrradio.podcastsite.util.JsonResponseUtil;
 import net.hmrradio.podcastsite.util.LoginCheckUtil;
 
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.util.ApplicationMessage;
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import com.google.appengine.repackaged.org.apache.commons.logging.Log;
-import com.google.appengine.repackaged.org.apache.commons.logging.LogFactory;
 
 public abstract class BaseController extends Controller {
 

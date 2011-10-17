@@ -7,7 +7,7 @@
 <html>
 <head>
 <title>HMRのやっつけラジオ - ダッシュボード</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Content-Language" content="ja" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Cache-Control" content="no-cache" />
@@ -106,7 +106,7 @@ function deleteEntry() {
 <div id="wrap">
     <!-- begin header -->
     <div id="header">
-        <h1>dashboard</h1>
+        <h1>dash board</h1>
     </div>
     <!-- end header -->
     <!-- begin page -->

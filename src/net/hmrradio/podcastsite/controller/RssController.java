@@ -4,10 +4,9 @@ import net.hmrradio.podcastsite.rss.PodcastChannel;
 import net.hmrradio.podcastsite.rss.PodcastUtil;
 import net.hmrradio.podcastsite.service.RssService;
 
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.slim3.controller.Navigation;
-
-import com.google.appengine.repackaged.org.apache.commons.logging.Log;
-import com.google.appengine.repackaged.org.apache.commons.logging.LogFactory;
 
 public class RssController extends BaseController {
 

@@ -7,6 +7,8 @@ import net.hmrradio.podcastsite.meta.BlogEntryMeta;
 import net.hmrradio.podcastsite.model.BlogEntry;
 import net.hmrradio.podcastsite.service.BlogEntryService;
 
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.slim3.controller.Navigation;
 import org.slim3.controller.validator.DateTypeValidator;
 import org.slim3.controller.validator.MaxlengthValidator;
@@ -14,9 +16,6 @@ import org.slim3.controller.validator.RegexpValidator;
 import org.slim3.controller.validator.RequiredValidator;
 import org.slim3.controller.validator.Validators;
 import org.slim3.util.BeanUtil;
-
-import com.google.appengine.repackaged.org.apache.commons.logging.Log;
-import com.google.appengine.repackaged.org.apache.commons.logging.LogFactory;
 
 public class PutController extends BaseController {
 

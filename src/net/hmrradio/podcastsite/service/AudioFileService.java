@@ -13,6 +13,7 @@ import net.hmrradio.podcastsite.model.AudioFile;
 
 import org.slim3.datastore.Datastore;
 import org.slim3.datastore.ModelQuery;
+import org.slim3.util.StringUtil;
 
 import com.google.appengine.api.datastore.Key;
 
@@ -50,7 +51,7 @@ public class AudioFileService {
     }
 
     public AudioFile findByUrl(String url) {
-        if (url == null) {
+        if (StringUtil.isEmpty(url)) {
             return null;
         }
         Key key = Datastore.createKey(AudioFile.class, url);

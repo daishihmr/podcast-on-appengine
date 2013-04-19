@@ -178,7 +178,7 @@ public abstract class BaseController extends Controller {
     }
 
     protected void debugPrint() {
-        Enumeration names = request.getParameterNames();
+        Enumeration<?> names = request.getParameterNames();
         while (names.hasMoreElements()) {
             String name = (String) names.nextElement();
             System.out.println(name + " : " + param(name));

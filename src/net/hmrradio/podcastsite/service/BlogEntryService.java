@@ -17,7 +17,7 @@ import org.slim3.util.StringUtil;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.appengine.repackaged.com.google.common.collect.Sets;
+import com.google.common.collect.Sets;
 
 public class BlogEntryService {
 

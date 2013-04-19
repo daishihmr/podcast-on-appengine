@@ -17,14 +17,14 @@ import org.slim3.util.ByteUtil;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.images.CompositeTransform;
 import com.google.appengine.api.images.Image;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.Transform;
-import com.google.appengine.repackaged.com.google.common.collect.Lists;
+import com.google.common.collect.Lists;
 
 public class ImageFileService {
 
@@ -150,9 +150,10 @@ public class ImageFileService {
 
     public List<String> list() {
         List<Key> keyList =
-            Datastore.query(ImageFile.class).sort(
-                f.updateAt.getName(),
-                SortDirection.DESCENDING).asKeyList();
+            Datastore
+                .query(ImageFile.class)
+                .sort(f.updateAt.getName(), SortDirection.DESCENDING)
+                .asKeyList();
         List<String> result = Lists.newArrayList();
         for (Key key : keyList) {
             result.add(KeyFactory.keyToString(key));

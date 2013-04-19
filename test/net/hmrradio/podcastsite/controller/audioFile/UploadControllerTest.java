@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.slim3.controller.validator.RegexpValidator;
 import org.slim3.tester.ControllerTestCase;
 
-import com.google.appengine.repackaged.com.google.common.collect.Maps;
+import com.google.common.collect.Maps;
 
 public class UploadControllerTest extends ControllerTestCase {
 

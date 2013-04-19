@@ -21,7 +21,7 @@ import org.slim3.datastore.EntityNotFoundRuntimeException;
 import org.slim3.util.ApplicationMessage;
 import org.slim3.util.StringUtil;
 
-import com.google.appengine.repackaged.com.google.common.collect.Lists;
+import com.google.common.collect.Lists;
 
 public class IndexController extends Controller {
 

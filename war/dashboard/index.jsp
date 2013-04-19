@@ -32,7 +32,7 @@ $(function() {
 
     $("#buttonUpload").button().click(function() {
     	open(
-            "http://hmr.sakura.ne.jp/qakgiehsnsgewa.html",
+            "http://tomcat.dev7.jp/mp3uploader/",
     		"child",
     		"width=400,height=300,menubar=no,toolbar=no,scrollbars=no"
         );

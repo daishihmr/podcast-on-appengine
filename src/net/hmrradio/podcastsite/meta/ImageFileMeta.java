@@ -1,6 +1,6 @@
 package net.hmrradio.podcastsite.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-04-19 17:20:30")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-04-19 18:06:00")
 /** */
 public final class ImageFileMeta extends org.slim3.datastore.ModelMeta<net.hmrradio.podcastsite.model.ImageFile> {
 

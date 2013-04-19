@@ -1,6 +1,6 @@
 package net.hmrradio.podcastsite.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-04-19 17:20:30")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-04-19 18:05:59")
 /** */
 public final class ModelCountMeta extends org.slim3.datastore.ModelMeta<net.hmrradio.podcastsite.model.ModelCount> {
 

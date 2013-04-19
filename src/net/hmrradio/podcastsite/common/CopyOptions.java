@@ -10,7 +10,7 @@ import org.slim3.util.StringUtil;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Text;
-import com.google.appengine.repackaged.com.google.common.collect.Sets;
+import com.google.common.collect.Sets;
 
 public class CopyOptions extends org.slim3.util.CopyOptions {
 

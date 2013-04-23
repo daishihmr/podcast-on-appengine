@@ -1,3 +1,5 @@
 war/WEB-INF/classes
 build/test-classes
 *.class
+*Meta.java
+datastore-indexes-auto.xml

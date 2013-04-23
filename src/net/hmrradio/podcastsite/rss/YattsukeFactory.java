@@ -1,5 +1,9 @@
 package net.hmrradio.podcastsite.rss;
 
+import java.util.Calendar;
+
+import net.hmrradio.podcastsite.define.Values;
+
 import com.sun.syndication.feed.module.itunes.types.Category;
 import com.sun.syndication.feed.synd.SyndPersonImpl;
 
@@ -14,14 +18,8 @@ public class YattsukeFactory {
         result.title = "HMRのやっつけラジオ";
         result.link = "http://www.hmr-radio.net/";
         result.subtitle = "佐世保出身の30代男性集団が送る、笑いと情熱のポッドキャスト";
-        result.description =
-            "佐世保出身の30代男性集団が送る、笑いと情熱のポッドキャスト。\n"
-                + "車、電脳、オタク、映画、風俗、音楽、ゲームなどをネタに、幅広い話題を提供。\n"
-                + "やっつけ仕事でなるべく週１回ぐらいで更新していくネットラジオです。";
-        result.summary =
-            "佐世保出身の30代男性集団が送る、笑いと情熱のポッドキャスト。\n"
-                + "車、電脳、オタク、映画、風俗、音楽、ゲームなどをネタに、幅広い話題を提供。\n"
-                + "やっつけ仕事でなるべく週１回ぐらいで更新していくネットラジオです。";
+        result.description = Values.DESCRIPTION;
+        result.summary = result.description;
         result.language = "ja-JP";
         result.author = "HMR";
         result.image = new PodcastImage();
@@ -31,7 +29,10 @@ public class YattsukeFactory {
             result.image.link = result.link;
             result.image.description = "やっつけ";
         }
-        result.copyright = "Copyright 2006,2010 HMR";
+        result.copyright =
+            "Copyright 2006,"
+                + Calendar.getInstance().get(Calendar.YEAR)
+                + " HMR";
 
         // itunes
         result.owner = new SyndPersonImpl();

@@ -22,7 +22,7 @@
 <meta http-equiv="Cache-Control" content="no-cache" />
 <meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GM"/>
 <meta name="keywords" content="${tags}" />
-<meta name="discription" content="佐世保出身の30代男性集団が送る、笑いと情熱のポッドキャスト。車、電脳、オタク、映画、風俗、音楽、ゲームなどをネタに、幅広い話題を提供。やっつけ仕事でなるべく週１回ぐらいで更新していくネットラジオです。" />
+<meta name="discription" content="<%= Values.DESCRIPTION %>" />
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/rss" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
@@ -114,7 +114,11 @@ $(function() {
                 </div>
     </c:if>
     <c:if test="${ memberModel == null }">
+<% if (LoginCheckUtil.isAdmin()) { %>
+        <a href="/newmember?name=${member}">NO DATA</a>
+<% } else { %>
         NO DATA
+<% } %>
     </c:if>
 </c:if>
 <c:if test="${ corner != null }">
@@ -124,7 +128,11 @@ $(function() {
                 </div>
     </c:if>
     <c:if test="${ cornerModel == null }">
+<% if (LoginCheckUtil.isAdmin()) { %>
+        <a href="/newcorner?name=${corner}">NO DATA</a>
+<% } else { %>
         NO DATA
+<% } %>
     </c:if>
 </c:if>
                 <br /><br />

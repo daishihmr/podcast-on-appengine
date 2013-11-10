@@ -40,8 +40,7 @@ public class UploadController extends BaseController {
         Validators v = new Validators(request);
 
         v.add(a.url, RequiredValidator.INSTANCE);
-        v.add(a.duration, RequiredValidator.INSTANCE, new RegexpValidator(
-            "(\\d+:)?\\d?\\d:\\d\\d"));
+        v.add(a.duration, RequiredValidator.INSTANCE);
         v.add(a.length, RequiredValidator.INSTANCE, new LongTypeValidator());
         v.add(a.type, RequiredValidator.INSTANCE);
 
